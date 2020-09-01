@@ -9,11 +9,10 @@ git clone --recurse-submodules https://github.com/SpiritCroc/schildichat-desktop
 ./setup.sh
 ```
 
-# Build on/for Linux
+# Build
 
 `make`
 
+# Install
 
-# Build on/for Windows
-
-TODO
+Installable packages should appear in element-desktop/dist/.
