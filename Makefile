@@ -13,7 +13,7 @@ web:
 	yarn --cwd element-web dist
 
 desktop-common: web
-	yarn --cwd element-desktop run fetch --cfgdir $(CFGDIR)
+	yarn --cwd element-desktop run fetch --cfgdir ''
 	yarn --cwd element-desktop run build:native
 
 desktop: windows linux
