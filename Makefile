@@ -1,4 +1,4 @@
-.PHONY: all web desktop desktop-common linux windows
+.PHONY: all web desktop desktop-common linux windows clean
 
 CFGDIR ?= configs/sc
 
@@ -25,3 +25,9 @@ linux: desktop-common
 
 windows: desktop-common
 	$(YARN) --cwd element-desktop run build64windows
+
+clean:
+	$(YARN) --cwd matrix-js-sdk clean
+	$(YARN) --cwd matrix-react-sdk clean
+	$(YARN) --cwd element-web clean
+	$(YARN) --cwd element-desktop clean
