@@ -23,6 +23,12 @@ desktop: windows linux
 linux: desktop-common
 	$(YARN) --cwd element-desktop run build64linux
 
+debian: desktop-common
+	$(YARN) --cwd element-desktop run build64deb
+
+pacman: desktop-common
+	$(YARN) --cwd element-desktop run build64pacman
+
 windows: desktop-common
 	$(YARN) --cwd element-desktop run build64windows
 
