@@ -1,4 +1,4 @@
-.PHONY: all web desktop desktop-common linux windows clean
+.PHONY: all web desktop desktop-common linux windows windows-portable clean
 
 CFGDIR ?= configs/sc
 
@@ -31,6 +31,9 @@ pacman: desktop-common
 
 windows: desktop-common
 	$(YARN) --cwd element-desktop run build64windows
+
+windows-portable: desktop-common
+	$(YARN) --cwd element-desktop run build64windows-portable
 
 clean:
 	$(YARN) --cwd matrix-js-sdk clean
