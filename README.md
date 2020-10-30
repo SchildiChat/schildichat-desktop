@@ -14,12 +14,12 @@ remaining, and no ways to configure Schildi's features.
 Furthermore, I don't know how much more work I'm going to put into this, but
 if anybody wants to help improving it, contributions are welcome!
 
-Downloads for Desktop: https://github.com/SpiritCroc/schildichat-desktop/releases <br/>
+Downloads for Desktop: https://github.com/SchildiChat/schildichat-desktop/releases <br/>
 Hosted web variant: https://schildiweb.spiritcroc.de/
 
 Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-web:matrix.org).
 
-<img src="https://raw.githubusercontent.com/SpiritCroc/schildichat-desktop/sc/screenshots/1.png"/>
+<img src="https://raw.githubusercontent.com/SchildiChat/schildichat-desktop/sc/screenshots/1.png"/>
 
 
 # Building SchildiChat-Desktop
@@ -52,7 +52,7 @@ $ source .bashrc
 ## Initial setup
 
 ```
-git clone --recurse-submodules https://github.com/SpiritCroc/schildichat-desktop.git
+git clone --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
 cd schildichat-desktop
 ./setup.sh
 ```

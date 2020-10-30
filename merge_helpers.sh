@@ -10,10 +10,10 @@ add_upstream() {
     local sc_remote="$(git remote -v|grep origin|grep fetch|sed 's|.*\t\(.*\) (fetch)|\1|')"
     if echo "$sc_remote" | grep -q matrix; then
         # matrix.org repo
-        local upstream_remote="$(echo "$sc_remote" | sed 's|SpiritCroc|matrix-org|')"
+        local upstream_remote="$(echo "$sc_remote" | sed 's|SchildiChat|matrix-org|')"
     elif echo "$sc_remote" | grep -q element; then
         # vector-im repo
-        local upstream_remote="$(echo "$sc_remote" | sed 's|SpiritCroc|vector-im|')"
+        local upstream_remote="$(echo "$sc_remote" | sed 's|SchildiChat|vector-im|')"
     else
         echo "Don't know upstream repo for $sc_remote"
         return 1

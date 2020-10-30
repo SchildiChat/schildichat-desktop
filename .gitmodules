@@ -1,12 +1,12 @@
 [submodule "matrix-js-sdk"]
 	path = matrix-js-sdk
-	url = https://github.com/SpiritCroc/matrix-js-sdk.git
+	url = https://github.com/SchildiChat/matrix-js-sdk.git
 [submodule "matrix-react-sdk"]
 	path = matrix-react-sdk
-	url = https://github.com/SpiritCroc/matrix-react-sdk.git
+	url = https://github.com/SchildiChat/matrix-react-sdk.git
 [submodule "element-web"]
 	path = element-web
-	url = https://github.com/SpiritCroc/element-web.git
+	url = https://github.com/SchildiChat/element-web.git
 [submodule "element-desktop"]
 	path = element-desktop
-	url = https://github.com/SpiritCroc/element-desktop.git
+	url = https://github.com/SchildiChat/element-desktop.git
