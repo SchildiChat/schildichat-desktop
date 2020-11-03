@@ -35,10 +35,10 @@ CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
 
 setup:
 	if [ ! -L "element-desktop/webapp" ]; then ./setup.sh; fi
+	cp $(CFGDIR)/config.json element-web/
 
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
 web: setup
-	cp $(CFGDIR)/config.json element-web/
 	$(YARN) --cwd element-web dist
 
 desktop-common: web

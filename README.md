@@ -54,7 +54,7 @@ $ source .bashrc
 ```
 git clone --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
 cd schildichat-desktop
-./setup.sh
+make setup # optional step if using the other make targets
 ```
 
 ## Build
