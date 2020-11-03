@@ -37,3 +37,18 @@ forall_repos() {
     "$@"
     popd
 }
+
+ensure_yes() {
+    read -e -p "$1 [y/N] " choice
+    
+    if [[ "$choice" != [Yy]* ]]; then
+        exit 1
+    fi
+}
+
+check_branch() {
+    if [[ $(git branch --show-current) != "$1" ]]; then
+        repo_name=$(basename `git rev-parse --show-toplevel`)
+        ensure_yes "$repo_name not in branch $1. Continue?"
+    fi
+}

@@ -59,8 +59,8 @@ cd schildichat-desktop
 
 ## Build
 
-`make`
+`make [{web|debian|pacman|windows}-release]`
 
 ## Install
 
-Installable packages should appear in element-desktop/dist/.
+Installable packages should appear in release/.
