@@ -96,4 +96,3 @@ clean:
 	$(YARN) --cwd element-desktop clean
 	rm -f element-desktop/webapp
 	rm -rf element-web/dist
-	rm -rf $(RELEASE_DIR)
