@@ -40,6 +40,7 @@ setup:
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
 web: setup
 	$(YARN) --cwd element-web dist
+	echo "$(VERSION)" > element-web/webapp/version
 
 desktop-common: web
 	$(YARN) --cwd element-desktop run fetch --cfgdir ''
