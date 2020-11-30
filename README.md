@@ -1,21 +1,15 @@
 # SchildiChat-Desktop
 
-SchildiChat-Desktop is a fork of [Element-Web](https://github.com/vector-im/element-web)/[-Desktop](https://github.com/vector-im/element-desktop).
+SchildiChat-Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
 
 The most important changes of SchildiChat-Desktop compared to Element are:
-
 - A unifed chat list for both direct and group chats
 - Message bubbles
 - Bigger items in the room list
-
-While SchildiChat-Desktop should be already usable as is, it's still better seen as a
-proof-of-concept rather than a finished product, as there are still a few UX bugs
-remaining, and no ways to configure Schildi's features.
-Furthermore, I don't know how much more work I'm going to put into this, but
-if anybody wants to help improving it, contributions are welcome!
+- &hellip; and more!
 
 Downloads for Desktop: https://github.com/SchildiChat/schildichat-desktop/releases <br/>
-Hosted web variant: https://schildiweb.spiritcroc.de/
+Hosted web variant: [https://app.schildi.chat/](https://app.schildi.chat/)
 
 Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-web:matrix.org).
 
