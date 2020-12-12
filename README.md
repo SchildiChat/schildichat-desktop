@@ -1,14 +1,14 @@
-# SchildiChat-Desktop
+# SchildiChat Web/Desktop
 
-SchildiChat-Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
+SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
 
-The most important changes of SchildiChat-Desktop compared to Element are:
+The most important changes of SchildiChat Web/Desktop compared to Element Web/Desktop are:
 - A unifed chat list for both direct and group chats
 - Message bubbles
 - Bigger items in the room list
 - &hellip; and more!
 
-Downloads for Desktop: https://github.com/SchildiChat/schildichat-desktop/releases <br/>
+Desktop downloads with installation instructions are listed on our website: [https://schildi.chat/desktop](https://schildi.chat/desktop)  
 Hosted web variant: [https://app.schildi.chat/](https://app.schildi.chat/)
 
 Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-web:matrix.org).
@@ -16,16 +16,16 @@ Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-we
 <img src="https://raw.githubusercontent.com/SchildiChat/schildichat-desktop/sc/screenshots/1.png"/>
 
 
-# Building SchildiChat-Desktop
+## Building SchildiChat Web/Desktop
 
-This particular repo is a wrapper project for element-desktop, element-web, matrix-react-sdk and matrix-js-sdk, in order to build SchildiChat-Desktop.
+This particular repo is a wrapper project for element-desktop, element-web, matrix-react-sdk and matrix-js-sdk in order to build SchildiChat Web **and** Desktop.
 
 
-## Debian compilation dependencies
+### Debian build dependencies
 
-Since Debian is usually slow to update packages on its stable releases, some dependencies
-might not be recent enough to building Schildi.
-Here are the dependencies which I had to install for compilation on Debian 10:
+Since Debian is usually slow to update packages on its stable releases,
+some dependencies might not be recent enough to build SchildiChat.  
+The following are the dependencies required to build SchildiChat Web/Desktop on Debian 10:
 
 ```
 # apt install vim curl git make gcc g++ libsqlcipher-dev pkg-config libsecret-1-dev bsdtar
@@ -43,7 +43,7 @@ $ echo 'export PATH="$PATH:$HOME/.cargo/bin"' >> .bashrc
 $ source .bashrc
 ```
 
-## Initial setup
+### Initial setup
 
 ```
 git clone --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
@@ -51,10 +51,35 @@ cd schildichat-desktop
 make setup # optional step if using the other make targets
 ```
 
-## Build
+### Create release builds
 
-`make [{web|debian|pacman|windows}-release]`
+Those are the builds distributed via GitHub releases.
 
-## Install
+```
+# The single make targets are explained below
+make [{web|debian|windows-setup|windows-portable}-release]
+```
 
-Installable packages should appear in release/.
+After that these packages which belong to to their respective make target should appear in release/\<version\>/:
+- `web`: _schildichat-web-\<version\>.tar.gz_: archive that can be unpacked and served by a **web** server (copy `config.sample.json` to `config.json` and adjust the [configuration](https://github.com/SchildiChat/element-web/blob/sc/docs/config.md) to your likings)
+- `debian`: file ready for installation on a **Debian Linux** (based) system via `dpkg -i schildichat-desktop_<version>_amd64.deb`
+- `windows-setup`: _SchildiChat_Setup_v\<version\>.exe_: file ready for **installation** on a **Windows** system
+- `windows-portable`: _SchildiChat_win-portable_v\<version\>.zip_: **portable** version for a **Windows** system – take SchildiChat together with your login data around with you (the archive contains a readme with **instructions** and **notes**)
+
+#### Additional make targets not used for GitHub releases
+- `pacman`: file ready for installation on an **Arch Linux** (based) system via `pacman -U schildichat-desktop-<version>.pacman`
+- `windows-unpacked`: _SchildiChat_win-unpacked_v\<version\>.zip_: **unpacked** archive for a **Windows** system
+
+### Build SchildiChat Web and deploy it directly to your web server
+
+Put the `config.json` with the [configuration](https://github.com/SchildiChat/element-web/blob/sc/docs/config.md) you want for your hosted instance in a subfolder of the `configs` folder.  
+Then create a file named `release.mk` and and fill it similar to that:
+```
+.PHONY: your-deploy-web
+
+YOUR_CFGDIR := configs/your_subfolder
+your-deploy-%: CFGDIR := $(YOUR_CFGDIR)
+
+your-deploy-web: web
+	rsync --info=progress2 -rup --del element-web/webapp/ you@yourwebserver:/the/folder/served/for/schildi/
+```
