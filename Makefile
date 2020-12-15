@@ -20,6 +20,7 @@ OUT_WEB := $(WEB_OUT)/$(WEB_APP_NAME)-$(WEB_OUT_DIST_VERSION).tar.gz
 DESKTOP_OUT := element-desktop/dist
 OUT_DEB64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)_$(VERSION)_amd64.deb
 OUT_PAC64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)-$(VERSION).pacman
+OUT_APPIMAGE64 := $(DESKTOP_OUT)/$(PRODUCT_NAME)-$(VERSION).AppImage
 OUT_TARXZ64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)-$(VERSION).tar.xz
 OUT_WIN64 := $(DESKTOP_OUT)/$(PRODUCT_NAME)\ Setup\ $(VERSION).exe
 OUT_WIN64_PORTABLE := $(DESKTOP_OUT)/$(PRODUCT_NAME)\ $(VERSION).exe
@@ -57,6 +58,9 @@ debian: desktop-common
 pacman: desktop-common
 	$(YARN) --cwd element-desktop run build64pacman
 
+appimage: desktop-common
+	$(YARN) --cwd element-desktop run build64appimage
+
 windows: desktop-common
 	$(YARN) --cwd element-desktop run build64windows
 
@@ -74,6 +78,10 @@ debian-release: debian
 pacman-release: pacman
 	mkdir -p $(CURRENT_RELEASE_DIR)
 	cp $(OUT_PAC64) $(CURRENT_RELEASE_DIR)
+
+appimage-release: appimage
+	mkdir -p $(CURRENT_RELEASE_DIR)
+	cp $(OUT_APPIMAGE64) $(CURRENT_RELEASE_DIR)
 
 windows-setup-release: windows
 	mkdir -p $(CURRENT_RELEASE_DIR)
