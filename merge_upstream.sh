@@ -15,6 +15,13 @@ forall_repos check_branch $branch
 forall_repos git fetch upstream
 forall_repos git merge upstream/master
 
-./setup.sh
+# Automatic theme update
+pushd "matrix-react-sdk" > /dev/null
+./theme.sh
+popd > /dev/null
+
+# Refresh environment
+make clean
+make setup
 
 popd > /dev/null
