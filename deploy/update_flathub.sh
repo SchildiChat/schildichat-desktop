@@ -34,7 +34,7 @@ jsonString=$(echo $jsonString | jq -r ".modules[]? |= ((select(.name?==\"schildi
 
 echo $jsonString | jq --indent 4 "." > $jsonFile
 
-sed -i "s|^\s\s<releases>$|  <releases>\n    <release version=\"$version\" date=\"$debdate\"/>'|" $xmlFile
+sed -i "s|^\s\s<releases>$|  <releases>\n    <release version=\"$version\" date=\"$debdate\"/>|" $xmlFile
 
 git add $jsonFile $xmlFile
 git commit -m "Bump version to v$version"
