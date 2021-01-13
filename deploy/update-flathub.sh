@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -x
+# set -x
 
 DEPLOY_ROOT="$(dirname "$(realpath "$0")")"
 
@@ -39,6 +39,8 @@ sed -i "s|^\s\s<releases>$|  <releases>\n    <release version=\"$version\" date=
 git add $jsonFile $xmlFile
 git commit -m "Bump version to v$version"
 
-#git push
+git push
 
 popd > /dev/null
+
+echo "Release v$version published on flathub!"

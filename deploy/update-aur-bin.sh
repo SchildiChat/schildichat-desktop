@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -x
+# set -x
 
 DEPLOY_ROOT="$(dirname "$(realpath "$0")")"
 
@@ -28,6 +28,8 @@ makepkg --printsrcinfo > .SRCINFO
 git add .SRCINFO PKGBUILD
 git commit -m "Bump version to v$version"
 
-#git push
+git push
 
 popd > /dev/null
+
+echo "Release v$version published on AUR!"
