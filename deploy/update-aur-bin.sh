@@ -20,7 +20,7 @@ pushd "$repopath" > /dev/null
 git fetch
 git reset --hard origin/master
 
-sed -i "s|^pkgver=.*$|pkgver=$version|" PKGBUILD
+sed -i "s|^_pkgver=.*$|_pkgver=$version|" PKGBUILD
 sed -i "s|^sha256sums=('.*'$|sha256sums=('$sha256sum'|" PKGBUILD
 
 makepkg --printsrcinfo > .SRCINFO
