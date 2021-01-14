@@ -15,7 +15,7 @@ release_notes_file="/tmp/scrn.md"
 
 owner=SchildiChat
 repo=schildichat-desktop
-target=master
+target=sc
 
 # Define variables
 GH_API="https://api.github.com"
