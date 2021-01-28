@@ -1,4 +1,4 @@
-.PHONY: all setup web desktop desktop-common linux windows windows-portable
+.PHONY: all setup web desktop desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release release
 .PHONY: clean
 
@@ -67,6 +67,12 @@ windows: desktop-common
 windows-portable: desktop-common
 	$(YARN) --cwd element-desktop run build64windows-portable
 
+local-pkgbuild: debian
+	./create_local_pkgbuild.sh $(VERSION) $(DESKTOP_APP_NAME) $(PRODUCT_NAME) $(OUT_DEB64)
+
+local-pkgbuild-install: local-pkgbuild
+	cd local-pkgbuild; makepkg --install
+
 web-release: web
 	mkdir -p $(CURRENT_RELEASE_DIR)
 	cp $(OUT_WEB) $(CURRENT_RELEASE_DIR)
@@ -105,3 +111,4 @@ clean:
 	$(YARN) --cwd element-desktop clean
 	rm -f element-desktop/webapp
 	rm -rf element-web/dist
+	rm -rf local-pkgbuild
