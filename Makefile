@@ -1,4 +1,4 @@
-.PHONY: all setup web desktop desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
+.PHONY: all setup react-reskindex web desktop desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release release
 .PHONY: clean
 
@@ -27,6 +27,7 @@ OUT_WIN64_PORTABLE := $(DESKTOP_OUT)/$(PRODUCT_NAME)\ $(VERSION).exe
 OUT_WIN64_BETTER_NAME := $(PRODUCT_NAME)_Setup_v$(VERSION).exe
 OUT_WIN64_UNPACKED_BETTER_NAME := $(PRODUCT_NAME)_win-unpacked_v$(VERSION).zip
 OUT_WIN64_PORTABLE_BETTER_NAME := $(PRODUCT_NAME)_win-portable_v$(VERSION)
+OUT_MACOS := $(DESKTOP_OUT)/$(PRODUCT_NAME)-$(VERSION).dmg
 
 RELEASE_DIR := release
 CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
@@ -37,6 +38,9 @@ CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
 setup:
 	if [ ! -L "element-desktop/webapp" ]; then ./setup.sh; fi
 	cp $(CFGDIR)/config.json element-web/
+
+react-reskindex: setup
+	$(YARN) --cwd matrix-react-sdk reskindex
 
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
 web: setup
@@ -66,6 +70,9 @@ windows: desktop-common
 
 windows-portable: desktop-common
 	$(YARN) --cwd element-desktop run build64windows-portable
+
+macos: react-reskindex desktop-common
+	$(YARN) --cwd element-desktop run build --mac dmg -c.mac.identity=null
 
 local-pkgbuild: debian
 	./create_local_pkgbuild.sh $(VERSION) $(DESKTOP_APP_NAME) $(PRODUCT_NAME) $(OUT_DEB64)
@@ -101,6 +108,10 @@ windows-portable-release: windows-portable
 	./windowsportable.sh $(OUT_WIN64_PORTABLE) $(OUT_WIN64_PORTABLE_BETTER_NAME) $(CURRENT_RELEASE_DIR) $(VERSION)
 
 windows-release: windows-setup-release windows-unpacked-release windows-portable-release
+
+macos-release: macos
+	mkdir -p $(CURRENT_RELEASE_DIR)
+	cp $(OUT_MACOS) $(CURRENT_RELEASE_DIR)
 
 release: web-release debian-release pacman-release windows-release
 

@@ -57,7 +57,7 @@ Those are the builds distributed via GitHub releases.
 
 ```
 # The single make targets are explained below
-make [{web|debian|windows-setup|windows-portable}-release]
+make [{web|debian|windows-setup|windows-portable|macos}-release]
 ```
 
 After that these packages which belong to to their respective make target should appear in release/\<version\>/:
@@ -65,6 +65,7 @@ After that these packages which belong to to their respective make target should
 - `debian`: file ready for installation on a **Debian Linux** (based) system via `dpkg -i schildichat-desktop_<version>_amd64.deb`
 - `windows-setup`: _SchildiChat_Setup_v\<version\>.exe_: file ready for **installation** on a **Windows** system
 - `windows-portable`: _SchildiChat_win-portable_v\<version\>.zip_: **portable** version for a **Windows** system – take SchildiChat together with your login data around with you (the archive contains a readme with **instructions** and **notes**)
+- `macos`: Build a *.dmg for macOS
 
 #### Additional make targets not used for GitHub releases
 - `pacman`: file ready for installation on an **Arch Linux** (based) system via `pacman -U schildichat-desktop-<version>.pacman`
@@ -73,7 +74,7 @@ After that these packages which belong to to their respective make target should
 ### Build SchildiChat Web and deploy it directly to your web server
 
 Put the `config.json` with the [configuration](https://github.com/SchildiChat/element-web/blob/sc/docs/config.md) you want for your hosted instance in a subfolder of the `configs` folder.  
-Then create a file named `release.mk` and and fill it similar to that:
+Then create a file named `release.mk` and fill it similar to that:
 ```
 .PHONY: your-deploy-web
 
