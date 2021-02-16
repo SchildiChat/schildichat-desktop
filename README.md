@@ -20,8 +20,9 @@ Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-we
 
 This particular repo is a wrapper project for element-desktop, element-web, matrix-react-sdk and matrix-js-sdk in order to build SchildiChat Web **and** Desktop.
 
+### Install dependencies
 
-### Debian build dependencies
+#### Debian build dependencies
 
 Since Debian is usually slow to update packages on its stable releases,
 some dependencies might not be recent enough to build SchildiChat.  
@@ -43,14 +44,14 @@ $ echo 'export PATH="$PATH:$HOME/.cargo/bin"' >> .bashrc
 $ source .bashrc
 ```
 
-### macOS build dependencies
+#### macOS build dependencies
 
-#### Install brew package manager
+##### Install brew package manager
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-#### Install packages
+##### Install packages
 
 ```
 brew install tcl rust node gpg vim curl git yarn git make gcc
