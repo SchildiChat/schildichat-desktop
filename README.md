@@ -43,6 +43,20 @@ $ echo 'export PATH="$PATH:$HOME/.cargo/bin"' >> .bashrc
 $ source .bashrc
 ```
 
+### macOS build dependencies
+
+#### Install brew package manager
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install packages
+
+```
+brew install tcl rust node gpg vim curl git yarn git make gcc
+```
+
+
 ### Initial setup
 
 ```
