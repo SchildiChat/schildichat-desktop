@@ -1,4 +1,4 @@
-.PHONY: all setup react-reskindex web desktop desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
+.PHONY: all setup reskindex web desktop desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release release
 .PHONY: clean
 
@@ -39,11 +39,12 @@ setup:
 	if [ ! -L "element-desktop/webapp" ]; then ./setup.sh; fi
 	cp $(CFGDIR)/config.json element-web/
 
-react-reskindex: setup
+reskindex: setup
 	$(YARN) --cwd matrix-react-sdk reskindex
+	$(YARN) --cwd element-web reskindex
 
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
-web: setup
+web: setup reskindex
 	$(YARN) --cwd element-web dist
 	echo "$(VERSION)" > element-web/webapp/version
 
