@@ -72,7 +72,7 @@ windows: desktop-common
 windows-portable: desktop-common
 	$(YARN) --cwd element-desktop run build64windows-portable
 
-macos: react-reskindex desktop-common
+macos: desktop-common
 	$(YARN) --cwd element-desktop run build --mac dmg -c.mac.identity=null
 
 local-pkgbuild: debian
