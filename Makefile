@@ -1,10 +1,10 @@
-.PHONY: all setup reskindex web desktop desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
-.PHONY: web-release debian-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release release
+.PHONY: all setup regenerate-i18n reskindex web desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
+.PHONY: web-release debian-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: clean
 
 CFGDIR ?= configs/sc
 
-all: release
+all: web
 
 YARN ?= yarnpkg
 
@@ -37,7 +37,9 @@ CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
 
 setup:
 	if [ ! -L "element-desktop/webapp" ]; then ./setup.sh; fi
-	cp $(CFGDIR)/config.json element-web/
+
+regenerate-i18n: setup
+	./regenerate_i18n.sh
 
 reskindex: setup
 	$(YARN) --cwd matrix-react-sdk reskindex
@@ -45,14 +47,13 @@ reskindex: setup
 
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
 web: setup reskindex
+	cp $(CFGDIR)/config.json element-web/
 	$(YARN) --cwd element-web dist
 	echo "$(VERSION)" > element-web/webapp/version
 
 desktop-common: web
 	$(YARN) --cwd element-desktop run fetch --cfgdir ''
 	$(YARN) --cwd element-desktop run build:native
-
-desktop: windows linux
 
 linux: desktop-common
 	$(YARN) --cwd element-desktop run build64linux
@@ -113,8 +114,6 @@ windows-release: windows-setup-release windows-unpacked-release windows-portable
 macos-release: macos
 	mkdir -p $(CURRENT_RELEASE_DIR)
 	cp $(OUT_MACOS) $(CURRENT_RELEASE_DIR)
-
-release: web-release debian-release pacman-release windows-release
 
 clean:
 	$(YARN) --cwd matrix-js-sdk clean
