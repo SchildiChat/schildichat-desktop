@@ -27,3 +27,7 @@ pushd element-desktop
 $yarn install
 ln -s ../element-web/webapp ./ || true
 popd
+
+pushd i18n-helper
+$yarn install
+popd

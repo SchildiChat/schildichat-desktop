@@ -1,0 +1,8 @@
+{
+  "name": "i18n-helper",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "globby": "^11.0.3"
+  }
+}

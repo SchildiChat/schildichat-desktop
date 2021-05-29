@@ -52,3 +52,26 @@ check_branch() {
         ensure_yes "$repo_name not in branch $1. Continue?"
     fi
 }
+
+check_clean_git() {
+    # Require clean git state
+    uncommitted=`git status --porcelain`
+    if [ ! -z "$uncommitted" ]; then
+        echo "Uncommitted changes are present, please commit first!"
+        exit 1
+    fi
+}
+
+revert_i18n_changes() {
+    local i18n_path="$1"
+
+    git checkout upstream/master -- "$i18n_path"
+    git commit -m "Automatic i18n reversion" || true
+}
+
+apply_i18n_changes() {
+    local i18n_path="$1"
+
+    git add "$i18n_path"
+    git commit -m "Automatic i18n adjustment" || true
+}
