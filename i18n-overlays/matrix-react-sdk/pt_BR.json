@@ -1,1 +1,7 @@
-{}
+{
+    "Enable layout with message bubbles": "Habilitar layout com bolhas de mensagem",
+    "Message bubbles": "Bolhas de mensagens",
+    "Normal priority": "Prioridade normal",
+    "Show message bubbles on one side only": "Mostrar bolhas de mensagem em apenas um lado",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Mostrar bolhas de mensagem dependendo da largura de ambos os lados ou somente de um lado"
+}
