@@ -1,1 +1,7 @@
-{}
+{
+    "Show message bubbles on one side only": "mostrar las burbujas de mensajes en un solo lado",
+    "Message bubbles": "Burbujas de mensajes",
+    "Normal priority": "Prioridad normal",
+    "Enable layout with message bubbles": "Activar diseño con mensajes de burbujas",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Mostrar mensajes de burbuja dependiendo del tamaño tanto en ambos lados o solo en un lado"
+}
