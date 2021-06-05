@@ -1,1 +1,7 @@
-{}
+{
+    "Show message bubbles on one side only": "Boodschappenbubbels slechts aan één kant tonen",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Toon berichtbubbels, afhankelijk van de breedte, aan beide zijden of slechts aan één zijde",
+    "Message bubbles": "Boodschap bellen",
+    "Normal priority": "Normale prioriteit",
+    "Enable layout with message bubbles": "Schakel lay-out in met tekstballonnen"
+}
