@@ -1,1 +1,7 @@
-{}
+{
+    "Enable layout with message bubbles": "Sõnumimullidega paigutuse lubamine",
+    "Show message bubbles on one side only": "Näita sõnumimulle ainult ühel poolel",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Näita sõnumimullid sõltuvalt laiusest kas mõlemal või ainult ühel küljel",
+    "Normal priority": "Tavaline prioriteet",
+    "Message bubbles": "Sõnumimullid"
+}
