@@ -1,1 +1,7 @@
-{}
+{
+    "Enable layout with message bubbles": "Povolenie rozloženia s bublinami správ",
+    "Show message bubbles on one side only": "Zobrazenie bublín správ len na jednej strane",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Zobrazenie bublín správ v závislosti od šírky buď na oboch stranách, alebo len na jednej strane",
+    "Message bubbles": "Bubliny správ",
+    "Normal priority": "Normálna priorita"
+}
