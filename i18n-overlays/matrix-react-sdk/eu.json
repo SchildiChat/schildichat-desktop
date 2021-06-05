@@ -1,1 +1,7 @@
-{}
+{
+    "Show message bubbles on one side only": "Erakutsi mezu burbuilak alde batetik bakarrik",
+    "Message bubbles": "Mezu burbuilak",
+    "Normal priority": "Normala lehentasuna",
+    "Enable layout with message bubbles": "Gaitu diseinua batera mezua burbuilak",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Erakutsi mezu burbuilak arabera zabalera bai, bi aldeetatik edo alde batetik bakarrik"
+}
