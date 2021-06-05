@@ -1,1 +1,7 @@
-{}
+{
+    "Enable layout with message bubbles": "Üzenetbuborékos elrendezés engedélyezése",
+    "Show message bubbles on one side only": "Üzenetbuborékok megjelenítése csak az egyik oldalon",
+    "Message bubbles": "Üzenet buborékok",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Üzenetbuborékok megjelenítése a szélességtől függően mindkét oldalon vagy csak az egyik oldalon",
+    "Normal priority": "Normál prioritás"
+}
