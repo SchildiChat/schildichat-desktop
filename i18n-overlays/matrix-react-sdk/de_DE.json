@@ -103,5 +103,7 @@
     "Unable to look up phone number": "Telefonnummer kann nicht gefunden werden",
     "The widget will verify your user ID, but won't be able to perform actions for you:": "Das Widget überprüft deine Benutzer-ID, kann jedoch keine Aktionen für dich ausführen:",
     "Abort": "Abbrechen",
-    "Add existing room": "Existierenden Raum hinzufügen"
+    "Add existing room": "Existierenden Raum hinzufügen",
+    "Message layout": "Nachrichtenlayout",
+    "Modern": "Modern"
 }
