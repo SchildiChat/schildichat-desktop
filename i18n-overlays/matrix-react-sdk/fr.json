@@ -1,1 +1,9 @@
-{}
+{
+    "Show message bubbles on one side only": "Afficher les bulles de message sur un seul côté",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Afficher les bulles de message selon la largeur soit sur un seul côté, soit sur les deux",
+    "Message bubbles": "Bulles de message",
+    "Normal priority": "Priorité normale",
+    "Message layout": "Disposition des messages",
+    "Modern": "Moderne",
+    "Show people and rooms in a combined list": "Afficher les personnes et les salons dans une liste combinée"
+}
