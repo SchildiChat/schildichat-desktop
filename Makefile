@@ -56,22 +56,22 @@ desktop-common: web
 	$(YARN) --cwd element-desktop run build:native
 
 linux: desktop-common
-	$(YARN) --cwd element-desktop run build64linux
+	$(YARN) --cwd element-desktop run build64 --linux deb pacman tar.xz
 
 debian: desktop-common
-	$(YARN) --cwd element-desktop run build64deb
+	$(YARN) --cwd element-desktop run build64 --linux deb pacman tar.xz
 
 pacman: desktop-common
-	$(YARN) --cwd element-desktop run build64pacman
+	$(YARN) --cwd element-desktop run build64 --linux pacman
 
 appimage: desktop-common
-	$(YARN) --cwd element-desktop run build64appimage
+	$(YARN) --cwd element-desktop run build64 --linux AppImage
 
 windows: desktop-common
-	$(YARN) --cwd element-desktop run build64windows
+	$(YARN) --cwd element-desktop run build64 --windows nsis
 
 windows-portable: desktop-common
-	$(YARN) --cwd element-desktop run build64windows-portable
+	$(YARN) --cwd element-desktop run build64 --windows portable
 
 macos: desktop-common
 	$(YARN) --cwd element-desktop run build --mac dmg -c.mac.identity=null
