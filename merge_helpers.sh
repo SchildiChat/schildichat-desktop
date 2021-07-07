@@ -6,6 +6,8 @@ i18n_helper_path="$SCHILDI_ROOT/i18n-helper/index.js"
 i18n_path="src/i18n/strings"
 i18n_overlay_path="$SCHILDI_ROOT/i18n-overlays"
 
+yarn=yarnpkg
+
 add_upstream() {
     if git remote | grep -q upstream; then
         echo "Remote named upstream already exists!"
@@ -71,6 +73,8 @@ revert_i18n_changes() {
     local skip_commit="$2"
 
     git checkout upstream/master -- "$i18n_path"
+
+    $yarn i18n
 
     if [[ "$skip_commit" != [Yy]* ]]; then
         git commit -m "Automatic i18n reversion" || true
