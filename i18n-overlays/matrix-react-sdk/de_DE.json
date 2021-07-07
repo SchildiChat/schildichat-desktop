@@ -106,5 +106,7 @@
     "Add existing room": "Existierenden Raum hinzufügen",
     "Message layout": "Nachrichtenlayout",
     "Modern": "Modern",
-    "Show people and rooms in a combined list": "Personen und Räume in einer gemeinsamen Liste anzeigen"
+    "Show people and rooms in a combined list": "Personen und Räume in einer gemeinsamen Liste anzeigen",
+    "Update notifications": "Updatebenachrichtigungen",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Möchtest du einem Raum beitreten, der dich über neue Updates informiert? Das ist besonders nützlich, wenn deine Plattform keine automatischen Updates für SchildiChat unterstützt (z. B. Windows und macOS)."
 }
