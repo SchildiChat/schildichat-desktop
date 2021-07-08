@@ -28,11 +28,11 @@
         }
     ],
     "sc_update_announcement_room": {
-        "room_id_or_alias": "!JwTYjASnrfLEJQGQvt:matrix.org",
+        "room_id_or_alias": "#schildichat-web-announcements:matrix.org",
         "via_servers": [
-            "matrix.org",
             "supercable.onl",
-            "spiritcroc.de"
+            "spiritcroc.de",
+            "matrix.org"
         ]
     }
 }
