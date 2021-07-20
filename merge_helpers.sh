@@ -74,8 +74,6 @@ revert_i18n_changes() {
 
     git checkout upstream/master -- "$i18n_path"
 
-    $yarn i18n
-
     if [[ "$skip_commit" != [Yy]* ]]; then
         git commit -m "Automatic i18n reversion" || true
     fi
@@ -105,18 +103,24 @@ automatic_i18n_reversion() {
 }
 
 automatic_i18n_adjustment() {
-    node "$i18n_helper_path" "$SCHILDI_ROOT/matrix-react-sdk/$i18n_path" "$i18n_overlay_path/matrix-react-sdk"
+    # matrix-react-sdk
     pushd "$SCHILDI_ROOT/matrix-react-sdk" > /dev/null
+    $yarn i18n
+    node "$i18n_helper_path" "$SCHILDI_ROOT/matrix-react-sdk/$i18n_path" "$i18n_overlay_path/matrix-react-sdk"
     apply_i18n_changes "$i18n_path"
     popd > /dev/null
 
-    node "$i18n_helper_path" "$SCHILDI_ROOT/element-web/$i18n_path" "$i18n_overlay_path/element-web"
+    # element-web
     pushd "$SCHILDI_ROOT/element-web" > /dev/null
+    $yarn i18n
+    node "$i18n_helper_path" "$SCHILDI_ROOT/element-web/$i18n_path" "$i18n_overlay_path/element-web"
     apply_i18n_changes "$i18n_path"
     popd > /dev/null
 
-    node "$i18n_helper_path" "$SCHILDI_ROOT/element-desktop/$i18n_path" "$i18n_overlay_path/element-desktop"
+    # element-desktop
     pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
+    $yarn i18n
+    node "$i18n_helper_path" "$SCHILDI_ROOT/element-desktop/$i18n_path" "$i18n_overlay_path/element-desktop"
     apply_i18n_changes "$i18n_path"
     popd > /dev/null
 }
