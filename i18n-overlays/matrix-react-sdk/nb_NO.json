@@ -1,1 +1,12 @@
-{}
+{
+    "Message bubbles": "Meldingsbobler",
+    "Normal priority": "Normal prioritet",
+    "Message layout": "Meldingsvisning",
+    "Modern": "Moderne",
+    "Show people and rooms in a combined list": "Vis folk og rom i kombinert liste",
+    "Update notifications": "Oppdater merknader",
+    "Show message bubbles on one side only": "Vis meldingsbobler kun på én side",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Vis meldingsbobler avhengig av bredden enten på begge sider eller kun på én side",
+    "Don't ask again": "Ikke spør igjen",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Ønsker du at et rom skal gi deg merknader om nye utgivelser? Dette er spesielt nyttig hvis din plattform ikke støtter automatiske oppdateringer for SchildiChat (f.eks. Windows og macOS)."
+}
