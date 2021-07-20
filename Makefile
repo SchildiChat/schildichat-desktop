@@ -59,7 +59,7 @@ linux: desktop-common
 	$(YARN) --cwd element-desktop run build:64 --linux deb pacman tar.xz
 
 debian: desktop-common
-	$(YARN) --cwd element-desktop run build:64 --linux deb pacman tar.xz
+	$(YARN) --cwd element-desktop run build:64 --linux deb
 
 pacman: desktop-common
 	$(YARN) --cwd element-desktop run build:64 --linux pacman
