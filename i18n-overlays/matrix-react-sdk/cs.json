@@ -6,5 +6,8 @@
     "Normal priority": "Normální priorita",
     "Message layout": "Vzhled zpráv",
     "Modern": "Moderní",
-    "Show people and rooms in a combined list": "Zobrazit lidi a místnosti v kombinovaném seznamu"
+    "Show people and rooms in a combined list": "Zobrazit lidi a místnosti v kombinovaném seznamu",
+    "Update notifications": "Aktualizace oznámení",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Chcete se připojit k místnosti, která vás bude informovat o nových verzích? To je užitečné zejména v případě, že vaše platforma nepodporuje automatické aktualizace SchildiChatu (např. Windows a macOS).",
+    "Don't ask again": "Neptat se znovu"
 }
