@@ -3,5 +3,11 @@
     "Normal priority": "Нормальный приоритет",
     "Enable layout with message bubbles": "Включение макета с пузырьками сообщений",
     "Show message bubbles on one side only": "Показывайте пузырьки с сообщениями только на одной стороне",
-    "Show message bubbles depending on the width either on both sides or only on one side": "Показывать пузырьки сообщений в зависимости от ширины либо с обеих сторон, либо только с одной стороны"
+    "Show message bubbles depending on the width either on both sides or only on one side": "Показывать пузырьки сообщений в зависимости от ширины либо с обеих сторон, либо только с одной стороны",
+    "Modern": "Современное",
+    "Message layout": "Оформление сообщений",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Вы хотите присоединиться к комнате, уведомляющей вас о новых релизах? Это особенно полезно, если ваша платформа не поддерживает автоматические обновления для SchildiChat (например, Windows и macOS).",
+    "Show people and rooms in a combined list": "Показать людей и комнаты в объединенном списке",
+    "Update notifications": "Уведомления об обновлениях",
+    "Don't ask again": "Не спрашивать больше"
 }
