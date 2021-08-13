@@ -64,6 +64,14 @@ $ source .bashrc
 brew install tcl rust node gpg vim curl git yarn git make gcc
 ```
 
+#### Signed macOS builds
+
+To sign a macOS build set the environment or make variable `CSC_IDENTITY_AUTO_DISCOVERY` to true
+or set `CSC_NAME` to your certificate name or id.
+
+To notarize a build with Apple set `NOTARIZE_APPLE_ID` to your AppleID and set the keychain item
+`NOTARIZE_CREDS` to an App specific AppleID password.  
+
 
 ### Initial setup
 
@@ -88,6 +96,7 @@ After that these packages which belong to to their respective make target should
 - `windows-setup`: _SchildiChat_Setup_v\<version\>.exe_: file ready for **installation** on a **Windows** system
 - `windows-portable`: _SchildiChat_win-portable_v\<version\>.zip_: **portable** version for a **Windows** system – take SchildiChat together with your login data around with you (the archive contains a readme with **instructions** and **notes**)
 - `macos`: Build a *.dmg for macOS
+- `macos-mas`: Build a *.pkg for release in the Mac App Store
 
 #### Additional make targets not used for GitHub releases
 - `pacman`: file ready for installation on an **Arch Linux** (based) system via `pacman -U schildichat-desktop-<version>.pacman`
