@@ -149,6 +149,10 @@ macos-mas-release: macos-mas
 	mkdir -p $(CURRENT_RELEASE_DIR)
 	cp $(OUT_MACOS_MAS) $(CURRENT_RELEASE_DIR)
 
+bom.lock: element-desktop/yarn.lock element-web/yarn.lock matrix-js-sdk/yarn.lock matrix-react-sdk/yarn.lock
+	./build-bom.sh
+bom: bom.lock
+
 clean:
 	$(YARN) --cwd matrix-js-sdk clean
 	$(YARN) --cwd matrix-react-sdk clean
@@ -157,3 +161,4 @@ clean:
 	rm -f element-desktop/webapp
 	rm -rf element-web/dist
 	rm -rf local-pkgbuild
+	rm bom.lock

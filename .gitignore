@@ -1,3 +1,4 @@
 release.mk
 /release
 /local-pkgbuild
+bom.lock
