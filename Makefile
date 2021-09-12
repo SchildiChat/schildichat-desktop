@@ -153,12 +153,21 @@ bom.lock: element-desktop/yarn.lock element-web/yarn.lock matrix-js-sdk/yarn.loc
 	./build-bom.sh
 bom: bom.lock
 
-clean:
-	$(YARN) --cwd matrix-js-sdk clean
-	$(YARN) --cwd matrix-react-sdk clean
-	$(YARN) --cwd element-web clean
-	$(YARN) --cwd element-desktop clean
-	rm -f element-desktop/webapp
-	rm -rf element-web/dist
-	rm -rf local-pkgbuild
-	rm bom.lock
+clean-js-sdk:
+	-$(YARN) --cwd matrix-js-sdk clean
+
+clean-react-sdk:
+	-$(YARN) --cwd matrix-react-sdk clean
+
+clean-web:
+	-$(YARN) --cwd element-web clean
+	-rm -rf element-web/dist
+
+clean-desktop:
+	-$(YARN) --cwd element-desktop clean
+	-rm -f element-desktop/webapp
+
+
+clean: clean-js-sdk clean-react-sdk clean-web clean-desktop
+	-rm -rf local-pkgbuild
+	-rm bom.lock
