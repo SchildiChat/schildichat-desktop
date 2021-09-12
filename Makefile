@@ -64,8 +64,8 @@ reskindex: setup
 	$(YARN) --cwd element-web reskindex
 
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
-web: setup reskindex
-	cp $(CFGDIR)/config.json element-web/
+web: $(CFGDIR)/config.json setup reskindex
+	cp $< element-web/config.json
 	$(YARN) --cwd element-web dist
 	echo "$(VERSION)" > element-web/webapp/version
 
@@ -152,6 +152,12 @@ macos-mas-release: macos-mas
 bom.lock: element-desktop/yarn.lock element-web/yarn.lock matrix-js-sdk/yarn.lock matrix-react-sdk/yarn.lock
 	./build-bom.sh
 bom: bom.lock
+
+configs/mac/config.json: configs/sc/config.json
+	mkdir -p $(dir $@)
+	jq '.update_base_url = "https://eleauto.schildi.chat/"' $< > $@
+
+configs/*/config.json:
 
 clean:
 	$(YARN) --cwd matrix-js-sdk clean
