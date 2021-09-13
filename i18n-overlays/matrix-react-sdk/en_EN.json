@@ -8,5 +8,11 @@
     "Show people and rooms in a combined list": "Show people and rooms in a combined list",
     "Update notifications": "Update notifications",
     "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).",
-    "Don't ask again": "Don't ask again"
+    "Don't ask again": "Don't ask again",
+    "System": "System",
+    "Add custom theme": "Add custom theme",
+    "Add theme": "Add theme",
+    "Theme in use": "Theme in use",
+    "Light theme": "Light theme",
+    "Dark theme": "Dark theme"
 }
