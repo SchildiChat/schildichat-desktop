@@ -3,7 +3,7 @@
 SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
 
 The most important changes of SchildiChat Web/Desktop compared to Element Web/Desktop are:
-- A unifed chat list for both direct and group chats
+- A unified chat list for both direct and group chats
 - Message bubbles
 - Bigger items in the room list
 - &hellip; and more!
