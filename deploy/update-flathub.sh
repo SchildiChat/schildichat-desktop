@@ -23,7 +23,7 @@ git fetch
 git reset --hard origin/master
 
 yamlFile="chat.schildi.desktop.yaml"
-xmlFile="chat.schildi.desktop.appdata.xml"
+xmlFile="chat.schildi.desktop.metainfo.xml"
 
 sed -i "s|url: .* #SC:url|url: $downloadurl #SC:url|" "$yamlFile"
 sed -i "s|sha256: .* #SC:sha256|sha256: $sha256sum #SC:sha256|" "$yamlFile"
