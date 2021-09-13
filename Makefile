@@ -161,4 +161,4 @@ clean:
 	rm -f element-desktop/webapp
 	rm -rf element-web/dist
 	rm -rf local-pkgbuild
-	rm bom.lock
+	rm -f bom.lock
