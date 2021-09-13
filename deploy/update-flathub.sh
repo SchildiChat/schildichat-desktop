@@ -13,7 +13,6 @@ repourl="git@github.com:flathub/chat.schildi.desktop.git"
 
 downloadurl="https://github.com/SchildiChat/schildichat-desktop/releases/download/v${version}/schildichat-desktop_${version}_amd64.deb"
 sha256sum=($(sha256sum $debpath))
-debsize=($(wc -c $debpath))
 debdate=$(date +%Y-%m-%d -r $debpath)
 
 [ -d "$repopath" ] || git clone $repourl $repopath
@@ -23,20 +22,15 @@ pushd "$repopath" > /dev/null
 git fetch
 git reset --hard origin/master
 
-jsonFile="chat.schildi.desktop.json"
-jsonString=$(jq -r "." $jsonFile)
-
+yamlFile="chat.schildi.desktop.yaml"
 xmlFile="chat.schildi.desktop.appdata.xml"
 
-jsonString=$(echo $jsonString | jq -r ".modules[]? |= ((select(.name?==\"schildichat\") | .sources[0].url = \"${downloadurl}\") // .)")
-jsonString=$(echo $jsonString | jq -r ".modules[]? |= ((select(.name?==\"schildichat\") | .sources[0].sha256 = \"${sha256sum}\") // .)")
-jsonString=$(echo $jsonString | jq -r ".modules[]? |= ((select(.name?==\"schildichat\") | .sources[0].size = ${debsize}) // .)")
+sed -i "s|url: .* #SC:url|url: $downloadurl #SC:url|" "$yamlFile"
+sed -i "s|sha256: .* #SC:sha256|sha256: $sha256sum #SC:sha256|" "$yamlFile"
 
-echo $jsonString | jq --indent 4 "." > $jsonFile
+sed -i "s|^\s\s<releases>$|  <releases>\n    <release version=\"$version\" date=\"$debdate\"/>|" "$xmlFile"
 
-sed -i "s|^\s\s<releases>$|  <releases>\n    <release version=\"$version\" date=\"$debdate\"/>|" $xmlFile
-
-git add $jsonFile $xmlFile
+git add $yamlFile $xmlFile
 git commit -m "Bump version to v$version"
 
 git push
