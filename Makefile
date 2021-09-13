@@ -1,5 +1,5 @@
-.PHONY: all setup regenerate-i18n reskindex web desktop-common linux debian pacman local-pkgbuild local-pkgbuild-install windows windows-portable
-.PHONY: web-release debian-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
+.PHONY: all setup regenerate-i18n reskindex web desktop-common linux debian rpm pacman local-pkgbuild local-pkgbuild-install windows windows-portable
+.PHONY: web-release debian-release rpm-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
 .PHONY: clean
 
@@ -20,6 +20,7 @@ OUT_WEB := $(WEB_OUT)/$(WEB_APP_NAME)-$(WEB_OUT_DIST_VERSION).tar.gz
 
 DESKTOP_OUT := element-desktop/dist
 OUT_DEB64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)_$(VERSION)_amd64.deb
+OUT_RPM64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)-$(VERSION).x86_64.rpm
 OUT_PAC64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)-$(VERSION).pacman
 OUT_APPIMAGE64 := $(DESKTOP_OUT)/$(PRODUCT_NAME)-$(VERSION).AppImage
 OUT_TARXZ64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)-$(VERSION).tar.xz
@@ -83,6 +84,9 @@ linux: desktop-common
 debian: desktop-common
 	$(YARN) --cwd element-desktop run build:64 --linux deb
 
+rpm: desktop-common
+	$(YARN) --cwd element-desktop run build:64 --linux rpm
+
 pacman: desktop-common
 	$(YARN) --cwd element-desktop run build:64 --linux pacman
 
@@ -119,6 +123,10 @@ web-release: web
 debian-release: debian
 	mkdir -p $(CURRENT_RELEASE_DIR)
 	cp $(OUT_DEB64) $(CURRENT_RELEASE_DIR)
+
+rpm-release: rpm
+	mkdir -p $(CURRENT_RELEASE_DIR)
+	cp $(OUT_RPM64) $(CURRENT_RELEASE_DIR)
 
 pacman-release: pacman
 	mkdir -p $(CURRENT_RELEASE_DIR)
