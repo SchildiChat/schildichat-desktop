@@ -1,1 +1,13 @@
-{}
+{
+    "Modern": "Moderno",
+    "Show people and rooms in a combined list": "Visualizza persone e stanze in una lista combinata",
+    "Update notifications": "Aggiorna notifiche",
+    "Don't ask again": "Non chiedere di nuovo",
+    "System": "Sistema",
+    "Add custom theme": "Aggiungi tema personalizzato",
+    "Theme in use": "Tema in uso",
+    "Light theme": "Tema chiaro",
+    "Dark theme": "Tema scuro",
+    "Normal priority": "Priorità normale",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Vuoi entrare in una stanza che ti notificherà riguardo nuove release? Sarebbe comodo particolarmente se la tua piattaforma non supporta aggiornamenti automatici (Come per esempio Windows o MacOS.)"
+}
