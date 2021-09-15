@@ -124,3 +124,86 @@ automatic_i18n_adjustment() {
     apply_i18n_changes "$i18n_path"
     popd > /dev/null
 }
+
+
+# Version management
+versionedPackageFiles=(element-desktop/ element-web/)
+packageFile=package.json
+
+do_versions() {
+    function="$1"; shift
+    for x in $versionedPackageFiles; do
+      $function $x
+    done
+}
+
+write_version() {
+    file="$1"; shift
+    tmp_file="$file.tmp"
+    version="$1"; shift
+
+    echo "Updating $file to version $version"
+
+    cat "$file" | jq --arg version "$version" '.version = $version' > "$tmp_file"
+    mv "$tmp_file" "$file"
+}
+
+reset_versions() {
+    do_versions "reset_version"
+}
+
+reset_version() {
+    pushd "$SCHILDI_ROOT/$1"
+    version=`cat $packageFile | jq .version -r | sed 's/-.*//'`
+
+    write_version "$packageFile" "$version"
+    popd
+}
+
+append_versions() {
+    do_versions "append_version"
+}
+
+append_version() {
+    pushd "$SCHILDI_ROOT/$1"
+    version=`cat $packageFile | jq .version -r | sed 's/-.*//'`
+
+    write_version "$packageFile" "$version-sc.1.test.1"
+    popd
+}
+
+release_versions() {
+    do_versions "release_version"
+}
+
+release_version() {
+    pushd "$SCHILDI_ROOT/$1"
+    version=`cat $packageFile | jq .version -r | sed 's/\.test\.[0-9]*//'`
+
+    write_version "$packageFile" "$version"
+    popd
+}
+
+prerelease_versions() {
+    do_versions "prerelease_version"
+}
+
+prerelease_version() {
+    pushd "$SCHILDI_ROOT/$1"
+    version=`cat $packageFile | jq .version -r`
+
+    if [[ "$version" =~ ^[0-9\.]*-sc\.[0-9]*$  ]]; then
+      sc_release=`echo "$version" | sed 's/[0-9\.]*-sc\.\([0-9]*\)/\1/'`
+      version=`echo $version | sed 's/\([0-9\.]*-sc\.\).*/\1/'`
+
+      version="$version`expr "$sc_release" + 1`.test.1"
+    else
+      test_version=`echo "$version" | sed 's/[0-9\.]*-sc\.[0-9]\.test\.\([0-9]*\)/\1/'`
+      version=`echo $version | sed 's/\([0-9\.]*-sc\.[0-9]*\.test\.\)[0-9]*/\1/'`
+
+      version="$version`expr "$test_version" + 1`"
+    fi
+
+    write_version "$packageFile" "$version"
+    popd
+}
