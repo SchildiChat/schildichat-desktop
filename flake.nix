@@ -25,5 +25,20 @@
         schildichat-desktop-wayland
       ;
     }) nixpkgsFor;
+
+    defaultPackage = forAllSystems (system: self.packages.${system}.schildichat-desktop);
+
+    apps = forAllSystems(system: {
+      schildichat-desktop = {
+        type = "app";
+        program = "${self.packages.${system}.schildichat-desktop}/bin/schildichat-desktop";
+      };
+      schildichat-desktop-wayland = {
+        type = "app";
+        program = "${self.packages.${system}.schildichat-desktop-wayland}/bin/schildichat-desktop";
+      };
+    });
+
+    defaultApp = forAllSystems (system: self.apps.${system}.schildichat-desktop);
   };
 }
