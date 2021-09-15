@@ -1,1 +1,17 @@
-{}
+{
+    "Message bubbles": "Meddelandebubblor",
+    "Normal priority": "Normal prioritet",
+    "Message layout": "Meddelande layout",
+    "Modern": "Modern",
+    "Show people and rooms in a combined list": "Visa personer och rum i en kombinerad lista",
+    "Update notifications": "Uppdatera meddelanden",
+    "Don't ask again": "Fråga inte igen",
+    "System": "System",
+    "Add custom theme": "Lägg till anpassat tema",
+    "Theme in use": "Tema i bruk",
+    "Light theme": "Ljus tema",
+    "Dark theme": "Mörkt tema",
+    "Show message bubbles on one side only": "Visa meddelandebubblor bara på ena sidan",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Visa meddelandebubblor beroende på bredden antingen på båda sidor eller bara på ena sidan",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Vill du gå med i ett rum som informerar dig om nya utgåvor? Detta är särskilt användbart om din plattform inte stöder automatiska uppdateringar för SchildiChat (t.ex.Windows och macOS)."
+}
