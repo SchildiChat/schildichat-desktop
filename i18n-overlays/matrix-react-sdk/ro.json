@@ -1,3 +1,10 @@
 {
-    "Show message bubbles on one side only": "Arata bulele mesajelor pe o singură parte"
+    "Show message bubbles on one side only": "Arata bulele mesajelor pe o singură parte",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Arată bulele mesajelor bazat fie pe lățimea ambelor părți sau o singură parte",
+    "Message bubbles": "Bulele mesajelor",
+    "Normal priority": "Prioritate normală",
+    "Message layout": "Așezarea mesajului",
+    "Modern": "Modern",
+    "Show people and rooms in a combined list": "Arată persoanele și camerele într-o listă combinată",
+    "Update notifications": "Actualizează notificările"
 }
