@@ -9,6 +9,10 @@ pushd "$mydir" > /dev/null
 
 source ./merge_helpers.sh
 
+# Fetch to get latest strings for current version
+# ToDo: Find out actual versions in case it's not yet merged
+forall_repos git fetch upstream
+
 # Check branch
 check_branch $branch
 forall_repos check_branch $branch
