@@ -114,5 +114,19 @@
     "Dark theme": "Dunkles Design",
     "System": "System",
     "Add custom theme": "Benutzerdefiniertes Design hinzufügen",
-    "Theme in use": "Design in Verwendung"
+    "Theme in use": "Design in Verwendung",
+    "Uniform": "Einfarbig",
+    "PowerLevel": "Berechtigungslevel",
+    "MXID": "MXID",
+    "In direct chats": "In direkten Chats",
+    "In group chats": "In Gruppenchats",
+    "Show all rooms in Home": "Alle Räume auf der Startseite zeigen",
+    "Show notification badges for People in Spaces": "Benachrichtigungssymbol für Personen in Spaces zeigen",
+    "Return to the room previously opened in a space": "In den zuvor geöffneten Raum in einem Space zurückkehren",
+    "If disabled, the space overview will be shown when switching to another space.": "Wenn deaktiviert, wird die Space-Übersicht beim Wechsel zu einem anderen Space angezeigt.",
+    "User name color mode": "Farbmodus der Benutzernamen",
+    "In public rooms": "In öffentlichen Räumen",
+    "All rooms you're in will appear in Home.": "Alle Räume, in denen du dich befindest, werden auf der Startseite angezeigt.",
+    "Show people in spaces": "Personen in Spaces anzeigen",
+    "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "Falls deaktiviert, kannst du trotzdem Direktnachrichten in privaten Spaces hinzufügen. Falls aktiviert, wirst du alle Mitglieder des Spaces sehen."
 }
