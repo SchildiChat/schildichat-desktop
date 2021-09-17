@@ -13,5 +13,19 @@
     "Add custom theme": "Add custom theme",
     "Theme in use": "Theme in use",
     "Light theme": "Light theme",
-    "Dark theme": "Dark theme"
+    "Dark theme": "Dark theme",
+    "User name color mode": "User name color mode",
+    "Uniform": "Uniform",
+    "PowerLevel": "PowerLevel",
+    "MXID": "MXID",
+    "In direct chats": "In direct chats",
+    "In group chats": "In group chats",
+    "In public rooms": "In public rooms",
+    "Show all rooms in Home": "Show all rooms in Home",
+    "All rooms you're in will appear in Home.": "All rooms you're in will appear in Home.",
+    "Show people in spaces": "Show people in spaces",
+    "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.",
+    "Show notification badges for People in Spaces": "Show notification badges for People in Spaces",
+    "Return to the room previously opened in a space": "Return to the room previously opened in a space",
+    "If disabled, the space overview will be shown when switching to another space.": "If disabled, the space overview will be shown when switching to another space."
 }
