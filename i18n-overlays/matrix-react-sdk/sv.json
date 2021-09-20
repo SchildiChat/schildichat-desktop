@@ -13,5 +13,19 @@
     "Dark theme": "Mörkt tema",
     "Show message bubbles on one side only": "Visa meddelandebubblor bara på ena sidan",
     "Show message bubbles depending on the width either on both sides or only on one side": "Visa meddelandebubblor beroende på bredden antingen på båda sidor eller bara på ena sidan",
-    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Vill du gå med i ett rum som informerar dig om nya utgåvor? Detta är särskilt användbart om din plattform inte stöder automatiska uppdateringar för SchildiChat (t.ex.Windows och macOS)."
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Vill du gå med i ett rum som informerar dig om nya utgåvor? Detta är särskilt användbart om din plattform inte stöder automatiska uppdateringar för SchildiChat (t.ex.Windows och macOS).",
+    "Uniform": "Enhetlig",
+    "PowerLevel": "PowerLevel",
+    "MXID": "MXID",
+    "In group chats": "I gruppchattar",
+    "In public rooms": "I offentliga rum",
+    "Show all rooms in Home": "Visa alla rum i Home",
+    "Show people in spaces": "Visa människor i Spaces",
+    "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "Om den är inaktiverad kan du fortfarande lägga till direktmeddelanden till personliga utrymmen. Om den är aktiverad ser du automatiskt alla som är medlem i Space.",
+    "Show notification badges for People in Spaces": "Visa meddelandemärken för personer in Spaces",
+    "Return to the room previously opened in a space": "Återgå till rummet som tidigare öppnats i ett Space",
+    "If disabled, the space overview will be shown when switching to another space.": "Om den är inaktiverad visas utrymmeöversikten när du byter till ett annat utrymme.",
+    "For people": "För folk",
+    "User name color mode": "Användarnamns färgläge",
+    "All rooms you're in will appear in Home.": "Alla rum du befinner dig i visas i Home."
 }
