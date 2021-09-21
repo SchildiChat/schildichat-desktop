@@ -75,8 +75,11 @@ To notarize a build with Apple set `NOTARIZE_APPLE_ID` to your AppleID and set t
 
 ### Initial setup
 
+The `master` branch does contain the latest release.
+The development happens in the `sc` branch, which might be broken any time!
+
 ```
-git clone --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
+git clone -b master --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
 cd schildichat-desktop
 make setup # optional step if using the other make targets
 ```
