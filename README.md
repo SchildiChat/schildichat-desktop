@@ -20,6 +20,9 @@ Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-we
 
 This particular repo is a wrapper project for element-desktop, element-web, matrix-react-sdk and matrix-js-sdk. It's the recommended starting point to build SchildiChat for Web **and** Desktop.
 
+The `master` branch contains the latest release.  
+Development happens in the `sc` branch, which might be **broken at any time**!
+
 <pre><code><b>schildichat-desktop</b> <i>&lt;-- this repo</i> (recommended starting point to build SchildiChat for Web <b>and</b> Desktop)
 |-- <a href="https://github.com/SchildiChat/element-desktop">element-desktop</a> (electron wrapper)
 |-- <a href="https://github.com/SchildiChat/element-web">element-web</a> ("skin" for matrix-react-sdk)
@@ -75,8 +78,7 @@ To notarize a build with Apple set `NOTARIZE_APPLE_ID` to your AppleID and set t
 
 ### Initial setup
 
-The `master` branch does contain the latest release.
-The development happens in the `sc` branch, which might be broken any time!
+As already noted above, **`master` contains the latest release** and **`sc` is the development branch**!
 
 ```
 git clone -b master --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
