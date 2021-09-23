@@ -27,5 +27,9 @@
     "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.",
     "Show notification badges for People in Spaces": "Show notification badges for People in Spaces",
     "Return to the room previously opened in a space": "Return to the room previously opened in a space",
-    "If disabled, the space overview will be shown when switching to another space.": "If disabled, the space overview will be shown when switching to another space."
+    "If disabled, the space overview will be shown when switching to another space.": "If disabled, the space overview will be shown when switching to another space.",
+    "Compact: tiny avatar together with name and preview in one line": "Compact: tiny avatar together with name and preview in one line",
+    "Intermediate: medium sized avatar with single-line preview": "Intermediate: medium sized avatar with single-line preview",
+    "Roomy: big avatar with two-line preview": "Roomy: big avatar with two-line preview",
+    "Room list style": "Room list style"
 }
