@@ -129,5 +129,9 @@
     "All rooms you're in will appear in Home.": "Alle Räume, in denen du dich befindest, werden auf der Startseite angezeigt.",
     "Show people in spaces": "Personen in Spaces anzeigen",
     "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "Falls deaktiviert, kannst du trotzdem Direktnachrichten in privaten Spaces hinzufügen. Falls aktiviert, wirst du alle Mitglieder des Spaces sehen.",
-    "For people": "Für Personen"
+    "For people": "Für Personen",
+    "Intermediate: medium sized avatar with single-line preview": "Zwischending: mittelgroßer Avatar mit einer einzeiligen Vorschau",
+    "Roomy: big avatar with two-line preview": "Geräumig: großer Avatar mit einer zweizeiligen Vorschau",
+    "Room list style": "Stil der Raumliste",
+    "Compact: tiny avatar together with name and preview in one line": "Kompakt: winziger Avatar zusammen mit dem Namen und der Vorschau in einer Zeile"
 }
