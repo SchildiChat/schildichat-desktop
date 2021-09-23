@@ -28,5 +28,9 @@
     "Return to the room previously opened in a space": "Návrat do dříve otevřené místnosti v prostoru",
     "If disabled, the space overview will be shown when switching to another space.": "Pokud je vypnuto, zobrazí se při přepnutí do jiného prostoru přehled prostorů.",
     "For people": "Pro osoby",
-    "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "Pokud je zakázáno, můžete stále přidávat přímé zprávy do osobních prostorů. Pokud je povoleno, automaticky se zobrazí všichni, kteří jsou členy daného prostoru."
+    "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "Pokud je zakázáno, můžete stále přidávat přímé zprávy do osobních prostorů. Pokud je povoleno, automaticky se zobrazí všichni, kteří jsou členy daného prostoru.",
+    "Intermediate: medium sized avatar with single-line preview": "Střední: středně velký avatar s jednořádkovým náhledem",
+    "Roomy: big avatar with two-line preview": "Prostorný: velký avatar s dvouřádkovým náhledem",
+    "Room list style": "Styl seznamu místností",
+    "Compact: tiny avatar together with name and preview in one line": "Kompaktní: malý avatar spolu se jménem a náhledem v jednom řádku"
 }
