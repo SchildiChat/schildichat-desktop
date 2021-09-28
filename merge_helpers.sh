@@ -90,15 +90,15 @@ automatic_i18n_reversion() {
     local skip_commit="$1"
 
     pushd "$SCHILDI_ROOT/matrix-react-sdk" > /dev/null
-    revert_i18n_changes "$i18n_path" $skip_commit
+    revert_i18n_changes "$i18n_path" "$skip_commit"
     popd > /dev/null
 
     pushd "$SCHILDI_ROOT/element-web" > /dev/null
-    revert_i18n_changes "$i18n_path" $skip_commit
+    revert_i18n_changes "$i18n_path" "$skip_commit"
     popd > /dev/null
 
     pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
-    revert_i18n_changes "$i18n_path" $skip_commit
+    revert_i18n_changes "$i18n_path" "$skip_commit"
     popd > /dev/null
 }
 
@@ -122,5 +122,52 @@ automatic_i18n_adjustment() {
     $yarn i18n
     node "$i18n_helper_path" "$SCHILDI_ROOT/element-desktop/$i18n_path" "$i18n_overlay_path/element-desktop"
     apply_i18n_changes "$i18n_path"
+    popd > /dev/null
+}
+
+revert_packagejson_changes() {
+    local path="$1"
+    local skip_commit="$2"
+
+    git checkout upstream/master -- "$path"
+
+    if [[ "$skip_commit" != [Yy]* ]]; then
+        git commit -m "Automatic package.json reversion" || true
+    fi
+}
+
+apply_packagejson_overlay() {
+    local orig_path="$1"
+    local overlay_path="$2"
+
+    # see: https://stackoverflow.com/a/24904276
+    new_content=`jq -s '.[0] * .[1]' "$orig_path" "$overlay_path"`
+
+    echo "$new_content" > "$orig_path"
+    git add "$orig_path"
+    git commit -m "Automatic package.json adjustment" || true
+}
+
+automatic_packagejson_reversion() {
+    local skip_commit="$1"
+
+    pushd "$SCHILDI_ROOT/element-web" > /dev/null
+    revert_packagejson_changes "package.json" "$skip_commit"
+    popd > /dev/null
+
+    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
+    revert_packagejson_changes "package.json" "$skip_commit"
+    popd > /dev/null
+}
+
+automatic_packagejson_adjustment() {
+    # element-web
+    pushd "$SCHILDI_ROOT/element-web" > /dev/null
+    apply_packagejson_overlay "package.json" "overlay-package.json"
+    popd > /dev/null
+
+    # element-desktop
+    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
+    apply_packagejson_overlay "package.json" "overlay-package.json"
     popd > /dev/null
 }
