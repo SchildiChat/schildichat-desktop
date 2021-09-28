@@ -16,19 +16,23 @@ forall_repos check_branch $branch
 # Ensure clean git state
 forall_repos check_clean_git
 
-# Automatic i18n reversion
-automatic_i18n_reversion
-
-# Merge
+# Fetch upstream
 forall_repos git fetch upstream
+
+# Automatic reversions
+automatic_i18n_reversion
+automatic_packagejson_reversion
+
+# Merge upstream
 forall_repos git merge upstream/master
 
 # Refresh environment
 make clean
 make setup
 
-# Automatic i18n adjustment
+# Automatic adjustments
 automatic_i18n_adjustment
+automatic_packagejson_adjustment
 
 # Automatic theme update
 pushd "matrix-react-sdk" > /dev/null
