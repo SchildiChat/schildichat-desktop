@@ -30,18 +30,31 @@ add_upstream() {
 }
 
 forall_repos() {
-    pushd "$SCHILDI_ROOT/matrix-js-sdk"
+    pushd "$SCHILDI_ROOT/matrix-js-sdk" > /dev/null
     "$@"
-    popd
-    pushd "$SCHILDI_ROOT/matrix-react-sdk"
+    popd > /dev/null
+
+    pushd "$SCHILDI_ROOT/matrix-react-sdk" > /dev/null
     "$@"
-    popd
-    pushd "$SCHILDI_ROOT/element-web"
+    popd > /dev/null
+
+    pushd "$SCHILDI_ROOT/element-web" > /dev/null
     "$@"
-    popd
-    pushd "$SCHILDI_ROOT/element-desktop"
+    popd > /dev/null
+
+    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
     "$@"
-    popd
+    popd > /dev/null
+}
+
+forelement_repos() {
+    pushd "$SCHILDI_ROOT/element-web" > /dev/null
+    "$@"
+    popd > /dev/null
+
+    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
+    "$@"
+    popd > /dev/null
 }
 
 ensure_yes() {
@@ -125,6 +138,60 @@ automatic_i18n_adjustment() {
     popd > /dev/null
 }
 
+get_current_versions() {
+    local version=`cat "$SCHILDI_ROOT/element-web/package.json" | jq .version -r`
+    if [[ "$version" =~ ([0-9\.]*)(-sc\.([0-9]+)(\.test.([0-9]+))?)? ]]; then
+        upstream="${BASH_REMATCH[1]}"
+        release="${BASH_REMATCH[3]}"
+        test="${BASH_REMATCH[5]}"
+    fi
+
+    versions=("${upstream:-"0.0.1"}" "${release:-"0"}" "${test:-"0"}")
+}
+
+get_versions_string() {
+    versions_string="${versions[0]}-sc.${versions[1]}"
+
+    if [[ ${versions[2]} -gt 0 ]]; then
+        versions_string+=".test.${versions[2]}"
+    fi
+}
+
+write_version() {
+    local file="$1"
+    local versions_string
+    get_versions_string
+
+    new_content=`jq --arg version "$versions_string" '.version = $version' "$file"`
+    echo "$new_content" > "$file"
+
+    git add "$file"
+    git commit -m "Update version to $versions_string" || true
+}
+
+bump_test_version() {
+    local versions
+    get_current_versions
+    
+    # increment test version
+    (( versions[2]++ ))
+
+    forelement_repos write_version "package.json"
+}
+
+bump_release_version() {
+    local versions
+    get_current_versions
+    
+    # increment release version
+    (( versions[1]++ ))
+    
+    # set test version to 0
+    versions[2]=0
+
+    forelement_repos write_version "package.json"
+}
+
 revert_packagejson_changes() {
     local path="$1"
     local skip_commit="$2"
@@ -151,23 +218,13 @@ apply_packagejson_overlay() {
 automatic_packagejson_reversion() {
     local skip_commit="$1"
 
-    pushd "$SCHILDI_ROOT/element-web" > /dev/null
-    revert_packagejson_changes "package.json" "$skip_commit"
-    popd > /dev/null
-
-    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
-    revert_packagejson_changes "package.json" "$skip_commit"
-    popd > /dev/null
+    forelement_repos revert_packagejson_changes "package.json" "$skip_commit"
 }
 
 automatic_packagejson_adjustment() {
-    # element-web
-    pushd "$SCHILDI_ROOT/element-web" > /dev/null
-    apply_packagejson_overlay "package.json" "overlay-package.json"
-    popd > /dev/null
+    local versions
+    get_current_versions
 
-    # element-desktop
-    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
-    apply_packagejson_overlay "package.json" "overlay-package.json"
-    popd > /dev/null
+    forelement_repos apply_packagejson_overlay "package.json" "overlay-package.json"
+    forelement_repos write_version "package.json"
 }
