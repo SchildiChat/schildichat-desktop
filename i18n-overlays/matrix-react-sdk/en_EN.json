@@ -31,5 +31,10 @@
     "Compact: tiny avatar together with name and preview in one line": "Compact: tiny avatar together with name and preview in one line",
     "Intermediate: medium sized avatar with single-line preview": "Intermediate: medium sized avatar with single-line preview",
     "Roomy: big avatar with two-line preview": "Roomy: big avatar with two-line preview",
-    "Room list style": "Room list style"
+    "Room list style": "Room list style",
+    "Hide advanced theme settings": "Hide advanced theme settings",
+    "Show advanced theme settings": "Show advanced theme settings",
+    "Theme": "Theme",
+    "Room list": "Room list",
+    "Font size and typeface": "Font size and typeface"
 }
