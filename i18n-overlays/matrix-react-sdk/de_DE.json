@@ -86,7 +86,7 @@
     "Enable experimental, compact IRC style layout": "Kompaktes, experimentelles Layout im IRC-Stil aktivieren",
     "Enable layout with message bubbles": "Layout mit Sprechblasen aktivieren",
     "Show message bubbles on one side only": "Sprechblasen nur auf einer Seite anzeigen",
-    "Show message bubbles depending on the width either on both sides or only on one side": "Sprechblasen abhänging von der Breite auf beiden Seiten oder nur einer Seite anzeigen",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Sprechblasen abhängig von der Breite auf beiden Seiten oder nur einer Seite anzeigen",
     "%(brand)s can't securely cache encrypted messages locally while running in a web browser. Use <desktopLink>%(brand)s Desktop</desktopLink> for encrypted messages to appear in search results.": "%(brand)s kann verschlüsselte Nachrichten nicht sicher während der Ausführung im Browser durchsuchen. Benutze <desktopLink>%(brand)s Desktop</desktopLink>, um verschlüsselte Nachrichten in den Suchergebnissen angezeigt zu bekommen.",
     "Use default": "Standardeinstellungen benutzen",
     "Your firewall or anti-virus is blocking the request.": "Deine Firewall oder dein Antivirenprogramm blockiert die Anfrage.",
@@ -133,5 +133,10 @@
     "Intermediate: medium sized avatar with single-line preview": "Zwischending: mittelgroßer Avatar mit einer einzeiligen Vorschau",
     "Roomy: big avatar with two-line preview": "Geräumig: großer Avatar mit einer zweizeiligen Vorschau",
     "Room list style": "Stil der Raumliste",
-    "Compact: tiny avatar together with name and preview in one line": "Kompakt: winziger Avatar zusammen mit dem Namen und der Vorschau in einer Zeile"
+    "Compact: tiny avatar together with name and preview in one line": "Kompakt: winziger Avatar zusammen mit dem Namen und der Vorschau in einer Zeile",
+    "Hide advanced theme settings": "Erweiterte Designeinstellungen ausblenden",
+    "Theme": "Design",
+    "Room list": "Raumliste",
+    "Font size and typeface": "Schriftgröße und Schriftart",
+    "Show advanced theme settings": "Erweiterte Designeinstellungen anzeigen"
 }
