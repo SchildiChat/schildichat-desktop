@@ -3,7 +3,6 @@
 set -e
 
 mydir="$(dirname "$(realpath "$0")")"
-branch=${BRANCH:-"sc"}
 
 pushd "$mydir" > /dev/null
 

@@ -2,6 +2,8 @@
 
 SCHILDI_ROOT="$(dirname "$(realpath "$0")")"
 
+branch=${BRANCH:-"sc"}
+
 i18n_helper_path="$SCHILDI_ROOT/i18n-helper/index.js"
 i18n_path="src/i18n/strings"
 i18n_overlay_path="$SCHILDI_ROOT/i18n-overlays"
