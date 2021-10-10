@@ -3,5 +3,19 @@
     "Modern": "Modernus",
     "Message bubbles": "Žinučių burbulai",
     "Message layout": "Žinučių išdėstymas",
-    "Show people and rooms in a combined list": "Asmenų ir kambarių rodymas bendrame sąraše"
+    "Show people and rooms in a combined list": "Asmenų ir kambarių rodymas bendrame sąraše",
+    "Room list": "Kambarių sąrašas",
+    "Show message bubbles on one side only": "Rodyti žinučių burbulus tik vienoje pusėje",
+    "Update notifications": "Atnaujinimų pranešimai",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Ar jūs norite prisijungti prie kambario kuris praneš jums apie atnaujinimus? Tai yra labai naudinga jei jūsų platforma nepalaiko automatinių SchildiChat atnaujinimų (pvz. Windows ir macOS).",
+    "Don't ask again": "Nebeklausti",
+    "System": "Sistema",
+    "Theme in use": "Tema naudojama",
+    "Light theme": "Šviesi tema",
+    "Dark theme": "Tamsi tema",
+    "MXID": "MXID",
+    "In group chats": "Pokalbių grupėse",
+    "In public rooms": "Viešuose kambariuose",
+    "Show all rooms in Home": "Rodyti visus kambarius Pradžioje",
+    "All rooms you're in will appear in Home.": "Visi kambariai kuriuose esate bus rodomi Pradžioje."
 }
