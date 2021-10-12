@@ -27,5 +27,14 @@
     "If disabled, the space overview will be shown when switching to another space.": "Om den är inaktiverad visas utrymmeöversikten när du byter till ett annat utrymme.",
     "For people": "För folk",
     "User name color mode": "Användarnamns färgläge",
-    "All rooms you're in will appear in Home.": "Alla rum du befinner dig i visas i Home."
+    "All rooms you're in will appear in Home.": "Alla rum du befinner dig i visas i Home.",
+    "Show advanced theme settings": "Visa avancerade temainställningar",
+    "Theme": "tema",
+    "Room list": "Rumslista",
+    "Font size and typeface": "Teckenstorlek och typsnitt",
+    "Hide advanced theme settings": "Dölj avancerade temainställningar",
+    "Compact: tiny avatar together with name and preview in one line": "Kompakt: liten avatar tillsammans med namn och förhandsvisning på en rad",
+    "Intermediate: medium sized avatar with single-line preview": "Medel: medelstor avatar med enradig förhandsvisning",
+    "Roomy: big avatar with two-line preview": "Rymlig: stor avatar med förhandsvisning med två rader",
+    "Room list style": "Rumslista stil"
 }
