@@ -23,7 +23,18 @@ automatic_i18n_reversion
 automatic_packagejson_reversion
 
 # Merge upstream
-forall_repos git merge upstream/master
+get_latest_upstream_tag
+forelement_repos git merge "$latest_upstream_tag"
+
+get_current_mxsdk_tags
+
+pushd "matrix-js-sdk" > /dev/null
+git merge "$current_mxjssdk_tag"
+popd > /dev/null
+
+pushd "matrix-react-sdk" > /dev/null
+git merge "$current_mxreactsdk_tag"
+popd > /dev/null
 
 # Refresh environment
 make clean

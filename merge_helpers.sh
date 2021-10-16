@@ -85,9 +85,10 @@ check_clean_git() {
 
 revert_i18n_changes() {
     local i18n_path="$1"
-    local skip_commit="$2"
+    local revision="$2"
+    local skip_commit="$3"
 
-    git checkout upstream/master -- "$i18n_path"
+    git checkout "$revision" -- "$i18n_path"
 
     if [[ "$skip_commit" != [Yy]* ]]; then
         git commit -m "Automatic i18n reversion" || true
@@ -104,16 +105,23 @@ apply_i18n_changes() {
 automatic_i18n_reversion() {
     local skip_commit="$1"
 
+    local current_upstream_tag
+    get_current_upstream_tag
+
+    local current_mxjssdk_tag
+    local current_mxreactsdk_tag
+    get_current_mxsdk_tags
+
     pushd "$SCHILDI_ROOT/matrix-react-sdk" > /dev/null
-    revert_i18n_changes "$i18n_path" "$skip_commit"
+    revert_i18n_changes "$i18n_path" "$current_mxreactsdk_tag" "$skip_commit"
     popd > /dev/null
 
     pushd "$SCHILDI_ROOT/element-web" > /dev/null
-    revert_i18n_changes "$i18n_path" "$skip_commit"
+    revert_i18n_changes "$i18n_path" "$current_upstream_tag" "$skip_commit"
     popd > /dev/null
 
     pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
-    revert_i18n_changes "$i18n_path" "$skip_commit"
+    revert_i18n_changes "$i18n_path" "$current_upstream_tag" "$skip_commit"
     popd > /dev/null
 }
 
@@ -196,9 +204,10 @@ bump_release_version() {
 
 revert_packagejson_changes() {
     local path="$1"
-    local skip_commit="$2"
+    local revision="$2"
+    local skip_commit="$3"
 
-    git checkout upstream/master -- "$path"
+    git checkout "$revision" -- "$path"
 
     if [[ "$skip_commit" != [Yy]* ]]; then
         git commit -m "Automatic package.json reversion" || true
@@ -220,7 +229,10 @@ apply_packagejson_overlay() {
 automatic_packagejson_reversion() {
     local skip_commit="$1"
 
-    forelement_repos revert_packagejson_changes "package.json" "$skip_commit"
+    local current_upstream_tag
+    get_current_upstream_tag
+
+    forelement_repos revert_packagejson_changes "package.json" "$current_upstream_tag" "$skip_commit"
 }
 
 automatic_packagejson_adjustment() {
@@ -232,4 +244,22 @@ automatic_packagejson_adjustment() {
 
     forelement_repos apply_packagejson_overlay "package.json" "overlay-package.json"
     forelement_repos write_version "package.json"
+}
+
+get_latest_upstream_tag() {
+    pushd "$SCHILDI_ROOT/element-web" > /dev/null
+    git fetch upstream
+    latest_upstream_tag=`git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags | sed -nr 's|refs/tags/(v[0-9]+(\.[0-9]+(\.[0-9]+)?)?) .*|\1|p' | tail -n 1`
+    popd > /dev/null
+}
+
+get_current_upstream_tag() {
+    local versions
+    get_current_versions
+    current_upstream_tag="v${versions[0]}"
+}
+
+get_current_mxsdk_tags() {
+    current_mxreactsdk_tag="v$(cat "$SCHILDI_ROOT/element-web/package.json" | jq '.dependencies["matrix-react-sdk"]' -r)"
+    current_mxjssdk_tag="v$(cat "$SCHILDI_ROOT/element-web/package.json" | jq '.dependencies["matrix-js-sdk"]' -r)"
 }
