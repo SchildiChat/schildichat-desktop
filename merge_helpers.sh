@@ -184,7 +184,7 @@ bump_test_version() {
     get_current_versions
     
     # increment test version
-    (( versions[2]++ ))
+    versions[2]=$((versions[2] + 1))
 
     forelement_repos write_version "package.json"
 }
@@ -194,7 +194,7 @@ bump_release_version() {
     get_current_versions
     
     # increment release version
-    (( versions[1]++ ))
+    versions[1]=$((versions[1] + 1))
     
     # set test version to 0
     versions[2]=0
@@ -240,7 +240,7 @@ automatic_packagejson_adjustment() {
     get_current_versions
     
     # every build after a merge is a new test build
-    (( versions[2]++ ))
+    versions[2]=$((versions[2] + 1))
 
     forelement_repos apply_packagejson_overlay "package.json" "overlay-package.json"
     forelement_repos write_version "package.json"
