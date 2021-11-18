@@ -36,5 +36,8 @@
     "Compact: tiny avatar together with name and preview in one line": "Kompakt: liten avatar tillsammans med namn och förhandsvisning på en rad",
     "Intermediate: medium sized avatar with single-line preview": "Medel: medelstor avatar med enradig förhandsvisning",
     "Roomy: big avatar with two-line preview": "Rymlig: stor avatar med förhandsvisning med två rader",
-    "Room list style": "Rumslista stil"
+    "Room list style": "Rumslista stil",
+    "Mark as unread": "markera som oläst",
+    "Mark as read": "markera som läst",
+    "Mark rooms as unread": "Tillåt att chattar markeras som olästa"
 }
