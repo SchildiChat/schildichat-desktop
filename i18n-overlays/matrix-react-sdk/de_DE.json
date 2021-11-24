@@ -138,5 +138,8 @@
     "Theme": "Design",
     "Room list": "Raumliste",
     "Font size and typeface": "Schriftgröße und Schriftart",
-    "Show advanced theme settings": "Erweiterte Designeinstellungen anzeigen"
+    "Show advanced theme settings": "Erweiterte Designeinstellungen anzeigen",
+    "Mark rooms as unread": "Erlaube Chats als ungelesen zu markieren",
+    "Mark as read": "Als gelesen markieren",
+    "Mark as unread": "Als ungelesen markieren"
 }
