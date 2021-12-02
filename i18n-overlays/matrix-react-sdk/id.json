@@ -36,5 +36,8 @@
     "Update notifications": "Notifikasi peningkatan",
     "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Apakah Anda ingin bergabung ke ruangan yang memberitahu Anda tentang rilis yang baru? Ini sangat berguna jika platform Anda tidak mendukung pembaruan otomatis untuk SchildiChat (mis. Windows dan macOS).",
     "If disabled, you can still add Direct Messages to Personal Spaces. If enabled, you'll automatically see everyone who is a member of the Space.": "Jika dinonaktifkan, Anda masih dapat menambahkan Pesan Langsung ke Space Personal. Jika diaktifkan, Anda akan otomatis melihat semua orang yang juga ada di Spacenya.",
-    "Intermediate: medium sized avatar with single-line preview": "Sedang: avatar sedang dengan tampilan satu baris"
+    "Intermediate: medium sized avatar with single-line preview": "Sedang: avatar sedang dengan tampilan satu baris",
+    "Mark rooms as unread": "Perbolehkan menandai obrolan sebagai dibaca",
+    "Mark as unread": "Tandai sebagai belum dibaca",
+    "Mark as read": "Tandai sebagai dibaca"
 }
