@@ -36,5 +36,8 @@
     "Show message bubbles on one side only": "仅在一侧显示消息气泡",
     "Room list style": "聊天室列表样式",
     "Show message bubbles depending on the width either on both sides or only on one side": "根据窗口大小智能切换消息气泡的显示样式",
-    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "您想加入一个用来通知版本更新的房间吗？如果您的平台不支持自动更新 SchildiChat（例如 Windows 和 macOS），这将非常有用。"
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "您想加入一个用来通知版本更新的房间吗？如果您的平台不支持自动更新 SchildiChat（例如 Windows 和 macOS），这将非常有用。",
+    "Mark as read": "标记为已读",
+    "Mark rooms as unread": "允许将聊天记录标记为未读",
+    "Mark as unread": "标记为未读"
 }
