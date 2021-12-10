@@ -36,10 +36,11 @@ Development happens in the `sc` branch, which might be **broken at any time**!
 
 Since Debian is usually slow to update packages on its stable releases,
 some dependencies might not be recent enough to build SchildiChat.  
-The following are the dependencies required to build SchildiChat Web/Desktop on Debian 10:
+The following are the dependencies required to build SchildiChat Web/Desktop on Debian 11 (bullseye):
 
 ```
-# apt install vim curl git make gcc g++ libsqlcipher-dev pkg-config libsecret-1-dev bsdtar
+# apt install vim curl git make gcc g++ python jq libsqlcipher-dev pkg-config libsecret-1-dev libarchive-tools
+
 # curl -sL https://deb.nodesource.com/setup_14.x | bash -
 # apt update
 # apt install nodejs
