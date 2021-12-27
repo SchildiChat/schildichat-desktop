@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec "/opt/---productName---/---appName---" "$@"
+LD_PRELOAD=/usr/lib/libsqlcipher.so exec "/opt/---productName---/---appName---" "$@"
