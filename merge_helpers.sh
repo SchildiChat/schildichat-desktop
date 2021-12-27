@@ -238,9 +238,6 @@ automatic_packagejson_reversion() {
 automatic_packagejson_adjustment() {
     local versions
     get_current_versions
-    
-    # every build after a merge is a new test build
-    versions[2]=$((versions[2] + 1))
 
     forelement_repos apply_packagejson_overlay "package.json" "overlay-package.json"
     forelement_repos write_version "package.json"
