@@ -17,4 +17,12 @@ forall_repos check_clean_git
 
 bump_test_version
 
+# Get version string
+get_current_versions
+get_versions_string
+
+# Add everything
+git add -A
+git commit --allow-empty -m "New test release v$versions_string"
+
 popd > /dev/null
