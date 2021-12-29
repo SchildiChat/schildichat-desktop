@@ -26,12 +26,5 @@
             "url": "https://schildi.chat/desktop/privacy",
             "text": "Privacy Policy"
         }
-    ],
-    "sc_update_announcement_room": {
-        "room_id_or_alias": "!JwTYjASnrfLEJQGQvt:matrix.org",
-        "via_servers": [
-            "supercable.onl",
-            "spiritcroc.de"
-        ]
-    }
+    ]
 }
