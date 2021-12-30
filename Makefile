@@ -43,7 +43,7 @@ CSC_NAME ?=
 -include release.mk
 
 setup:
-	if [ ! -L "element-desktop/webapp" ]; then ./setup.sh; fi
+	./setup.sh
 
 element-desktop/build/SchildiChat.xcassets/SchildiChat.iconset: $(wildcard element-desktop/build/SchildiChat.xcassets/SchildiChat.iconset/*)
 
