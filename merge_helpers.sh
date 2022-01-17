@@ -162,7 +162,8 @@ get_current_versions() {
 get_versions_string() {
     versions_string="${versions[0]}-sc.${versions[1]}"
 
-    if [[ ${versions[2]} -gt 0 ]]; then
+    # both zero means the initial version after a merge
+    if [[ ${versions[1]} -eq 0 || ${versions[2]} -gt 0 ]]; then
         versions_string+=".test.${versions[2]}"
     fi
 }
