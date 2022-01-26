@@ -46,7 +46,7 @@ automatic_packagejson_adjustment
 
 # Automatic theme update
 pushd "matrix-react-sdk" > /dev/null
-./theme.sh
+./theme.sh y
 popd > /dev/null
 
 popd > /dev/null
