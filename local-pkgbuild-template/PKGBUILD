@@ -22,4 +22,5 @@ package() {
   msg2 "Extracting the data.tar.xz..."
   bsdtar -xf data.tar.xz -C "$pkgdir/"
   install -Dm755 "${srcdir}"/---appName---.sh "${pkgdir}"/usr/bin/---appName---
+  sed -i 's|^Exec=.*|Exec=/usr/bin/---appName--- %u|' "${pkgdir}"/usr/share/applications/---appName---.desktop
 }
