@@ -37,5 +37,8 @@
     "Compact: tiny avatar together with name and preview in one line": "Compacto: avatar minúsculo junto com o nome e visualização em uma linha",
     "Intermediate: medium sized avatar with single-line preview": "Intermédio: avatar de tamanho médio com visualização de uma linha",
     "Roomy: big avatar with two-line preview": "Amplo: grande avatar com visualização em duas linhas",
-    "Room list style": "Estilo da lista de salas"
+    "Room list style": "Estilo da lista de salas",
+    "Mark rooms as unread": "Permitir markar conversas como não lidos",
+    "Mark as unread": "Markar como não lido",
+    "Mark as read": "Markar como lido"
 }
