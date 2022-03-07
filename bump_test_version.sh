@@ -24,5 +24,6 @@ get_versions_string
 # Add everything
 git add -A
 git commit --allow-empty -m "New test release v$versions_string"
+git tag -a "v$versions_string" -m "New test release v$versions_string"
 
 popd > /dev/null
