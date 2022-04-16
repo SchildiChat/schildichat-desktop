@@ -15,6 +15,18 @@ Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-we
 
 <img src="https://raw.githubusercontent.com/SchildiChat/schildichat-desktop/sc/screenshots/1.png"/>
 
+<details>
+<summary>Public key used to sign the Debian packages</summary>
+
+```
+pub   rsa4096 2020-12-08 [SC]
+      560BB70DA86A6633A39CEC6023358905FE294D01
+uid           Super apt repo key <apt@supercable.onl>
+sub   rsa4096 2020-12-08 [E]
+```
+
+</details>
+
 
 ## Building SchildiChat Web/Desktop
 
