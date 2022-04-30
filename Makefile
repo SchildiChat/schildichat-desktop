@@ -1,4 +1,4 @@
-.PHONY: all setup regenerate-i18n reskindex web desktop-common linux debian rpm pacman local-pkgbuild local-pkgbuild-install windows windows-portable
+.PHONY: all setup regenerate-i18n web desktop-common linux debian rpm pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release rpm-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
 .PHONY: clean
@@ -60,12 +60,8 @@ icns: element-desktop/build/icon.icns element-desktop/build/dmg.icns
 regenerate-i18n: setup
 	./regenerate_i18n.sh
 
-reskindex: setup
-	$(YARN) --cwd matrix-react-sdk reskindex
-	$(YARN) --cwd element-web reskindex
-
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
-web: setup reskindex
+web: setup
 	cp $(CFGDIR)/config.json element-web/
 	$(YARN) --cwd element-web dist
 	echo "$(VERSION)" > element-web/webapp/version
