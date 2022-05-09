@@ -39,5 +39,8 @@
     "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "您想加入一个用来通知版本更新的房间吗？如果您的平台不支持自动更新 SchildiChat（例如 Windows 和 macOS），这将非常有用。",
     "Mark as read": "标记为已读",
     "Mark rooms as unread": "允许将聊天记录标记为未读",
-    "Mark as unread": "标记为未读"
+    "Mark as unread": "标记为未读",
+    "Home is useful for getting an overview of everything. Keep in mind that disabling it could leave you unable to see certain rooms.": "主页对于概览所有消息来说非常有用。请注意：禁用主页可能会让您无法看到某些房间。",
+    "Enable YouTube embed player": "启用 YouTube 嵌入式播放器",
+    "Collapse additional buttons": "折叠额外的按钮"
 }
