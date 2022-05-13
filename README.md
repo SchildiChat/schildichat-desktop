@@ -51,7 +51,7 @@ some dependencies might not be recent enough to build SchildiChat.
 The following are the dependencies required to build SchildiChat Web/Desktop on Debian 11 (bullseye):
 
 ```
-# apt install vim curl git make gcc g++ python jq libsqlcipher-dev pkg-config libsecret-1-dev libarchive-tools
+# apt install vim curl git make gcc g++ python jq libsqlcipher-dev pkg-config libsecret-1-dev libarchive-tools openssl libssl-dev tcl
 
 # curl -sL https://deb.nodesource.com/setup_14.x | bash -
 # apt update
