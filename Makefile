@@ -67,6 +67,7 @@ web: setup
 	echo "$(VERSION)" > element-web/webapp/version
 
 desktop-common: web
+	export SQLCIPHER_STATIC=1
 	$(YARN) --cwd element-desktop run fetch --cfgdir ''
 	$(YARN) --cwd element-desktop run build:native
 
