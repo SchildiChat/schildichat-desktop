@@ -1,1 +1,21 @@
-{}
+{
+    "Show message bubbles on one side only": "Mesaj baloncuklarını yalnızca bir tarafta göster",
+    "Show message bubbles depending on the width either on both sides or only on one side": "Genişliğe bağlı olarak mesaj baloncuklarını her iki tarafta veya sadece bir tarafta göster",
+    "Message bubbles": "Mesaj baloncukları",
+    "Normal priority": "Normal öncelik",
+    "Message layout": "Mesaj düzeni",
+    "Modern": "Modern",
+    "Update notifications": "Güncelleme bildirimleri",
+    "Don't ask again": "Bir daha sorma",
+    "System": "Sistem",
+    "Add custom theme": "Özel tema ekle",
+    "Theme in use": "Tema kullanımda",
+    "Light theme": "Açık tema",
+    "Dark theme": "Koyu tema",
+    "Uniform": "Düzenli",
+    "For people": "İnsanlar için",
+    "In group chats": "Grup sohbetlerinde",
+    "In public rooms": "Halka açık odalarda",
+    "Show people and rooms in a combined list": "Kişileri ve odaları birleşik bir listede göster",
+    "Do you want to join a room notifying you about new releases? This is especially useful if your platform doesn't support automatic updates for SchildiChat (e.g. Windows and macOS).": "Yeni sürümler hakkında sizi bilgilendiren bir odaya katılmak ister misiniz? Bu oda özellikle platformunuz SchildiChat için otomatik güncellemeleri desteklemiyorsa (ör. Windows ve macOS) kullanışlıdır."
+}
