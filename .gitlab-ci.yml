@@ -1,0 +1,30 @@
+
+stages:
+  - test
+  - build
+  - deploy
+
+default:
+  interruptible:                   true
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - unknown_failure
+      - api_failure
+
+variables:
+  GIT_SUBMODULE_STRATEGY:          recursive
+  CI_IMAGE:                        debian:latest
+
+.kubernetes-env:                   &kubernetes-env
+  image:                           $CI_IMAGE
+  tags:
+    - kubernetes-parity-build
+
+test:
+  stage:                           test
+  <<:                              *kubernetes-env
+  script:
+    - echo ok
+    - ls element-web/
