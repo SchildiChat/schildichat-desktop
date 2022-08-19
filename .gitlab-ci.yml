@@ -15,16 +15,24 @@ default:
 
 variables:
   GIT_SUBMODULE_STRATEGY:          recursive
-  CI_IMAGE:                        debian:latest
+  CI_IMAGE:                        paritytech/ci-linux:production
 
 .kubernetes-env:                   &kubernetes-env
   image:                           $CI_IMAGE
   tags:
     - kubernetes-parity-build
 
-test:
-  stage:                           test
+build:
+  stage:                           build
   <<:                              *kubernetes-env
   script:
-    - echo ok
-    - ls element-web/
+    - apt-get update
+    - apt-get install -y vim curl git make gcc g++ python jq libsqlcipher-dev pkg-config libsecret-1-dev libarchive-tools openssl libssl-dev tcl gnupg
+    - curl -sL https://deb.nodesource.com/setup_14.x | bash -
+    - apt-get update
+    - apt-get install -y nodejs
+    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+    - apt-get update
+    - apt-get install yarn -y
+    - make setup
