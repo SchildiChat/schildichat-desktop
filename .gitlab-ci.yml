@@ -18,6 +18,7 @@ variables:
   GIT_SUBMODULE_STRATEGY:          recursive
   CI_IMAGE:                        paritytech/ci-linux:production
   IMAGE_NAME:                      schildichat-web
+  DOCKER_TAG:                      ${CI_COMMIT_SHORT_SHA}
 
 .kubernetes-env:                   &kubernetes-env
   image:                           $CI_IMAGE
@@ -70,3 +71,33 @@ build-docker:
       --build-arg SCHILDI_DIR="schildichat-web-$(cat version)"
       --tag "$IMAGE_NAME:latest"
       --file "$DOCKERFILE" .
+
+build-publish-docker:
+  stage:                           build-web
+  <<:                              *kubernetes-env
+  variables:
+    GIT_STRATEGY:                  none
+    DOCKERFILE:                    Dockerfile
+  image:                           quay.io/buildah/stable
+  script:
+    - cd artifacts
+    - tar xfvz schildichat-web.tar.gz
+    - test "$Docker_Hub_User_Parity" -a "$Docker_Hub_Pass_Parity" ||
+      ( echo "no docker credentials provided"; exit 1 )
+    - buildah bud
+      --format=docker
+      --build-arg VCS_REF="${CI_COMMIT_SHA}"
+      --build-arg BUILD_DATE="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+      --build-arg VERSION="${DOCKER_TAG}"
+      --build-arg PROJECT_NAME="${CI_PROJECT_NAME}"
+      --build-arg SCHILDI_DIR="schildichat-web-$(cat version)"
+      --tag "$IMAGE_NAME:${DOCKER_TAG}"
+      --tag "$IMAGE_NAME:latest"
+      --file "$DOCKERFILE" .
+    - echo "$Docker_Hub_Pass_Parity" |
+      buildah login --username "$Docker_Hub_User_Parity" --password-stdin docker.io
+    - buildah info
+    - buildah push --format=v2s2 "$IMAGE_NAME:${DOCKER_TAG}"
+    - buildah push --format=v2s2 "$IMAGE_NAME:latest"
+  after_script:
+    - buildah logout --all
