@@ -17,7 +17,7 @@ default:
 variables:
   GIT_SUBMODULE_STRATEGY:          recursive
   CI_IMAGE:                        paritytech/ci-linux:production
-  IMAGE_NAME:                      schildichat-web
+  IMAGE_NAME:                      paritytech/schildichat-web
   DOCKER_TAG:                      ${CI_COMMIT_SHORT_SHA}
 
 .kubernetes-env:                   &kubernetes-env
