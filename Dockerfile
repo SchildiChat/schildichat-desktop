@@ -17,7 +17,7 @@ LABEL io.parity.image.authors="cicd-team@parity.io" \
 
 WORKDIR /app
 
-COPY schildichat-web/${SCHILDI_DIR} .
+COPY ${SCHILDI_DIR}/ .
 
 # Override default nginx config
 COPY default.conf /etc/nginx/conf.d/default.conf
