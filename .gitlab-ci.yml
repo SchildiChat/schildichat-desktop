@@ -59,7 +59,7 @@ build-docker:
   image:                           quay.io/buildah/stable
   script:
     - cd artifacts
-    - tar xfvz schildichat-web.tar.gz -C schildichat-web/
+    - tar xfvz schildichat-web.tar.gz
     - buildah bud
       --format=docker
       --build-arg VCS_REF="${CI_COMMIT_SHA}"
