@@ -5,6 +5,7 @@ ARG VCS_REF=master
 ARG BUILD_DATE=""
 ARG REGISTRY_PATH=docker.io/paritytech
 ARG PROJECT_NAME=""
+ARG SCHILDI_DIR=""
 
 LABEL io.parity.image.authors="cicd-team@parity.io" \
     io.parity.image.vendor="Parity Technologies" \
