@@ -82,6 +82,7 @@ build-publish-docker:
   script:
     - cd artifacts
     - tar xfvz schildichat-web.tar.gz
+    - rm -f schildichat-web.tar.gz
     - test "$Docker_Hub_User_Parity" -a "$Docker_Hub_Pass_Parity" ||
       ( echo "no docker credentials provided"; exit 1 )
     - buildah bud
