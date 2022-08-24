@@ -19,11 +19,31 @@ variables:
   CI_IMAGE:                        paritytech/ci-linux:production
   IMAGE_NAME:                      paritytech/schildichat-web
   DOCKER_TAG:                      ${CI_COMMIT_SHORT_SHA}
+  VAULT_ADDR:                      "https://vault.parity-mgmt-vault.parity.io"
+  VAULT_AUTH_PATH:                 "gitlab-parity-io-jwt"
+  VAULT_AUTH_ROLE:                 "cicd_gitlab_parity_${CI_PROJECT_NAME}"
+  HELM_SECRETS_DRIVER:             vals
 
 .kubernetes-env:                   &kubernetes-env
   image:                           $CI_IMAGE
   tags:
     - kubernetes-parity-build
+
+.pr-refs:                          &pr-refs
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+
+.common-refs:                      &common-refs
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME == "sc"
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+
+.master-refs:                      &master-refs
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master"
+    - if: $CI_COMMIT_REF_NAME == "sc"
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
 
 build-web:
   stage:                           build
@@ -102,3 +122,44 @@ build-publish-docker:
     - buildah push --format=v2s2 "$IMAGE_NAME:latest"
   after_script:
     - buildah logout --all
+
+#### stage:                        deploy
+
+.deploy:                           &deploy-k8s
+  script:
+    # https://docs.gitlab.com/ee/ci/examples/authenticating-with-hashicorp-vault/#example
+    - export VAULT_TOKEN="$(vault write -field=token auth/$VAULT_AUTH_PATH/login role=$VAULT_AUTH_ROLE jwt=$CI_JOB_JWT)"
+    - helm dependency update helm/
+    - helm secrets --version
+    - helm secrets upgrade
+        --install
+        --atomic
+        --timeout 300s
+        --namespace schildichat-web
+        --values helm/values.yaml
+        --values helm/values-$ENVIRONMENT.yaml
+        --set common.image.tag="$DOCKER_TAG"
+        schildichat-web helm/
+    - kubectl get pods -n schildichat-web
+
+deploy-stg:
+  stage:                           staging
+  <<:                              *deploy-k8s
+  <<:                              *kubernetes-env
+  <<:                              *publish-deploy-stg-refs
+  variables:
+    CI_IMAGE:                      "paritytech/kubetools:3.5.3"
+    ENVIRONMENT:                   parity-stg
+  environment:
+    name:                          parity-stg
+
+.deploy-prod:
+  stage:                           production
+  <<:                              *deploy-k8s
+  <<:                              *kubernetes-env
+  <<:                              *deploy-prod-refs
+  variables:
+    CI_IMAGE:                      "paritytech/kubetools:3.5.3"
+    ENVIRONMENT:                   parity-prod
+  environment:
+    name:                          parity-prod
