@@ -32,6 +32,8 @@ OUT_WIN64_PORTABLE_BETTER_NAME := $(PRODUCT_NAME)_win-portable_v$(VERSION)
 OUT_MACOS := $(DESKTOP_OUT)/$(PRODUCT_NAME)-$(VERSION)-universal.dmg
 OUT_MACOS_MAS := $(DESKTOP_OUT)/mas-universal/$(PRODUCT_NAME).app
 
+DOCKER_IMAGE := schildichat-desktop-dockerbuild
+
 RELEASE_DIR := release
 CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
 
@@ -59,6 +61,14 @@ icns: element-desktop/build/icon.icns element-desktop/build/dmg.icns
 
 regenerate-i18n: setup
 	./regenerate_i18n.sh
+
+docker-build:
+	docker build -t schildichat-desktop-dockerbuild .
+
+docker-pacman: docker-build
+	docker run --rm -ti \
+		-v ${PWD}:/project \
+		${DOCKER_IMAGE} make pacman
 
 web: export DIST_VERSION=$(WEB_OUT_DIST_VERSION)
 web: setup
