@@ -146,7 +146,8 @@ deploy-stg:
   stage:                           staging
   <<:                              *deploy-k8s
   <<:                              *kubernetes-env
-  <<:                              *publish-deploy-stg-refs
+  # change me to master-refs
+  <<:                              *pr-refs
   variables:
     CI_IMAGE:                      "paritytech/kubetools:3.5.3"
     ENVIRONMENT:                   parity-stg
