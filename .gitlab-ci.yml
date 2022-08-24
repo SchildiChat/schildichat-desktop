@@ -154,13 +154,3 @@ deploy-stg:
   environment:
     name:                          parity-stg
 
-.deploy-prod:
-  stage:                           production
-  <<:                              *deploy-k8s
-  <<:                              *kubernetes-env
-  <<:                              *deploy-prod-refs
-  variables:
-    CI_IMAGE:                      "paritytech/kubetools:3.5.3"
-    ENVIRONMENT:                   parity-prod
-  environment:
-    name:                          parity-prod
