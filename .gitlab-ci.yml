@@ -143,7 +143,7 @@ build-publish-docker:
     - kubectl get pods -n schildichat-web
 
 deploy-stg:
-  stage:                           staging
+  stage:                           deploy
   <<:                              *deploy-k8s
   <<:                              *kubernetes-env
   # change me to master-refs
