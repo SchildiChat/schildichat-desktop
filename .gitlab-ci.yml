@@ -130,8 +130,9 @@ build-publish-docker:
     # https://docs.gitlab.com/ee/ci/examples/authenticating-with-hashicorp-vault/#example
     - export VAULT_TOKEN="$(vault write -field=token auth/$VAULT_AUTH_PATH/login role=$VAULT_AUTH_ROLE jwt=$CI_JOB_JWT)"
     - helm dependency update helm/
-    - helm secrets --version
-    - helm secrets upgrade
+    # - helm secrets --version
+    # - helm secrets upgrade
+    - helm upgrade
         --install
         --atomic
         --timeout 300s

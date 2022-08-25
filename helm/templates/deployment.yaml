@@ -37,6 +37,14 @@ spec:
             containerPort: {{ .targetPort }}
             protocol: {{ .protocol }}
         {{- end }}
+        {{- with .Values.common.livenessProbe }}
+        livenessProbe:
+          {{- toYaml . | trim | nindent 12 }}
+        {{- end }}
+        {{- with .Values.common.readinessProbe }}
+        readinessProbe:
+          {{- toYaml . | trim | nindent 12 }}
+        {{- end }}
       volumes:
       - name: config-volume
         configMap:
