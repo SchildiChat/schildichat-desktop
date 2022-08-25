@@ -1,7 +1,27 @@
 common:
-  config:
-    config.json: |
-    {
+  env:
+    APP_HOST: "https://schildichat-web.parity-stg.parity.io"
+  ingress:
+    annotations:
+      external-dns.alpha.kubernetes.io/target: traefik-internal.parity-stg.parity.io.
+    rules:
+    - host: schildichat-web.parity-stg.parity.io
+      http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: schildichat-web
+              port:
+                name: http
+    tls:
+    - hosts:
+      - schildichat-web.parity-stg.parity.io
+      secretName: schildichat-web.parity-stg.parity.io
+
+customConfig: |
+      {
         "default_server_config": {
             "m.homeserver": {
                 "base_url": "https://matrix-client.matrix.org",
@@ -43,24 +63,4 @@ common:
         "setting_defaults": {
             "breadcrumbs": true
         }
-    }
-  env:
-    APP_HOST: "https://schildichat-web.parity-stg.parity.io"
-  ingress:
-    annotations:
-      external-dns.alpha.kubernetes.io/target: traefik-internal.parity-stg.parity.io.
-    rules:
-    - host: schildichat-web.parity-stg.parity.io
-      http:
-        paths:
-        - path: /
-          pathType: ImplementationSpecific
-          backend:
-            service:
-              name: schildichat-web
-              port:
-                name: http
-    tls:
-    - hosts:
-      - schildichat-web.parity-stg.parity.io
-      secretName: schildichat-web.parity-stg.parity.io
+      }

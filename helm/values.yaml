@@ -21,13 +21,14 @@ common:
   readinessProbe:
       httpGet:
           path: /
-          port: element
+          port: http
       initialDelaySeconds: 2
       periodSeconds: 3
   livenessProbe:
       httpGet:
           path: /
-          port: element
+          port: http
       initialDelaySeconds: 10
       periodSeconds: 10
 
+appConfigFile: data/config.json
