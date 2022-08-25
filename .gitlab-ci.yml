@@ -134,7 +134,6 @@ build-publish-docker:
     # - helm secrets upgrade
     - helm upgrade
         --install
-        --atomic
         --timeout 300s
         --namespace schildichat-web
         --values helm/values.yaml
