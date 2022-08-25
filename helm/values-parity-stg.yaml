@@ -1,5 +1,6 @@
 common:
-  config: |
+  config:
+    config.json: |
     {
         "default_server_config": {
             "m.homeserver": {
