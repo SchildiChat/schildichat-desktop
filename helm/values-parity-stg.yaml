@@ -5,22 +5,23 @@ common:
     annotations:
       external-dns.alpha.kubernetes.io/target: traefik-internal.parity-stg.parity.io.
     rules:
-    - host: schildichat-web.parity-stg.parity.io
-      http:
-        paths:
-        - path: /
-          pathType: ImplementationSpecific
-          backend:
-            service:
-              name: schildichat-web
-              port:
-                name: http
+      - host: schildichat-web.parity-stg.parity.io
+        http:
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+              backend:
+                service:
+                  name: schildichat-web
+                  port:
+                    name: http
     tls:
-    - hosts:
-      - schildichat-web.parity-stg.parity.io
-      secretName: schildichat-web.parity-stg.parity.io
+      - hosts:
+          - schildichat-web.parity-stg.parity.io
+        secretName: schildichat-web.parity-stg.parity.io
 
-customConfig: |
+  config:
+    config.json: |
       {
         "default_server_config": {
             "m.homeserver": {

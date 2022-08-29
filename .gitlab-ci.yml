@@ -132,14 +132,15 @@ build-publish-docker:
     - helm dependency update helm/
     # - helm secrets --version
     # - helm secrets upgrade
+    - cd kustomize
     - helm upgrade
         --install
         --timeout 300s
         --namespace schildichat-web
-        --values helm/values.yaml
-        --values helm/values-$ENVIRONMENT.yaml
+        --values ../helm/values.yaml
+        --values ../helm/values-$ENVIRONMENT.yaml
         --set common.image.tag="$DOCKER_TAG"
-        schildichat-web helm/
+        schildichat-web ../helm/ --post-renderer ./kustomize
     - kubectl get pods -n schildichat-web
 
 deploy-stg:
