@@ -150,7 +150,7 @@ deploy-stg:
   # change me to master-refs
   <<:                              *pr-refs
   variables:
-    CI_IMAGE:                      "paritytech/kubetools:3.5.3"
+    CI_IMAGE:                      "paritytech/kubetools:3.9.2"
     ENVIRONMENT:                   parity-stg
   environment:
     name:                          parity-stg
