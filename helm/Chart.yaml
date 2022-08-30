@@ -1,0 +1,10 @@
+apiVersion: v2
+name: schildichat-web
+description: A Helm chart for Kubernetes
+type: application
+version: 0.2.1
+appVersion: "1.16.0"
+dependencies:
+- name: common
+  version: "0.2.2"
+  repository: "https://paritytech.github.io/helm-charts/"

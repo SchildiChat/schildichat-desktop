@@ -1,0 +1,21 @@
+common:
+  env:
+    APP_HOST: "https://schildichat-web.parity-prod.parity.io"
+  ingress:
+    annotations:
+      external-dns.alpha.kubernetes.io/target: traefik-internal.parity-prod.parity.io.
+    rules:
+    - host: schildichat-web.parity-prod.parity.io
+      http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: schildichat-web
+              port:
+                name: http
+    tls:
+    - hosts:
+      - schildichat-web.parity-prod.parity.io
+      secretName: schildichat-web.parity-prod.parity.io

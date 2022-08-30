@@ -1,0 +1,32 @@
+
+common:
+  fullnameOverride: "schildichat-web"
+  serviceAccount:
+    create: false
+  image:
+    repository: paritytech/schildichat-web
+  service:
+    ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-dns01
+      kubernetes.io/ingress.class: traefik-internal
+      traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+  readinessProbe:
+      httpGet:
+          path: /
+          port: http
+      initialDelaySeconds: 2
+      periodSeconds: 3
+  livenessProbe:
+      httpGet:
+          path: /
+          port: http
+      initialDelaySeconds: 10
+      periodSeconds: 10
