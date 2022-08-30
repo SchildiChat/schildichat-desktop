@@ -30,5 +30,3 @@ common:
           port: http
       initialDelaySeconds: 10
       periodSeconds: 10
-
-appConfigFile: data/config.json
