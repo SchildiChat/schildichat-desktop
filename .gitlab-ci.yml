@@ -43,11 +43,11 @@ variables:
   rules:
     - if: $CI_COMMIT_REF_NAME == "master"
     - if: $CI_COMMIT_REF_NAME == "sc"
-    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
 
 build-web:
   stage:                           build
   <<:                              *kubernetes-env
+  <<:                              *common-refs
   script:
     - apt-get update
     - apt-get install -y vim curl git make gcc g++ python jq libsqlcipher-dev pkg-config libsecret-1-dev libarchive-tools openssl libssl-dev tcl gnupg
@@ -76,6 +76,7 @@ build-web:
 build-docker:
   stage:                           build-web
   <<:                              *kubernetes-env
+  <<:                              *pr-refs
   variables:
     GIT_STRATEGY:                  none
     DOCKERFILE:                    Dockerfile
@@ -95,6 +96,7 @@ build-docker:
 build-publish-docker:
   stage:                           build-web
   <<:                              *kubernetes-env
+  <<:                              *master-refs
   variables:
     GIT_STRATEGY:                  none
     DOCKERFILE:                    Dockerfile
@@ -145,8 +147,7 @@ deploy-stg:
   stage:                           deploy
   <<:                              *deploy-k8s
   <<:                              *kubernetes-env
-  # change me to master-refs
-  <<:                              *pr-refs
+  <<:                              *master-refs
   variables:
     CI_IMAGE:                      "paritytech/kubetools:3.9.2"
     ENVIRONMENT:                   parity-stg
