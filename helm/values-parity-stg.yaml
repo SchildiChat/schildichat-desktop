@@ -3,7 +3,7 @@ common:
     APP_HOST: "https://schildichat-web.parity-stg.parity.io"
   ingress:
     annotations:
-      external-dns.alpha.kubernetes.io/target: traefik-internal.parity-stg.parity.io.
+      external-dns.alpha.kubernetes.io/target: traefik-external.parity-stg.parity.io.
     rules:
       - host: schildichat-web.parity-stg.parity.io
         http:
