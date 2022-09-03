@@ -1,7 +1,7 @@
 .PHONY: all setup regenerate-i18n web desktop-common linux debian rpm pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release rpm-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
-.PHONY: clean
+.PHONY: clean undo_setup fixup
 
 CFGDIR ?= configs/sc
 
@@ -166,3 +166,11 @@ clean:
 	rm -rf element-web/dist
 	rm -rf local-pkgbuild
 	rm -f bom.lock
+
+undo_setup:
+	rm -rf element-desktop/node_modules element-web/node_modules matrix-react-sdk/node_modules matrix-js-sdk/node_modules i18n-helper/node_modules element-desktop/.hak
+
+fixup: undo_setup
+	make setup
+	make clean
+	make setup
