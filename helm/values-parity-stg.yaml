@@ -26,6 +26,7 @@ common:
           "default_theme": "Deep Purple",
           "update_base_url": null,
           "default_server_name": "matrix.parity-lab.parity.io",
+          "disable_custom_urls": true,
           "brand": "Parity Schildi Chat 2",
           "branding": {
               "welcome_background_url": "https://www.parity.io/static/bg-red-1-f0f33f1ee80953515ff1f9503a5b7310.jpg",
