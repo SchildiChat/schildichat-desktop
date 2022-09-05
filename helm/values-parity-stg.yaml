@@ -4,6 +4,8 @@ common:
   ingress:
     annotations:
       external-dns.alpha.kubernetes.io/target: traefik-external.parity-stg.parity.io.
+      kubernetes.io/ingress.class: traefik-external
+
     rules:
       - host: schildichat-web.parity-stg.parity.io
         http:
