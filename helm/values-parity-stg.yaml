@@ -23,45 +23,108 @@ common:
   config:
     config.json: |
       {
-        "default_server_config": {
-            "m.homeserver": {
-                "base_url": "https://matrix-client.matrix.org",
-                "server_name": "matrix.org"
-            },
-            "m.identity_server": {
-                "base_url": "https://vector.im"
-            }
-        },
-        "disable_custom_urls": false,
-        "disable_guests": false,
-        "disable_login_language_selector": false,
-        "disable_3pid_login": false,
-        "brand": "Element",
-        "integrations_ui_url": "https://scalar.vector.im/",
-        "integrations_rest_url": "https://scalar.vector.im/api",
-        "integrations_widgets_urls": [
-                "https://scalar.vector.im/_matrix/integrations/v1",
-                "https://scalar.vector.im/api",
-                "https://scalar-staging.vector.im/_matrix/integrations/v1",
-                "https://scalar-staging.vector.im/api",
-                "https://scalar-staging.riot.im/scalar/api"
-        ],
-        "bug_report_endpoint_url": "https://element.io/bugreports/submit",
-        "defaultCountryCode": "GB",
-        "show_labs_settings": false,
-        "features": { },
-        "default_federate": true,
-        "default_theme": "light",
-        "room_directory": {
-            "servers": [
-                    "matrix.org"
-            ]
-        },
-        "enable_presence_by_hs_url": {
-            "https://matrix.org": false,
-            "https://matrix-client.matrix.org": false
-        },
-        "setting_defaults": {
-            "breadcrumbs": true
-        }
+          "default_theme": "Deep Purple",
+          "update_base_url": null,
+          "default_server_name": "matrix.parity-lab.parity.io",
+          "brand": "Parity Schildi Chat 2",
+          "branding": {
+              "welcome_background_url": "https://www.parity.io/static/bg-red-1-f0f33f1ee80953515ff1f9503a5b7310.jpg",
+              "auth_header_logo_url": "https://www.parity.io/static/6050b977b06c4e5a13d753e50a79182a/icon-parity-signer.png",
+                  "auth_footer_links": [
+                 {"text": "FAQ", "url": "https://example.org/faq"},
+                 {"text": "Donate", "url": "https://example.org/donate"}
+              ]
+           },
+          "integrations_ui_url": "https://scalar.vector.im/",
+          "integrations_rest_url": "https://scalar.vector.im/api",
+          "integrations_widgets_urls": [
+              "https://scalar.vector.im/_matrix/integrations/v1",
+              "https://scalar.vector.im/api",
+              "https://scalar-staging.vector.im/_matrix/integrations/v1",
+              "https://scalar-staging.vector.im/api",
+              "https:/alar-staging.riot.im/scalar/api"
+          ],
+          "showLabsSettings": true,
+          "roomDirectory": {
+              "servers": [
+                  "matrix.parity-lab.parity.io",
+                  "matrix.org"
+              ]
+          },
+          "enable_presence_by_hs_url": {
+              "https://matrix.org": false,
+              "https://matrix-client.matrix.org": false
+          },
+          "terms_and_conditions_links": [
+              {
+                  "url": "https://schildi.chat/desktop/privacy",
+                  "text": "Privacy Policy"
+              }
+          ],
+          "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx",
+          "features": {
+              "feature_thread": true,
+              "feature_message_right_click_context_menu": true
+           },
+           "setting_defaults": {
+              "custom_themes": [
+                  {
+                      "name": "Electric Blue",
+                      "is_dark": false,
+                      "fonts": {
+                          "faces": [
+                              {
+                                  "font-family": "Inter",
+                                  "src": [{"url": "/fonts/Inter.ttf", "format": "ttf"}]
+                              }
+                          ],
+                          "general": "Inter, sans",
+                          "monospace": "'Courier New'"
+                      },
+                      "colors": {
+                          "accent-color": "#3596fc",
+                          "primary-color": "#368bd6",
+                          "warning-color": "#ff4b55",
+                          "sidebar-color": "#27303a",
+                          "roomlist-background-color": "#f3f8fd",
+                          "roomlist-text-color": "#2e2f32",
+                          "roomlist-text-secondary-color": "#61708b",
+                          "roomlist-highlights-color": "#ffffff",
+                          "roomlist-separator-color": "#e3e8f0",
+                          "timeline-background-color": "#ffffff",
+                          "timeline-text-color": "#2e2f32",
+                          "timeline-text-secondary-color": "#61708b",
+                          "timeline-highlights-color": "#f3f8fd",
+                          "eventbubble-others-bg": "#bbccee",
+                          "eventbubble-self-bg": "#bb77dd",
+                          "eventbubble-selected-bg": "#7766cc",
+                          "username-colors": ["#ff0000"],
+                          "avatar-background-colors": ["#cc0000"]
+                      }
+                  }, {
+                      "name": "Deep Purple",
+                      "is_dark": true,
+                      "colors": {
+                          "accent-color": "#6503b3",
+                          "primary-color": "#368bd6",
+                          "warning-color": "#b30356",
+                          "sidebar-color": "#15171B",
+                          "roomlist-background-color": "#22262E",
+                          "roomlist-text-color": "#A1B2D1",
+                          "roomlist-text-secondary-color": "#EDF3FF",
+                          "roomlist-highlights-color": "#343A46",
+                          "roomlist-separator-color": "#a1b2d1",
+                          "timeline-background-color": "#181b21",
+                          "timeline-text-color": "#EDF3FF",
+                          "timeline-text-secondary-color": "#A1B2D1",
+                          "timeline-highlights-color": "#22262E",
+                          "eventbubble-others-bg": "#445566",
+                          "eventbubble-self-bg": "#228844",
+                          "eventbubble-selected-bg": "#889955"
+                      }
+                  }
+              ]
+          }
+      
       }
+            
