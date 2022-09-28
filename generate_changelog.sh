@@ -16,8 +16,8 @@ forall_repos check_branch $branch
 forall_repos check_clean_git
 
 # Fetch upstream
-forall_repos git fetch origin > /dev/null
-forall_repos git fetch upstream > /dev/null
+forall_repos git fetch origin > /dev/null 2>/dev/null
+forall_repos git fetch upstream > /dev/null 2>/dev/null
 
 (
     # Add new line below git log: https://unix.stackexchange.com/a/345558
