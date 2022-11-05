@@ -20,7 +20,10 @@ debdate=$(date +%Y-%m-%d -r $debpath)
 pushd "$repopath" > /dev/null
 
 git fetch
+git checkout master
 git reset --hard origin/master
+
+git checkout -B "release-v$version"
 
 yamlFile="chat.schildi.desktop.yaml"
 xmlFile="chat.schildi.desktop.metainfo.xml"
@@ -33,8 +36,8 @@ sed -i "s|^\s\s<releases>$|  <releases>\n    <release version=\"$version\" date=
 git add $yamlFile $xmlFile
 git commit -m "Bump version to v$version"
 
-git push
+git push -f --set-upstream origin "release-v$version"
 
 popd > /dev/null
 
-echo "Release v$version published on flathub!"
+echo "Release v$version published on flathub, now merge that branch as PR: https://github.com/flathub/chat.schildi.desktop/"
