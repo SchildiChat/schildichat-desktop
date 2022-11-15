@@ -1,6 +1,11 @@
 {
     "update_base_url": null,
-    "default_server_name": "matrix.org",
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "https://matrix-client.matrix.org",
+            "server_name": "matrix.org"
+        }
+    },
     "brand": "SchildiChat",
     "integrations_ui_url": "https://scalar.vector.im/",
     "integrations_rest_url": "https://scalar.vector.im/api",
@@ -14,7 +19,10 @@
     "showLabsSettings": true,
     "roomDirectory": {
         "servers": [
-            "matrix.org"
+            "matrix.org",
+            "gitter.im",
+            "libera.chat",
+            "schildi.chat"
         ]
     },
     "enable_presence_by_hs_url": {
