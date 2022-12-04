@@ -1,0 +1,20 @@
+FROM fedora:latest
+
+RUN dnf install -y openssl openssl-devel rust cargo libsecret libsecret-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat
+
+# node setup
+ARG NODE_VERSION
+RUN mkdir -p /usr/local/n
+RUN mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+RUN curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+RUN bash n ${NODE_VERSION}
+RUN npm install -g n
+RUN npm install -g yarn
+RUN npm install -g node-gyp
+RUN gem install --ignore-dependencies --no-user-install --no-document fpm
+
+COPY . /project
+WORKDIR /project
+
+# There might be remnants of the host which break the build
+RUN make fixup

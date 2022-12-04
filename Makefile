@@ -1,6 +1,8 @@
 .PHONY: all setup regenerate-i18n web desktop-common linux debian rpm pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release rpm-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
+.PHONY: container-build-debian container-build-fedora
+.PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release
 .PHONY: clean undo_setup fixup
 
 CFGDIR ?= configs/sc
@@ -8,6 +10,8 @@ CFGDIR ?= configs/sc
 all: web
 
 YARN ?= yarnpkg
+CONTAINER_ENGINE ?= podman
+NODE_VERSION ?= 16
 
 VERSION := $(shell grep version element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
 WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
@@ -31,6 +35,9 @@ OUT_WIN64_UNPACKED_BETTER_NAME := $(PRODUCT_NAME)_win-unpacked_v$(VERSION).zip
 OUT_WIN64_PORTABLE_BETTER_NAME := $(PRODUCT_NAME)_win-portable_v$(VERSION)
 OUT_MACOS := $(DESKTOP_OUT)/$(PRODUCT_NAME)-$(VERSION)-universal.dmg
 OUT_MACOS_MAS := $(DESKTOP_OUT)/mas-universal/$(PRODUCT_NAME).app
+
+CONTAINER_IMAGE_DEBIAN := schildichat-desktop-containerbuild-debian
+CONTAINER_IMAGE_FEDORA := schildichat-desktop-containerbuild-fedora
 
 RELEASE_DIR := release
 CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
@@ -152,6 +159,24 @@ macos-release: macos
 macos-mas-release: macos-mas
 	mkdir -p $(CURRENT_RELEASE_DIR)
 	cp $(OUT_MACOS_MAS) $(CURRENT_RELEASE_DIR)
+
+container-build-debian:
+	$(CONTAINER_ENGINE) build -t $(CONTAINER_IMAGE_DEBIAN) -f Containerfile.debian --build-arg NODE_VERSION=$(NODE_VERSION) .
+
+container-build-fedora:
+	$(CONTAINER_ENGINE) build -t $(CONTAINER_IMAGE_FEDORA) -f Containerfile.fedora --build-arg NODE_VERSION=$(NODE_VERSION) .
+
+container-web-release: container-build-debian
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release
+
+container-debian-release: container-build-debian
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make debian-release
+
+container-rpm-release: container-build-fedora
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
+
+container-appimage-release: container-build-debian
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make appimage-release
 
 bom.lock: element-desktop/yarn.lock element-web/yarn.lock matrix-js-sdk/yarn.lock matrix-react-sdk/yarn.lock
 	./build-bom.sh
