@@ -1,0 +1,17 @@
+name: 'Close stale issues'
+on:
+  schedule:
+    - cron: '30 1 * * *'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v6
+        with:
+          stale-issue-message: 'This issue is stale because it has been open 150 days with no activity. Remove stale label or comment or this will be closed in 14 days.'
+          days-before-issue-stale: 150
+          days-before-issue-close: 14
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          exempt-issue-labels: 'longterm,enhancement,parity-with-android,prio:medium,prio:high,electron issue,encrypted room search,build infrastructure'
