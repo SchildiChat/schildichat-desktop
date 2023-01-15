@@ -16,8 +16,8 @@
         "https://scalar-staging.vector.im/api",
         "https://scalar-staging.riot.im/scalar/api"
     ],
-    "showLabsSettings": true,
-    "roomDirectory": {
+    "show_labs_settings": true,
+    "room_directory": {
         "servers": [
             "matrix.org",
             "gitter.im",
