@@ -35,7 +35,13 @@ function writeStrings(p, strings) {
 		let strings = readStrings(p);
 
 		for (const key of Object.keys(strings)) {
-			strings[key] = strings[key].replace(/Element/g, "SchildiChat").replace(/element\.io/g, "schildi.chat");
+			strings[key] = strings[key]
+				.replace(/Element/g, "SchildiChat")
+				.replace(/element\.io/g, "schildi.chat")
+				
+				// It's still Element Call
+				.replace(/SchildiChat Call/g, "Element Call")
+				.replace(/SchildiChat-Call/g, "Element-Call");
 		}
 
 		if (overlayPath) {
