@@ -11,7 +11,7 @@ RUN bash n ${NODE_VERSION}
 RUN npm install -g n
 RUN npm install -g yarn
 RUN npm install -g node-gyp
-RUN gem install --ignore-dependencies --no-user-install --no-document fpm
+RUN gem install --no-user-install --no-document fpm
 
 COPY . /project
 WORKDIR /project
