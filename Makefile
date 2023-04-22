@@ -4,6 +4,7 @@
 .PHONY: container-build-debian container-build-fedora
 .PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release
 .PHONY: clean undo_setup fixup
+.PHONY: fix_yarn_cache
 
 CFGDIR ?= configs/sc
 
@@ -182,6 +183,9 @@ bom.lock: element-desktop/yarn.lock element-web/yarn.lock matrix-js-sdk/yarn.loc
 	./build-bom.sh
 bom: bom.lock
 
+fix_yarn_cache:
+	$(YARN) cache list || $(YARN) cache clean
+
 clean:
 	$(YARN) --cwd matrix-js-sdk clean
 	$(YARN) --cwd matrix-react-sdk clean
@@ -195,7 +199,7 @@ clean:
 undo_setup:
 	rm -rf element-desktop/node_modules element-web/node_modules matrix-react-sdk/node_modules matrix-js-sdk/node_modules i18n-helper/node_modules element-desktop/.hak
 
-fixup: undo_setup
+fixup: undo_setup fix_yarn_cache
 	make setup
 	make clean
 	make setup
