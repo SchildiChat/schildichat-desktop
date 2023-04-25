@@ -1,6 +1,6 @@
 FROM fedora:latest
 
-RUN dnf install -y openssl openssl-devel rust cargo llvm15 libsecret libsecret-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat
+RUN dnf install -y openssl openssl-devel rust cargo llvm libsecret libsecret-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat
 
 # node setup
 ARG NODE_VERSION
