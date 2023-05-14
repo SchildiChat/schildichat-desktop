@@ -42,5 +42,13 @@
     "Mark as unread": "标记为未读",
     "Home is useful for getting an overview of everything. Keep in mind that disabling it could leave you unable to see certain rooms.": "主页对于概览所有消息来说非常有用。请注意：禁用主页可能会让您无法看到某些房间。",
     "Enable YouTube embed player": "启用 YouTube 嵌入式播放器",
-    "Collapse additional buttons": "折叠额外的按钮"
+    "Collapse additional buttons": "折叠额外的按钮",
+    "Round": "圆角",
+    "React with \"%(reaction)s\"": "与 \"%(reaction)s\" 互动",
+    "Schildi: Softer sounds for reduced anxiety": "Schildi: 舒缓音效以减少焦虑",
+    "Mixed": "混合",
+    "Extra round": "超圆角",
+    "Sound pack": "音频包",
+    "Classic: The same sharp sounds as Element": "Classic: 与 Element 相同的尖锐声音",
+    "Corners": "边缘"
 }
