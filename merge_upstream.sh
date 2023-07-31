@@ -23,7 +23,13 @@ automatic_i18n_reversion
 automatic_packagejson_reversion
 
 # Merge upstream
-get_latest_upstream_tag
+
+# Check if specific version to merge passed
+if [ -z "$1" ]; then
+    get_latest_upstream_tag
+else
+    latest_upstream_tag="$1"
+fi
 forelement_repos git merge "$latest_upstream_tag"
 
 get_current_mxsdk_tags
