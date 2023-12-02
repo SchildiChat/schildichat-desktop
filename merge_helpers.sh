@@ -2,7 +2,7 @@
 
 SCHILDI_ROOT="$(dirname "$(realpath "$0")")"
 
-branch=${BRANCH:-"sc"}
+branch=${BRANCH:-"lite"}
 
 i18n_helper_path="$SCHILDI_ROOT/i18n-helper/index.js"
 i18n_path="src/i18n/strings"
@@ -32,36 +32,24 @@ add_upstream() {
 }
 
 forall_repos() {
-    pushd "$SCHILDI_ROOT/matrix-js-sdk" > /dev/null
-    "$@"
-    popd > /dev/null
-
-    pushd "$SCHILDI_ROOT/matrix-react-sdk" > /dev/null
-    "$@"
-    popd > /dev/null
-
-    pushd "$SCHILDI_ROOT/element-web" > /dev/null
-    "$@"
-    popd > /dev/null
-
-    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
-    "$@"
-    popd > /dev/null
+    for repo in "matrix-js-sdk" "matrix-react-sdk" "element-web" "element-desktop"; do
+        pushd "$SCHILDI_ROOT/$repo" > /dev/null
+        "$@"
+        popd > /dev/null
+    done
 }
 
 forelement_repos() {
-    pushd "$SCHILDI_ROOT/element-web" > /dev/null
-    "$@"
-    popd > /dev/null
-
-    pushd "$SCHILDI_ROOT/element-desktop" > /dev/null
-    "$@"
-    popd > /dev/null
+    for repo in "element-web" "element-desktop"; do
+        pushd "$SCHILDI_ROOT/$repo" > /dev/null
+        "$@"
+        popd > /dev/null
+    done
 }
 
 ensure_yes() {
     read -e -p "$1 [y/N] " choice
-    
+
     if [[ "$choice" != [Yy]* ]]; then
         exit 1
     fi
@@ -217,7 +205,7 @@ revert_packagejson_changes() {
 
 apply_packagejson_overlay() {
     local orig_path="$1"
-    local overlay_path="$2"
+    local overlay_path="../overlay/$(basename "$PWD")/package.json"
 
     # see: https://stackoverflow.com/a/24904276
     new_content=`jq -s '.[0] * .[1]' "$orig_path" "$overlay_path"`
@@ -240,7 +228,7 @@ automatic_packagejson_adjustment() {
     local versions
     get_current_versions
 
-    forelement_repos apply_packagejson_overlay "package.json" "overlay-package.json"
+    forelement_repos apply_packagejson_overlay "package.json"
     forelement_repos write_version "package.json"
 }
 

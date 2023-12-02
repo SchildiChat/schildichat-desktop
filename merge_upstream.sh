@@ -4,6 +4,13 @@ set -e
 
 mydir="$(dirname "$(realpath "$0")")"
 
+if [ "$1" = "--checkout" ]; then
+    git_action=checkout
+    shift
+else
+    git_action=merge
+fi
+
 pushd "$mydir" > /dev/null
 
 source ./merge_helpers.sh
@@ -19,8 +26,10 @@ forall_repos check_clean_git
 forall_repos git fetch upstream
 
 # Automatic reversions
-automatic_i18n_reversion
-automatic_packagejson_reversion
+if [ "$git_action" != "checkout" ]; then
+    automatic_i18n_reversion
+    automatic_packagejson_reversion
+fi
 
 # Merge upstream
 
@@ -30,16 +39,16 @@ if [ -z "$1" ]; then
 else
     latest_upstream_tag="$1"
 fi
-forelement_repos git merge "$latest_upstream_tag"
+forelement_repos git "$git_action" "$latest_upstream_tag"
 
 get_current_mxsdk_tags
 
 pushd "matrix-js-sdk" > /dev/null
-git merge "$current_mxjssdk_tag"
+git "$git_action" "$current_mxjssdk_tag"
 popd > /dev/null
 
 pushd "matrix-react-sdk" > /dev/null
-git merge "$current_mxreactsdk_tag"
+git "$git_action" "$current_mxreactsdk_tag"
 popd > /dev/null
 
 # Refresh environment
@@ -47,12 +56,12 @@ make clean
 make setup
 
 # Automatic adjustments
-automatic_i18n_adjustment
+#automatic_i18n_adjustment
 automatic_packagejson_adjustment
 
 # Automatic theme update
-pushd "matrix-react-sdk" > /dev/null
-./theme.sh y
-popd > /dev/null
+#pushd "matrix-react-sdk" > /dev/null
+#./theme.sh y
+#popd > /dev/null
 
 popd > /dev/null

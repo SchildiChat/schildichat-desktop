@@ -1,0 +1,8 @@
+{
+  "name": "schildichat-web-lite",
+  "description": "A Matrix client based on Element with a more traditional instant messaging experience",
+  "author": "SchildiChat",
+  "repository": {
+    "url": "https://github.com/SchildiChat/element-web"
+  }
+}

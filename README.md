@@ -1,32 +1,9 @@
-# SchildiChat Web/Desktop
+# SchildiChat Web/Desktop Lite
 
 SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
 
-The most important changes of SchildiChat Web/Desktop compared to Element Web/Desktop are:
-- Customizable room list style (compact single line, intermediate and roomy with two line preview)
-- Option to show direct and group chats in a combined list
-- Improved theming options
-- Message bubbles
-- &hellip; and more!
-
-Desktop downloads with installation instructions are listed on our website: [https://schildi.chat/desktop](https://schildi.chat/desktop)  
-Hosted web variant: [https://app.schildi.chat/](https://app.schildi.chat/)
-
-Feel free to [join the discussion on matrix](https://matrix.to/#/#schildichat-web:matrix.org).
-
-<img src="https://raw.githubusercontent.com/SchildiChat/schildichat-desktop/sc/screenshots/1.png"/>
-
-<details>
-<summary>Public key used to sign the Debian packages</summary>
-
-```
-pub   rsa4096 2020-12-08 [SC]
-      560BB70DA86A6633A39CEC6023358905FE294D01
-uid           Super apt repo key <apt@supercable.onl>
-sub   rsa4096 2020-12-08 [E]
-```
-
-</details>
+This branch builds the "lite" variant, which rebases a reduced feature set of the original fork on top of the latest Element,
+in order to keep maintenance effort more manageable while staying up-to-date.
 
 
 ## Building SchildiChat Web/Desktop
@@ -95,7 +72,7 @@ To notarize a build with Apple set `NOTARIZE_APPLE_ID` to your AppleID and set t
 As already noted above, **`master` contains the latest release** and **`sc` is the development branch**!
 
 ```
-git clone -b master --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
+git clone -b lite --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
 cd schildichat-desktop
 make setup # optional step if using the other make targets
 ```
@@ -134,4 +111,14 @@ your-deploy-%: CFGDIR := $(YOUR_CFGDIR)
 
 your-deploy-web: web
 	rsync --info=progress2 -rup --del element-web/webapp/ you@yourwebserver:/the/folder/served/for/schildi/
+```
+
+
+# Merge helpers
+
+## Add upstream repo remotes
+
+```
+source merge_helpers.sh
+forall_repos add_upstream
 ```
