@@ -12,7 +12,7 @@ all: web
 
 YARN ?= yarnpkg
 CONTAINER_ENGINE ?= podman
-NODE_VERSION ?= 16
+NODE_VERSION ?= 18
 
 VERSION := $(shell grep version element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
 WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
