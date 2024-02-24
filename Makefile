@@ -2,7 +2,7 @@
 .PHONY: web-release debian-release rpm-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
 .PHONY: container-build-debian container-build-fedora
-.PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release
+.PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release container-local-pkgbuild
 .PHONY: clean undo_setup fixup
 .PHONY: fix_yarn_cache
 
@@ -162,22 +162,25 @@ macos-mas-release: macos-mas
 	cp $(OUT_MACOS_MAS) $(CURRENT_RELEASE_DIR)
 
 container-build-debian:
-	$(CONTAINER_ENGINE) build -t $(CONTAINER_IMAGE_DEBIAN) -f Containerfile.debian --build-arg NODE_VERSION=$(NODE_VERSION) .
+	$(CONTAINER_ENGINE) build --security-opt seccomp=unconfined --security-opt label=disable -t $(CONTAINER_IMAGE_DEBIAN) -f Containerfile.debian --build-arg NODE_VERSION=$(NODE_VERSION) .
 
 container-build-fedora:
-	$(CONTAINER_ENGINE) build -t $(CONTAINER_IMAGE_FEDORA) -f Containerfile.fedora --build-arg NODE_VERSION=$(NODE_VERSION) .
+	$(CONTAINER_ENGINE) build --security-opt seccomp=unconfined --security-opt label=disable -t $(CONTAINER_IMAGE_FEDORA) -f Containerfile.fedora --build-arg NODE_VERSION=$(NODE_VERSION) .
 
 container-web-release: container-build-debian
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release
 
 container-debian-release: container-build-debian
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make debian-release
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make debian-release
 
 container-rpm-release: container-build-fedora
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
 
 container-appimage-release: container-build-debian
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD)/release:/project/release --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make appimage-release
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make appimage-release
+
+container-local-pkgbuild: container-build-debian
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make local-pkgbuild
 
 bom.lock: element-desktop/yarn.lock element-web/yarn.lock matrix-js-sdk/yarn.lock matrix-react-sdk/yarn.lock
 	./build-bom.sh

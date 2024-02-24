@@ -1,6 +1,6 @@
-FROM fedora:latest
+FROM docker.io/fedora:38
 
-RUN dnf install -y openssl openssl-devel rust cargo llvm libsecret libsecret-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat
+RUN dnf install -y openssl openssl-devel cargo llvm libsecret libsecret-devel sqlcipher sqlcipher-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat
 
 # node setup
 ARG NODE_VERSION
@@ -13,8 +13,9 @@ RUN npm install -g yarn
 RUN npm install -g node-gyp
 RUN gem install --no-user-install --no-document fpm
 
-COPY . /project
-WORKDIR /project
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --profile minimal
 
-# There might be remnants of the host which break the build
-RUN make fixup
+WORKDIR /project
