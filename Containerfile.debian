@@ -1,5 +1,5 @@
 ARG NODE_VERSION
-FROM node:${NODE_VERSION}-buster
+FROM docker.io/node:${NODE_VERSION}-buster
 
 RUN apt-get -qq update && apt-get -qq install --no-install-recommends -y \
     curl \
