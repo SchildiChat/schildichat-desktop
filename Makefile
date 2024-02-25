@@ -77,7 +77,7 @@ web: setup
 
 desktop-common: web
 	$(YARN) --cwd element-desktop run fetch --cfgdir ''
-	SQLCIPHER_STATIC=1 $(YARN) --cwd element-desktop run build:native
+	SQLCIPHER_BUNDLED=1 $(YARN) --cwd element-desktop run build:native
 
 macos-common: web icns
 	$(YARN) --cwd element-desktop run fetch --cfgdir ''
