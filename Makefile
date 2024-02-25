@@ -1,8 +1,8 @@
 .PHONY: all setup regenerate-i18n web desktop-common linux debian rpm pacman local-pkgbuild local-pkgbuild-install windows windows-portable
 .PHONY: web-release debian-release rpm-release pacman-release windows-setup-release windows-unpacked-release windows-portable-release windows-release
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
-.PHONY: container-build-debian container-build-fedora
-.PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release container-local-pkgbuild
+.PHONY: container-build-debian container-build-fedora container-build-windows
+.PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release container-windows-release container-release container-local-pkgbuild
 .PHONY: clean undo_setup fixup
 .PHONY: fix_yarn_cache
 
@@ -39,6 +39,7 @@ OUT_MACOS_MAS := $(DESKTOP_OUT)/mas-universal/$(PRODUCT_NAME).app
 
 CONTAINER_IMAGE_DEBIAN := schildichat-desktop-containerbuild-debian
 CONTAINER_IMAGE_FEDORA := schildichat-desktop-containerbuild-fedora
+CONTAINER_IMAGE_WINDOWS := schildichat-desktop-containerbuild-windows
 
 RELEASE_DIR := release
 CURRENT_RELEASE_DIR := $(RELEASE_DIR)/$(VERSION)
@@ -167,6 +168,9 @@ container-build-debian:
 container-build-fedora:
 	$(CONTAINER_ENGINE) build --security-opt seccomp=unconfined --security-opt label=disable -t $(CONTAINER_IMAGE_FEDORA) -f Containerfile.fedora --build-arg NODE_VERSION=$(NODE_VERSION) .
 
+container-build-windows: container-build-debian
+	$(CONTAINER_ENGINE) build --security-opt seccomp=unconfined --security-opt label=disable -t $(CONTAINER_IMAGE_WINDOWS) -f Containerfile.windows --build-arg CONTAINER_IMAGE_DEBIAN=$(CONTAINER_IMAGE_DEBIAN) .
+
 container-web-release: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release
 
@@ -178,6 +182,13 @@ container-rpm-release: container-build-fedora
 
 container-appimage-release: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make appimage-release
+
+container-windows-release: container-build-windows
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make windows-release
+
+container-release: container-build-windows container-build-fedora 
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make web-release debian-release appimage-release windows-setup-release windows-portable-release
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
 
 container-local-pkgbuild: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make local-pkgbuild
