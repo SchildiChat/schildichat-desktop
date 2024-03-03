@@ -54,7 +54,7 @@ The following are the dependencies required to build SchildiChat Web/Desktop on 
 ```
 # apt install vim curl git make gcc g++ python jq libsqlcipher-dev pkg-config libsecret-1-dev libarchive-tools openssl libssl-dev tcl
 
-# curl -sL https://deb.nodesource.com/setup_16.x | bash -
+# curl -sL https://deb.nodesource.com/setup_18.x | bash -
 # apt update
 # apt install nodejs
 
