@@ -1,0 +1,62 @@
+From 74eb328104004566b2fe99035e67e46e531135e4 Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Sat, 2 Dec 2023 12:57:26 +0100
+Subject: [PATCH] Add back schildi fetch-package.ts modifications
+
+---
+ scripts/fetch-package.ts | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/scripts/fetch-package.ts b/scripts/fetch-package.ts
+index fc671c8..aa9c7ef 100644
+--- a/scripts/fetch-package.ts
++++ b/scripts/fetch-package.ts
+@@ -55,6 +55,7 @@ async function main(): Promise<number | undefined> {
+     let filename: string | undefined;
+     let url: string | undefined;
+     let setVersion = false;
++    const sc = true;
+ 
+     while (process.argv.length > 2) {
+         switch (process.argv[2]) {
+@@ -83,7 +84,9 @@ async function main(): Promise<number | undefined> {
+         process.argv.shift();
+     }
+ 
+-    if (targetVersion === undefined) {
++    if (sc) {
++        // nothing
++    } else if (targetVersion === undefined) {
+         targetVersion = "v" + riotDesktopPackageJson.version;
+     } else if (targetVersion !== "develop") {
+         setVersion = true; // version was specified
+@@ -93,7 +96,7 @@ async function main(): Promise<number | undefined> {
+         filename = "develop.tar.gz";
+         url = DEVELOP_TGZ_URL;
+         verify = false; // develop builds aren't signed
+-    } else if (targetVersion.includes("://")) {
++    } else if (targetVersion?.includes("://")) {
+         filename = targetVersion.substring(targetVersion.lastIndexOf("/") + 1);
+         url = targetVersion;
+         verify = false; // manually verified
+@@ -143,12 +146,15 @@ async function main(): Promise<number | undefined> {
+     }
+ 
+     let haveDeploy = false;
+-    let expectedDeployDir = path.join(deployDir, path.basename(filename).replace(/\.tar\.gz/, ""));
++    let expectedDeployDir = sc ? "../element-web/webapp" : path.join(deployDir, path.basename(filename).replace(/\.tar\.gz/, ""));
+     try {
+         await fs.opendir(expectedDeployDir);
+         console.log(expectedDeployDir + "already exists");
+         haveDeploy = true;
+-    } catch (e) {}
++    } catch (e) {
++        console.log("Not a valid webapp dir: " + expectedDeployDir, e);
++        return 1;
++    }
+ 
+     if (!haveDeploy) {
+         const outPath = path.join(pkgDir, filename);
+-- 
+2.45.0
+
