@@ -1,5 +1,5 @@
 ARG NODE_VERSION
-FROM node:${NODE_VERSION}
+FROM docker.io/node:${NODE_VERSION}-buster
 
 RUN apt-get -qq update && apt-get -qq install --no-install-recommends -y \
     curl \
@@ -23,8 +23,4 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     PATH=/usr/local/cargo/bin:$PATH
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --profile minimal
 
-COPY . /project
 WORKDIR /project
-
-# There might be remnants of the host which break the build
-RUN make fixup
