@@ -1,0 +1,29 @@
+From a5fa3affdee6f104a6529d252f49b5f311bfc100 Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Tue, 18 Jan 2022 13:28:22 +0100
+Subject: Disable sticky rooms
+
+---
+ src/stores/room-list/algorithms/Algorithm.ts | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/stores/room-list/algorithms/Algorithm.ts b/src/stores/room-list/algorithms/Algorithm.ts
+index 267b9bd742..635f7bbcf1 100644
+--- a/src/stores/room-list/algorithms/Algorithm.ts
++++ b/src/stores/room-list/algorithms/Algorithm.ts
+@@ -167,8 +167,10 @@ export class Algorithm extends EventEmitter {
+         this.recalculateActiveCallRooms(tagId);
+     }
+ 
+-    private updateStickyRoom(val: Room | null): void {
+-        this.doUpdateStickyRoom(val);
++    private updateStickyRoom(val: Room) {
++        // Schildi: we don't want it sticky
++        this.doUpdateStickyRoom(null);
++        //this.doUpdateStickyRoom(val);
+         this._lastStickyRoom = null; // clear to indicate we're done changing
+     }
+ 
+-- 
+2.45.0
+
