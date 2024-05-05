@@ -249,3 +249,22 @@ get_current_mxsdk_tags() {
     current_mxreactsdk_tag="v$(cat "$SCHILDI_ROOT/element-web/package.json" | jq '.dependencies["matrix-react-sdk"]' -r)"
     current_mxjssdk_tag="v$(cat "$SCHILDI_ROOT/element-web/package.json" | jq '.dependencies["matrix-js-sdk"]' -r)"
 }
+
+apply_patches() {
+    local repo="$(realpath "$1")"
+    local patch_dir="$SCHILDI_ROOT/patches/$(basename "$1")"
+    if [ ! -d "$repo" ]; then
+        echo "Unknown repo: $repo"
+        return 1
+    fi
+    if [ ! -d "$patch_dir" ]; then
+        echo "No patches found at $patch_dir"
+        return 1
+    fi
+    pushd "$repo"
+    for patch in "$patch_dir"/*; do
+        echo "Applying $patch to $repo..."
+        git am "$patch" || read -p "Applying $patch failed, please commit manually, then press enter: "
+    done
+    popd
+}

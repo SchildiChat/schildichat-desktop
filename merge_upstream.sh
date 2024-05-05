@@ -15,12 +15,18 @@ pushd "$mydir" > /dev/null
 
 source ./merge_helpers.sh
 
-# Check branch
-check_branch $branch
-forall_repos check_branch $branch
+if [ "$git_action" = "checkout" ]; then
+    # Abandon all local submodule state
+    forall_repos git reset --hard
+    git submodule update -f --recursive
+else
+    # Check branch
+    check_branch $branch
+    forall_repos check_branch $branch
 
-# Ensure clean git state
-forall_repos check_clean_git
+    # Ensure clean git state
+    forall_repos check_clean_git
+fi
 
 # Fetch upstream
 forall_repos git fetch upstream
@@ -54,6 +60,13 @@ popd > /dev/null
 # Refresh environment
 make clean
 make setup
+
+# Apply our patches
+if [ "$git_action" = "checkout" ]; then
+    #apply_patches matrix-react-sdk
+    #apply_patches element-web
+    apply_patches element-desktop
+fi
 
 # Automatic adjustments
 #automatic_i18n_adjustment
