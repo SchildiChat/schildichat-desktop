@@ -4,40 +4,19 @@ set -e
 
 mydir="$(dirname "$(realpath "$0")")"
 
-if [ "$1" = "--checkout" ]; then
-    git_action=checkout
-    shift
-else
-    git_action=merge
-fi
-
 pushd "$mydir" > /dev/null
 
 source ./merge_helpers.sh
 
-if [ "$git_action" = "checkout" ]; then
-    # Abandon all local submodule state
-    forall_repos git reset --hard
-    git submodule update -f --recursive
-else
-    # Check branch
-    check_branch $branch
-    forall_repos check_branch $branch
+# Persist current state
+./generate_patches.sh
 
-    # Ensure clean git state
-    forall_repos check_clean_git
-fi
+# Abandon all local submodule state
+forall_repos git reset --hard
+git submodule update -f --recursive
 
 # Fetch upstream
 forall_repos git fetch upstream
-
-# Automatic reversions
-if [ "$git_action" != "checkout" ]; then
-    automatic_i18n_reversion
-    automatic_packagejson_reversion
-fi
-
-# Merge upstream
 
 # Check if specific version to merge passed
 if [ -z "$1" ]; then
@@ -45,16 +24,16 @@ if [ -z "$1" ]; then
 else
     latest_upstream_tag="$1"
 fi
-forelement_repos git "$git_action" "$latest_upstream_tag"
+forelement_repos git checkout "$latest_upstream_tag"
 
 get_current_mxsdk_tags
 
 pushd "matrix-js-sdk" > /dev/null
-git "$git_action" "$current_mxjssdk_tag"
+git checkout "$current_mxjssdk_tag"
 popd > /dev/null
 
 pushd "matrix-react-sdk" > /dev/null
-git "$git_action" "$current_mxreactsdk_tag"
+git checkout "$current_mxreactsdk_tag"
 popd > /dev/null
 
 # Refresh environment
@@ -62,11 +41,9 @@ make clean
 make setup
 
 # Apply our patches
-if [ "$git_action" = "checkout" ]; then
-    #apply_patches matrix-react-sdk
-    #apply_patches element-web
-    apply_patches element-desktop
-fi
+apply_patches matrix-react-sdk
+#apply_patches element-web
+apply_patches element-desktop
 
 # Automatic adjustments
 #automatic_i18n_adjustment
