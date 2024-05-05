@@ -26,6 +26,10 @@ popd
 pushd element-desktop
 $yarn install
 ln -s ../element-web/webapp ./ || true
+# Seshat: compare https://github.com/element-hq/element-desktop/blob/develop/docs/native-node-modules.md#adding-seshat-for-search-in-e2e-encrypted-rooms
+$yarn add matrix-seshat
+#$yarn add electron-build-env
+#$yarn run electron-build-env -- --electron "$electron_version" -- neon build matrix-seshat --release
 popd
 
 pushd i18n-helper
