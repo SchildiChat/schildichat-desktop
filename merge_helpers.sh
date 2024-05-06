@@ -208,7 +208,7 @@ apply_packagejson_overlay() {
     local overlay_path="../overlay/$(basename "$PWD")/package.json"
 
     # see: https://stackoverflow.com/a/24904276
-    new_content=`jq -s '.[0] * .[1]' "$orig_path" "$overlay_path"`
+    new_content=`jq -s '.[0] * .[1]' "$orig_path" "$overlay_path" | sed 's|  |    |g'`
 
     echo "$new_content" > "$orig_path"
     git add "$orig_path"
