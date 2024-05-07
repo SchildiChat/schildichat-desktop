@@ -4,12 +4,21 @@ set -e
 
 mydir="$(dirname "$(realpath "$0")")"
 
+if [ "$1" = "-k" ]; then
+    keep_patches=1
+    shift
+else
+    keep_patches=0
+fi
+
 pushd "$mydir" > /dev/null
 
 source ./merge_helpers.sh
 
 # Persist current state
-./generate_patches.sh
+if [ "$keep_patches" = 0 ]; then
+    ./generate_patches.sh
+fi
 
 # Abandon all local submodule state
 forall_repos git reset --hard
