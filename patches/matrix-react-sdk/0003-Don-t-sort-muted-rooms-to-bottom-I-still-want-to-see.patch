@@ -1,0 +1,25 @@
+From 6e32e2d55772a95bc660b27605981e46b805f821 Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Sun, 17 Dec 2023 11:11:58 +0100
+Subject: Don't sort muted rooms to bottom, I still want to see them.
+
+---
+ .../room-list/algorithms/list-ordering/OrderingAlgorithm.ts     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/stores/room-list/algorithms/list-ordering/OrderingAlgorithm.ts b/src/stores/room-list/algorithms/list-ordering/OrderingAlgorithm.ts
+index 1b6472a018..8eae273a06 100644
+--- a/src/stores/room-list/algorithms/list-ordering/OrderingAlgorithm.ts
++++ b/src/stores/room-list/algorithms/list-ordering/OrderingAlgorithm.ts
+@@ -46,7 +46,7 @@ export abstract class OrderingAlgorithm {
+     }
+ 
+     public get isMutedToBottom(): boolean {
+-        return this.sortingAlgorithm === SortAlgorithm.Recent;
++        return this.sortingAlgorithm === SortAlgorithm.Recent && false;
+     }
+ 
+     /**
+-- 
+2.45.0
+
