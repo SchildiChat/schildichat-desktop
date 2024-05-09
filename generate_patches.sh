@@ -35,5 +35,6 @@ persist_patches() {
 persist_patches element-desktop
 #persist_patches element-web
 persist_patches matrix-react-sdk
+persist_patches matrix-js-sdk
 
 popd > /dev/null

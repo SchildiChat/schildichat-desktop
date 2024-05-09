@@ -1,0 +1,109 @@
+From f9fdcd1fa38c883a07ef1b519217a1927f40547d Mon Sep 17 00:00:00 2001
+From: Tulir Asokan <tulir@maunium.net>
+Date: Tue, 12 Jul 2022 15:34:57 +0300
+Subject: Add support for rendering captions in media messages
+
+---
+ src/components/views/messages/IBodyProps.ts    |  2 ++
+ src/components/views/messages/MessageEvent.tsx | 15 +++++++++++++++
+ src/components/views/messages/TextualBody.tsx  | 11 +++++++++++
+ src/utils/FileUtils.ts                         |  4 +++-
+ 4 files changed, 31 insertions(+), 1 deletion(-)
+
+diff --git a/src/components/views/messages/IBodyProps.ts b/src/components/views/messages/IBodyProps.ts
+index fcc204dae3..95cb2eb37d 100644
+--- a/src/components/views/messages/IBodyProps.ts
++++ b/src/components/views/messages/IBodyProps.ts
+@@ -59,4 +59,6 @@ export interface IBodyProps {
+     // Set to `true` to disable interactions (e.g. video controls) and to remove controls from the tab order.
+     // This may be useful when displaying a preview of the event.
+     inhibitInteraction?: boolean;
++
++    OrigBodyType?: React.ComponentType<Partial<IBodyProps>>;
+ }
+diff --git a/src/components/views/messages/MessageEvent.tsx b/src/components/views/messages/MessageEvent.tsx
+index db0016de7b..dd7a864300 100644
+--- a/src/components/views/messages/MessageEvent.tsx
++++ b/src/components/views/messages/MessageEvent.tsx
+@@ -183,6 +183,15 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
+             }
+         }
+ 
++        // @ts-ignore
++        const hasCaption = [MsgType.Image, MsgType.File, MsgType.Audio, MsgType.Video].includes(msgtype)
++            && content.filename && content.filename !== content.body;
++        let OrigBodyType;
++        if (hasCaption) {
++            OrigBodyType = BodyType
++            BodyType = CaptionBody
++        }
++
+         if (SettingsStore.getValue("feature_mjolnir")) {
+             const key = `mx_mjolnir_render_${this.props.mxEvent.getRoomId()}__${this.props.mxEvent.getId()}`;
+             const allowRender = localStorage.getItem(key) === "true";
+@@ -216,7 +225,13 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
+                 getRelationsForEvent={this.props.getRelationsForEvent}
+                 isSeeingThroughMessageHiddenForModeration={this.props.isSeeingThroughMessageHiddenForModeration}
+                 inhibitInteraction={this.props.inhibitInteraction}
++                OrigBodyType={OrigBodyType}
+             />
+         ) : null;
+     }
+ }
++
++const CaptionBody: React.FunctionComponent<IBodyProps & {OrigBodyType: React.ComponentType<Partial<IBodyProps>>}> = ({OrigBodyType, ...props}) => (<div className="mx_EventTile_content">
++    <OrigBodyType {...props}/>
++    <TextualBody {...{...props, ref: undefined}}/>
++</div>)
+diff --git a/src/components/views/messages/TextualBody.tsx b/src/components/views/messages/TextualBody.tsx
+index f0b5c70f17..e28ed3fad7 100644
+--- a/src/components/views/messages/TextualBody.tsx
++++ b/src/components/views/messages/TextualBody.tsx
+@@ -575,11 +575,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+         const content = mxEvent.getContent();
+         let isNotice = false;
+         let isEmote = false;
++        let isCaption = false;
+ 
+         // only strip reply if this is the original replying event, edits thereafter do not have the fallback
+         const stripReply = !mxEvent.replacingEvent() && !!getParentEventId(mxEvent);
+         isEmote = content.msgtype === MsgType.Emote;
+         isNotice = content.msgtype === MsgType.Notice;
++        // @ts-ignore
++        isCaption = [MsgType.Image, MsgType.File, MsgType.Audio, MsgType.Video].includes(content.msgtype);
+         let body = HtmlUtils.bodyToHtml(content, this.props.highlights, {
+             disableBigEmoji: isEmote || !SettingsStore.getValue<boolean>("TextualBody.enableBigEmoji"),
+             // Part of Replies fallback support
+@@ -651,6 +654,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+                 </div>
+             );
+         }
++        if (isCaption) {
++            return (
++                <div className="mx_MTextBody mx_EventTile_caption" onClick={this.onBodyLinkClick}>
++                    { body }
++                    { widgets }
++                </div>
++            );
++        }
+         return (
+             <div className="mx_MTextBody mx_EventTile_content" onClick={this.onBodyLinkClick}>
+                 {body}
+diff --git a/src/utils/FileUtils.ts b/src/utils/FileUtils.ts
+index 75511756f5..a8e3b9cceb 100644
+--- a/src/utils/FileUtils.ts
++++ b/src/utils/FileUtils.ts
+@@ -46,7 +46,9 @@ export function presentableTextForFile(
+     shortened = false,
+ ): string {
+     let text = fallbackText;
+-    if (content.body?.length) {
++    if (content.filename?.length) {
++        text = content.filename
++    } else if (content.body?.length) {
+         // The content body should be the name of the file including a
+         // file extension.
+         text = content.body;
+-- 
+2.45.0
+

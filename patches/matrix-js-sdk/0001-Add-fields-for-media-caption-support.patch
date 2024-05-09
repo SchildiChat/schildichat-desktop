@@ -1,0 +1,56 @@
+From b3e2e01c33bacd014287ab5dc7477fc70d91f9ab Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Thu, 9 May 2024 09:21:21 +0200
+Subject: Add fields for media caption support
+
+---
+ src/@types/media.ts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/src/@types/media.ts b/src/@types/media.ts
+index 20e5ca6c6..920d77667 100644
+--- a/src/@types/media.ts
++++ b/src/@types/media.ts
+@@ -180,6 +180,9 @@ export interface FileContent extends BaseContent {
+      * One of: [m.file].
+      */
+     msgtype: MsgType.File;
++
++    format?: string;
++    formatted_body?: string;
+ }
+ 
+ /**
+@@ -202,6 +205,9 @@ export interface ImageContent extends BaseContent {
+      * One of: [m.image].
+      */
+     msgtype: MsgType.Image;
++
++    format?: string;
++    formatted_body?: string;
+ }
+ 
+ /**
+@@ -223,6 +229,9 @@ export interface AudioContent extends BaseContent {
+      * One of: [m.audio].
+      */
+     msgtype: MsgType.Audio;
++
++    format?: string;
++    formatted_body?: string;
+ }
+ 
+ /**
+@@ -244,6 +253,9 @@ export interface VideoContent extends BaseContent {
+      * One of: [m.video].
+      */
+     msgtype: MsgType.Video;
++
++    format?: string;
++    formatted_body?: string;
+ }
+ 
+ /**
+-- 
+2.45.0
+
