@@ -1,0 +1,29 @@
+From a4cded706d0e451517e66b300324ad085eb86105 Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Thu, 14 Dec 2023 10:32:10 +0100
+Subject: Don't preview reactions
+
+---
+ src/stores/room-list/MessagePreviewStore.ts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/stores/room-list/MessagePreviewStore.ts b/src/stores/room-list/MessagePreviewStore.ts
+index a3c44084d5..f412cf3b89 100644
+--- a/src/stores/room-list/MessagePreviewStore.ts
++++ b/src/stores/room-list/MessagePreviewStore.ts
+@@ -65,10 +65,12 @@ const PREVIEWS: Record<
+         isState: false,
+         previewer: new StickerEventPreview(),
+     },
++    /*
+     "m.reaction": {
+         isState: false,
+         previewer: new ReactionEventPreview(),
+     },
++    */
+     [M_POLL_START.name]: {
+         isState: false,
+         previewer: new PollStartEventPreview(),
+-- 
+2.45.0
+
