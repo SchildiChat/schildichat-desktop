@@ -4,11 +4,12 @@ set -e
 
 mydir="$(dirname "$(realpath "$0")")"
 
-if [ "$1" = "-k" ]; then
-    keep_patches=1
+# Update patches?
+if [ "$1" = "-u" ]; then
+    keep_patches=0
     shift
 else
-    keep_patches=0
+    keep_patches=1
 fi
 
 pushd "$mydir" > /dev/null
