@@ -1,0 +1,30 @@
+From f71efc87d1e8fa87ea7e8bd4cb31bb938fe4e0fc Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Wed, 17 Nov 2021 12:50:25 +0100
+Subject: Hide the "mute" notification state the same way as the other states
+
+This can get in the way of the "marked as unread" icon otherwise.
+Furthermore, I didn't really like it showing there persistently either
+way.
+---
+ src/components/views/rooms/RoomTile.tsx | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/components/views/rooms/RoomTile.tsx b/src/components/views/rooms/RoomTile.tsx
+index 61f865e9fc..0695075cc8 100644
+--- a/src/components/views/rooms/RoomTile.tsx
++++ b/src/components/views/rooms/RoomTile.tsx
+@@ -313,7 +313,9 @@ export class RoomTile extends React.PureComponent<ClassProps, State> {
+ 
+             // Only show the icon by default if the room is overridden to muted.
+             // TODO: [FTUE Notifications] Probably need to detect global mute state
+-            mx_RoomTile_notificationsButton_show: state === RoomNotifState.Mute,
++            //mx_RoomTile_notificationsButton_show: state === RoomNotifState.Mute,
++            // SchildiChat: never show the icon by default. This gets in the way of the "marked as unread" icon.
++            mx_RoomTile_notificationsButton_show: false,
+         });
+ 
+         return (
+-- 
+2.45.0
+
