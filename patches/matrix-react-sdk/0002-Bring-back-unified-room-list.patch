@@ -1,4 +1,4 @@
-From 4acd52e0e85d0217b7203fa81bfa709ccaf6d2aa Mon Sep 17 00:00:00 2001
+From ac11424ef182d789c3d9bb55feeb6910230d9dbe Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -259,5 +259,5 @@ index d8b0488842..335097ccdb 100644
      DefaultTagID.Conference,
      DefaultTagID.Untagged,
 -- 
-2.45.0
+2.45.1
 

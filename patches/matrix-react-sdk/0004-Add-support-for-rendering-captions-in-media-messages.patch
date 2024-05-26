@@ -1,4 +1,4 @@
-From f9fdcd1fa38c883a07ef1b519217a1927f40547d Mon Sep 17 00:00:00 2001
+From 10b9e0d75503a248d4b6d5273c6a454d0a8cc26d Mon Sep 17 00:00:00 2001
 From: Tulir Asokan <tulir@maunium.net>
 Date: Tue, 12 Jul 2022 15:34:57 +0300
 Subject: Add support for rendering captions in media messages
@@ -105,5 +105,5 @@ index 75511756f5..a8e3b9cceb 100644
          // file extension.
          text = content.body;
 -- 
-2.45.0
+2.45.1
 

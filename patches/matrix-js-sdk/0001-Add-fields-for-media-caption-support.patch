@@ -1,4 +1,4 @@
-From b3e2e01c33bacd014287ab5dc7477fc70d91f9ab Mon Sep 17 00:00:00 2001
+From 2dd7dd408d741ea4a0fc3b2b3fe8e23c3efcbc99 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Thu, 9 May 2024 09:21:21 +0200
 Subject: Add fields for media caption support
@@ -52,5 +52,5 @@ index 20e5ca6c6..920d77667 100644
  
  /**
 -- 
-2.45.0
+2.45.1
 
