@@ -22,3 +22,4 @@ Note that this list may be incomplete or outdated.
 ## Conversation screen
 
 - Render captions
+- Allow sending freeform reactions

@@ -1,0 +1,134 @@
+From a0312959dc35c68c5a5b1a6e512e942c7f1cfafb Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Wed, 29 May 2024 19:32:42 +0200
+Subject: Squashed: Freeform reactions from tadzik/freeform-reactions-upstream
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+commit 9eea56b0080db3720efa49b457707bcde3be6474
+Merge: 06f81c9662 8570f16e31
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Tue Jun 20 09:57:19 2023 +0200
+
+    Merge branch 'develop' into tadzik/freeform-reactions-upstream
+
+commit 06f81c9662fbe033b4eac859d7e14e0ab24a6e91
+Merge: ad4fef85b1 0d6a550c33
+Author: Michael Telatynski <7t3chguy@gmail.com>
+Date:   Wed Aug 31 09:06:49 2022 +0100
+
+    Merge branch 'develop' into tadzik/freeform-reactions
+
+commit ad4fef85b160087b8017b9ae9cf9aebfd5348f41
+Merge: 689b57c0b9 5aae974e93
+Author: Tadeusz Sośnierz <tadzik@tadzik.net>
+Date:   Sun Aug 28 10:11:48 2022 +0200
+
+    Merge branch 'develop' into tadzik/freeform-reactions
+
+commit 689b57c0b91e12907a8dbc3fac3ed10302a11e4a
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Fri May 20 10:35:06 2022 +0200
+
+    Fix conflict resolution fail in EmojiPicker
+
+commit 70a8e212b748584949b37bc99b72acffce2fd148
+Merge: 215df55f13 a0cdc93642
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Fri May 20 10:25:17 2022 +0200
+
+    Merge branch 'develop' into tadzik/freeform-reactions-upstream
+
+commit 215df55f13162bdc8eb13da5219763c56f560dd0
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Tue Aug 17 16:30:06 2021 +0200
+
+    Disable freeform emoji reactions in the message composer
+
+commit 6bb8263007e077d22929fcc1fb439d94a4f15c6f
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Tue Aug 17 12:12:28 2021 +0200
+
+    Add more typing to EmojiPicker
+
+commit b2a1728318a8a5496345797995c1ec09ae3f88e6
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Tue Aug 17 11:52:35 2021 +0200
+
+    Make free-form reaction button translatable
+
+commit f4adaf00b805baba454fbceb41cc5c081ec886a7
+Author: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+Date:   Tue Aug 17 11:29:22 2021 +0200
+
+    Allow sending free-form reactions
+
+    Signed-off-by: Tadeusz Sośnierz <tadeusz@sosnierz.com>
+---
+ src/components/views/emojipicker/EmojiPicker.tsx  | 15 +++++++++++++++
+ .../views/emojipicker/ReactionPicker.tsx          |  1 +
+ 2 files changed, 16 insertions(+)
+
+diff --git a/src/components/views/emojipicker/EmojiPicker.tsx b/src/components/views/emojipicker/EmojiPicker.tsx
+index 16258bb3d7..847170dc92 100644
+--- a/src/components/views/emojipicker/EmojiPicker.tsx
++++ b/src/components/views/emojipicker/EmojiPicker.tsx
+@@ -25,6 +25,7 @@ import Header from "./Header";
+ import Search from "./Search";
+ import Preview from "./Preview";
+ import QuickReactions from "./QuickReactions";
++import AccessibleButton from '../elements/AccessibleButton';
+ import Category, { CategoryKey, ICategory } from "./Category";
+ import { filterBoolean } from "../../../utils/arrays";
+ import {
+@@ -45,6 +46,7 @@ export const EMOJIS_PER_ROW = 8;
+ const ZERO_WIDTH_JOINER = "\u200D";
+ 
+ interface IProps {
++    allowUnlisted?: boolean;
+     selectedEmojis?: Set<string>;
+     onChoose(unicode: string): boolean;
+     onFinished(): void;
+@@ -349,6 +351,10 @@ class EmojiPicker extends React.Component<IProps, IState> {
+         }
+     };
+ 
++    private reactWith = (reaction: string): void => {
++        this.props.onChoose(reaction);
++    };
++
+     private static categoryHeightForEmojiCount(count: number): number {
+         if (count === 0) {
+             return 0;
+@@ -404,6 +410,15 @@ class EmojiPicker extends React.Component<IProps, IState> {
+                                     return categoryElement;
+                                 })}
+                             </AutoHideScrollbar>
++                            {
++                                (this.props.allowUnlisted && this.state.filter) &&
++                                    <AccessibleButton
++                                        kind="link"
++                                        onClick={() => this.reactWith(this.state.filter)}
++                                    >
++                                        { _t('React with "%(reaction)s"', { reaction: this.state.filter }) }
++                                    </AccessibleButton>
++                            }
+                             {this.state.previewEmoji ? (
+                                 <Preview emoji={this.state.previewEmoji} />
+                             ) : (
+diff --git a/src/components/views/emojipicker/ReactionPicker.tsx b/src/components/views/emojipicker/ReactionPicker.tsx
+index 075a6e6cee..42cde47e56 100644
+--- a/src/components/views/emojipicker/ReactionPicker.tsx
++++ b/src/components/views/emojipicker/ReactionPicker.tsx
+@@ -131,6 +131,7 @@ class ReactionPicker extends React.Component<IProps, IState> {
+     public render(): React.ReactNode {
+         return (
+             <EmojiPicker
++                allowUnlisted={true}
+                 onChoose={this.onChoose}
+                 isEmojiDisabled={this.isEmojiDisabled}
+                 onFinished={this.props.onFinished}
+-- 
+2.45.1
+
