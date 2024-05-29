@@ -1,0 +1,32 @@
+From e67b314775022cc970e7704bdcaa36cd674091bc Mon Sep 17 00:00:00 2001
+From: su-ex <codeworks@supercable.onl>
+Date: Sat, 22 Apr 2023 12:15:18 +0200
+Subject: Allow reactions to take more space
+
+---
+ res/css/views/messages/_ReactionsRowButton.pcss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/res/css/views/messages/_ReactionsRowButton.pcss b/res/css/views/messages/_ReactionsRowButton.pcss
+index 26d2d25fae..9920c6c20d 100644
+--- a/res/css/views/messages/_ReactionsRowButton.pcss
++++ b/res/css/views/messages/_ReactionsRowButton.pcss
+@@ -23,6 +23,7 @@ limitations under the License.
+     background-color: $secondary-hairline-color;
+     user-select: none;
+     align-items: center;
++    max-width: calc(100% - 40px);;
+ 
+     &:hover {
+         border-color: $quinary-content;
+@@ -38,7 +39,6 @@ limitations under the License.
+     }
+ 
+     .mx_ReactionsRowButton_content {
+-        max-width: 100px;
+         overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+-- 
+2.45.1
+
