@@ -1,0 +1,79 @@
+From 077a509fd1d078ee95102164ae1ddfa5584e4841 Mon Sep 17 00:00:00 2001
+From: su-ex <codeworks@supercable.onl>
+Date: Thu, 30 May 2024 14:35:16 +0200
+Subject: On space switch don't automatically show last opened room
+
+---
+ src/components/structures/MatrixChat.tsx | 18 +++++++++++++++++-
+ src/settings/Settings.tsx                |  6 ++++++
+ src/stores/spaces/SpaceStore.ts          |  1 +
+ 3 files changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
+index 2574156279..82a41c55bb 100644
+--- a/src/components/structures/MatrixChat.tsx
++++ b/src/components/structures/MatrixChat.tsx
+@@ -1430,7 +1430,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+         if (this.screenAfterLogin && this.screenAfterLogin.screen) {
+             this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
+             this.screenAfterLogin = undefined;
+-        } else if (localStorage && localStorage.getItem("mx_last_room_id")) {
++        } else if (
++            !SettingsStore.getValue("Spaces.returnToPreviouslyOpenedRoom") &&
++            localStorage &&
++            localStorage.getItem("mx_active_space") &&
++            localStorage.getItem("mx_active_space")[0] === "!"
++        ) {
++            // SC: Show the last viewed space
++            this.viewLastSpace();
++        } else if (SettingsStore.getValue("Spaces.returnToPreviouslyOpenedRoom") && localStorage && localStorage.getItem("mx_last_room_id")) {
+             // Before defaulting to directory, show the last viewed room
+             this.viewLastRoom();
+         } else {
+@@ -1442,6 +1450,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+         }
+     }
+ 
++    private viewLastSpace(): void { // SC
++        // SC-ToDo: Make this work for meta spaces
++        dis.dispatch({
++            action: Action.ViewRoom,
++            room_id: localStorage.getItem("mx_active_space"),
++        });
++    }
++
+     private viewLastRoom(): void {
+         dis.dispatch<ViewRoomPayload>({
+             action: Action.ViewRoom,
+diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
+index 332e6a7b0a..032000be46 100644
+--- a/src/settings/Settings.tsx
++++ b/src/settings/Settings.tsx
+@@ -219,6 +219,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {
+         supportedLevels: LEVELS_ACCOUNT_SETTINGS,
+         default: true,
+     },
++    "Spaces.returnToPreviouslyOpenedRoom": {
++        displayName: _td("Return to the room previously opened in a space"),
++        description: _td("If disabled, the space overview will be shown when switching to another space."),
++        supportedLevels: LEVELS_ACCOUNT_SETTINGS,
++        default: false,
++    },
+     // SC settings end
+     "feature_video_rooms": {
+         isFeature: true,
+diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
+index bda81e9d5f..6f16e7261f 100644
+--- a/src/stores/spaces/SpaceStore.ts
++++ b/src/stores/spaces/SpaceStore.ts
+@@ -273,6 +273,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<IState> {
+             // else if the last viewed room in this space is joined then view that
+             // else view space home or home depending on what is being clicked on
+             if (
++                SettingsStore.getValue("Spaces.returnToPreviouslyOpenedRoom") &&
+                 roomId &&
+                 cliSpace?.getMyMembership() !== KnownMembership.Invite &&
+                 this.matrixClient.getRoom(roomId)?.getMyMembership() === KnownMembership.Join &&
+-- 
+2.45.1
+

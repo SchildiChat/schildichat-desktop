@@ -17,6 +17,7 @@ Note that this list may be incomplete or outdated.
 - Show unread state of muted rooms
 - Increase default visible tiles before collapsing each section
 - Include DMs in space unread counts
+- Show space overview rather then jumping to last opened room when switching space
 
 
 ## Conversation screen
