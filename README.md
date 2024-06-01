@@ -5,6 +5,42 @@ SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/vector-im/
 This branch builds the "lite" variant, which rebases a reduced feature set of the original fork on top of the latest Element,
 in order to keep maintenance effort more manageable while staying up-to-date.
 
+For bringup I'm currently trying out a new approach which relies less on merges but rather on cherry-picking our changes back.
+So while the old build instructions mostly still apply, you need to do some new steps:
+
+After cloning, add usptream remotes:
+
+```
+source merge_helpers.sh
+forall_repos add_upstream
+```
+
+Then, to checkout the latest upstream release and pick our changes on top of it (I know the script name isn't accurate right now)
+
+```
+./merge_upstream.sh
+```
+
+Note that `./merge_upstream.sh` may pick up a wrong tag right now, e.g. a release candidate instead of the latest build, which may cause problems if you plan to develop on top of it.
+If you want to build against a specific Element version rather than the latest (e.g. v1.11.66):
+
+```
+./merge_upstream.sh v1.11.66
+```
+
+If there are conflicts picking some changes running this script, solve them manually.
+If you want to persist a new set of patches in `schildichat-desktop`, run
+
+```
+./generate_patches.sh
+```
+
+Note this script may be broken right now when not run against actual element releases (it was causing issues for a release candidate for sure).
+
+
+
+## Old build instructions, to be revised in the future
+
 
 ## Building SchildiChat Web/Desktop
 
