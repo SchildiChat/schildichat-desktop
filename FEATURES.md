@@ -18,6 +18,7 @@ Note that this list may be incomplete or outdated.
 - Increase default visible tiles before collapsing each section
 - Include DMs in space unread counts
 - Show space overview rather then jumping to last opened room when switching space
+- Do not add spaces to recently opened rooms list ("breadcrumbs")
 
 
 ## Conversation screen

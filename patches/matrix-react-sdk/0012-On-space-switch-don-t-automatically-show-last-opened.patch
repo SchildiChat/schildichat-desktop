@@ -1,4 +1,4 @@
-From 077a509fd1d078ee95102164ae1ddfa5584e4841 Mon Sep 17 00:00:00 2001
+From 1f0266523abb3b0a3718ad2ea5b7794f5bf5c47d Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 2574156279..82a41c55bb 100644
+index 4049248111..5fb39984d8 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1430,7 +1430,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1429,7 +1429,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 2574156279..82a41c55bb 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1442,6 +1450,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1441,6 +1449,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -46,7 +46,7 @@ index 2574156279..82a41c55bb 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 332e6a7b0a..032000be46 100644
+index 16c62ad104..f4b089e813 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -219,6 +219,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {
@@ -75,5 +75,5 @@ index bda81e9d5f..6f16e7261f 100644
                  cliSpace?.getMyMembership() !== KnownMembership.Invite &&
                  this.matrixClient.getRoom(roomId)?.getMyMembership() === KnownMembership.Join &&
 -- 
-2.45.1
+2.45.2
 

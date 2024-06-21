@@ -1,4 +1,4 @@
-From 10b9e0d75503a248d4b6d5273c6a454d0a8cc26d Mon Sep 17 00:00:00 2001
+From 73191e9412ad54071cec2eb706e5fc4117d8cce8 Mon Sep 17 00:00:00 2001
 From: Tulir Asokan <tulir@maunium.net>
 Date: Tue, 12 Jul 2022 15:34:57 +0300
 Subject: Add support for rendering captions in media messages
@@ -56,10 +56,10 @@ index db0016de7b..dd7a864300 100644
 +    <TextualBody {...{...props, ref: undefined}}/>
 +</div>)
 diff --git a/src/components/views/messages/TextualBody.tsx b/src/components/views/messages/TextualBody.tsx
-index f0b5c70f17..e28ed3fad7 100644
+index 7246f7db57..4b5bf997ba 100644
 --- a/src/components/views/messages/TextualBody.tsx
 +++ b/src/components/views/messages/TextualBody.tsx
-@@ -575,11 +575,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+@@ -568,11 +568,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
          const content = mxEvent.getContent();
          let isNotice = false;
          let isEmote = false;
@@ -74,7 +74,7 @@ index f0b5c70f17..e28ed3fad7 100644
          let body = HtmlUtils.bodyToHtml(content, this.props.highlights, {
              disableBigEmoji: isEmote || !SettingsStore.getValue<boolean>("TextualBody.enableBigEmoji"),
              // Part of Replies fallback support
-@@ -651,6 +654,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+@@ -644,6 +647,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
                  </div>
              );
          }
@@ -105,5 +105,5 @@ index 75511756f5..a8e3b9cceb 100644
          // file extension.
          text = content.body;
 -- 
-2.45.1
+2.45.2
 

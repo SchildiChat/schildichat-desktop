@@ -1,4 +1,4 @@
-From ac11424ef182d789c3d9bb55feeb6910230d9dbe Mon Sep 17 00:00:00 2001
+From 1bcb3ab10c505a3eb781eb12c3c72ecd4f45717f Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -16,7 +16,7 @@ Co-authored-by: su-ex <codeworks@supercable.onl>
  5 files changed, 83 insertions(+), 5 deletions(-)
 
 diff --git a/src/components/views/rooms/RoomList.tsx b/src/components/views/rooms/RoomList.tsx
-index d573f3bbf0..ced4e7bb47 100644
+index c277bd5aca..869fe04381 100644
 --- a/src/components/views/rooms/RoomList.tsx
 +++ b/src/components/views/rooms/RoomList.tsx
 @@ -77,11 +77,13 @@ interface IState {
@@ -124,7 +124,7 @@ index d573f3bbf0..ced4e7bb47 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 2137837500..49d96c7840 100644
+index 3650e51814..56cab3f408 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -207,6 +207,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
@@ -259,5 +259,5 @@ index d8b0488842..335097ccdb 100644
      DefaultTagID.Conference,
      DefaultTagID.Untagged,
 -- 
-2.45.1
+2.45.2
 
