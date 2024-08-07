@@ -1,4 +1,4 @@
-From 1bcb3ab10c505a3eb781eb12c3c72ecd4f45717f Mon Sep 17 00:00:00 2001
+From cfe6cfc8a71b192e78b107282c4ef2e761d67e73 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -16,10 +16,10 @@ Co-authored-by: su-ex <codeworks@supercable.onl>
  5 files changed, 83 insertions(+), 5 deletions(-)
 
 diff --git a/src/components/views/rooms/RoomList.tsx b/src/components/views/rooms/RoomList.tsx
-index c277bd5aca..869fe04381 100644
+index d088fbc927..ce54059ce9 100644
 --- a/src/components/views/rooms/RoomList.tsx
 +++ b/src/components/views/rooms/RoomList.tsx
-@@ -77,11 +77,13 @@ interface IState {
+@@ -80,11 +80,13 @@ interface IState {
      sublists: ITagMap;
      currentRoomId?: string;
      suggestedRooms: ISuggestedRoom[];
@@ -33,7 +33,7 @@ index c277bd5aca..869fe04381 100644
      DefaultTagID.DM,
      DefaultTagID.Untagged,
      DefaultTagID.Conference,
-@@ -94,6 +96,7 @@ export const TAG_ORDER: TagID[] = [
+@@ -97,6 +99,7 @@ export const TAG_ORDER: TagID[] = [
      // but we'd have to make sure that rooms you weren't in were hidden.
  ];
  const ALWAYS_VISIBLE_TAGS: TagID[] = [DefaultTagID.DM, DefaultTagID.Untagged];
@@ -41,7 +41,7 @@ index c277bd5aca..869fe04381 100644
  
  interface ITagAesthetics {
      sectionLabel: TranslationKey;
-@@ -371,6 +374,17 @@ const UntaggedAuxButton: React.FC<IAuxButtonProps> = ({ tabIndex }) => {
+@@ -374,6 +377,17 @@ const UntaggedAuxButton: React.FC<IAuxButtonProps> = ({ tabIndex }) => {
      return null;
  };
  
@@ -59,9 +59,9 @@ index c277bd5aca..869fe04381 100644
  const TAG_AESTHETICS: TagAestheticsMap = {
      [DefaultTagID.Invite]: {
          sectionLabel: _td("action|invites_list"),
-@@ -382,6 +396,12 @@ const TAG_AESTHETICS: TagAestheticsMap = {
-         isInvite: false,
+@@ -391,6 +405,12 @@ const TAG_AESTHETICS: TagAestheticsMap = {
          defaultHidden: false,
+         AuxButtonComponent: DmAuxButton,
      },
 +    [DefaultTagID.Unified]: {
 +        sectionLabel: _td("Normal priority"),
@@ -69,10 +69,10 @@ index c277bd5aca..869fe04381 100644
 +        defaultHidden: false,
 +        AuxButtonComponent: UnifiedAuxButton,
 +    },
-     [DefaultTagID.DM]: {
-         sectionLabel: _td("common|people"),
+     [DefaultTagID.Conference]: {
+         sectionLabel: _td("voip|metaspace_video_rooms|conference_room_section"),
          isInvite: false,
-@@ -426,6 +446,7 @@ const TAG_AESTHETICS: TagAestheticsMap = {
+@@ -429,6 +449,7 @@ const TAG_AESTHETICS: TagAestheticsMap = {
  
  export default class RoomList extends React.PureComponent<IProps, IState> {
      private dispatcherRef?: string;
@@ -80,7 +80,7 @@ index c277bd5aca..869fe04381 100644
      private treeRef = createRef<HTMLDivElement>();
  
      public static contextType = MatrixClientContext;
-@@ -437,7 +458,14 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -440,7 +461,14 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
          this.state = {
              sublists: {},
              suggestedRooms: SpaceStore.instance.suggestedRooms,
@@ -95,7 +95,7 @@ index c277bd5aca..869fe04381 100644
      }
  
      public componentDidMount(): void {
-@@ -452,9 +480,16 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -455,9 +483,16 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
          SpaceStore.instance.off(UPDATE_SUGGESTED_ROOMS, this.updateSuggestedRooms);
          RoomListStore.instance.off(LISTS_UPDATE_EVENT, this.updateLists);
          if (this.dispatcherRef) defaultDispatcher.unregister(this.dispatcherRef);
@@ -112,7 +112,7 @@ index c277bd5aca..869fe04381 100644
      private onRoomViewStoreUpdate = (): void => {
          this.setState({
              currentRoomId: SdkContextClass.instance.roomViewStore.getRoomId() ?? undefined,
-@@ -595,7 +630,9 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -598,7 +633,9 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
              const aesthetics = TAG_AESTHETICS[orderedTagId];
              if (!aesthetics) throw new Error(`Tag ${orderedTagId} does not have aesthetics`);
  
@@ -124,10 +124,10 @@ index c277bd5aca..869fe04381 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 3650e51814..56cab3f408 100644
+index 476818a138..35cefb3f28 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -207,6 +207,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
+@@ -197,6 +197,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
  export type ISetting = IBaseSetting | IFeature;
  
  export const SETTINGS: { [setting: string]: ISetting } = {
@@ -143,7 +143,7 @@ index 3650e51814..56cab3f408 100644
          isFeature: true,
          labsGroup: LabGroup.VoiceAndVideo,
 diff --git a/src/stores/room-list/RoomListStore.ts b/src/stores/room-list/RoomListStore.ts
-index 16c4d3be5b..bf2bf2ff8a 100644
+index 7dcb28c325..63f43118fa 100644
 --- a/src/stores/room-list/RoomListStore.ts
 +++ b/src/stores/room-list/RoomListStore.ts
 @@ -508,6 +508,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
@@ -180,7 +180,7 @@ index 16c4d3be5b..bf2bf2ff8a 100644
      }
  
 diff --git a/src/stores/room-list/algorithms/Algorithm.ts b/src/stores/room-list/algorithms/Algorithm.ts
-index 635f7bbcf1..a837d02d22 100644
+index 775b68e7d9..39add54d89 100644
 --- a/src/stores/room-list/algorithms/Algorithm.ts
 +++ b/src/stores/room-list/algorithms/Algorithm.ts
 @@ -83,6 +83,7 @@ export class Algorithm extends EventEmitter {
@@ -190,7 +190,7 @@ index 635f7bbcf1..a837d02d22 100644
 +    private unifiedRoomList: boolean = true;
  
      public start(): void {
-         CallStore.instance.on(CallStoreEvent.ActiveCalls, this.onActiveCalls);
+         CallStore.instance.on(CallStoreEvent.ConnectedCalls, this.onConnectedCalls);
 @@ -114,6 +115,10 @@ export class Algorithm extends EventEmitter {
          return this._cachedRooms;
      }
@@ -259,5 +259,5 @@ index d8b0488842..335097ccdb 100644
      DefaultTagID.Conference,
      DefaultTagID.Untagged,
 -- 
-2.45.2
+2.46.0
 

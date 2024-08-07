@@ -1,4 +1,4 @@
-From 0fa8c92135b9b8ed35cde45cb5b264ba3f9ebef2 Mon Sep 17 00:00:00 2001
+From b6b0e7c794f277fc146378591cba74d242062adb Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Tue, 18 Jan 2022 13:28:22 +0100
 Subject: Disable sticky rooms
@@ -8,7 +8,7 @@ Subject: Disable sticky rooms
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/src/stores/room-list/algorithms/Algorithm.ts b/src/stores/room-list/algorithms/Algorithm.ts
-index 267b9bd742..635f7bbcf1 100644
+index 6e28eb1a4e..775b68e7d9 100644
 --- a/src/stores/room-list/algorithms/Algorithm.ts
 +++ b/src/stores/room-list/algorithms/Algorithm.ts
 @@ -167,8 +167,10 @@ export class Algorithm extends EventEmitter {
@@ -25,5 +25,5 @@ index 267b9bd742..635f7bbcf1 100644
      }
  
 -- 
-2.45.2
+2.46.0
 

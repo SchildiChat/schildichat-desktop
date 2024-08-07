@@ -1,4 +1,4 @@
-From e113e7927eee79c47e3ffcaef2ab2d1c513cd543 Mon Sep 17 00:00:00 2001
+From 135235d4a815897c53aea20e707c02fc54e2b3a1 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Wed, 17 Nov 2021 12:50:25 +0100
 Subject: Hide the "mute" notification state the same way as the other states
@@ -11,7 +11,7 @@ way.
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/views/rooms/RoomTile.tsx b/src/components/views/rooms/RoomTile.tsx
-index aae949858e..8a104c4474 100644
+index 71ff1ef296..4ab94e7278 100644
 --- a/src/components/views/rooms/RoomTile.tsx
 +++ b/src/components/views/rooms/RoomTile.tsx
 @@ -312,7 +312,9 @@ export class RoomTile extends React.PureComponent<ClassProps, State> {
@@ -26,5 +26,5 @@ index aae949858e..8a104c4474 100644
  
          return (
 -- 
-2.45.2
+2.46.0
 

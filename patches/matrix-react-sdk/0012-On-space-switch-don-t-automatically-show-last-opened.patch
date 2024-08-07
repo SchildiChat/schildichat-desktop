@@ -1,4 +1,4 @@
-From 1f0266523abb3b0a3718ad2ea5b7794f5bf5c47d Mon Sep 17 00:00:00 2001
+From 278fd8faea2f3ac867355f0963dac02ab3562561 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 4049248111..5fb39984d8 100644
+index f9d6db3f53..6ea77af07e 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1429,7 +1429,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1437,7 +1437,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 4049248111..5fb39984d8 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1441,6 +1449,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1449,6 +1457,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -46,10 +46,10 @@ index 4049248111..5fb39984d8 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 16c62ad104..f4b089e813 100644
+index e5624b33b3..73bb2938f7 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -219,6 +219,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {
+@@ -209,6 +209,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {
          supportedLevels: LEVELS_ACCOUNT_SETTINGS,
          default: true,
      },
@@ -75,5 +75,5 @@ index bda81e9d5f..6f16e7261f 100644
                  cliSpace?.getMyMembership() !== KnownMembership.Invite &&
                  this.matrixClient.getRoom(roomId)?.getMyMembership() === KnownMembership.Join &&
 -- 
-2.45.2
+2.46.0
 
