@@ -1,4 +1,4 @@
-From cfe6cfc8a71b192e78b107282c4ef2e761d67e73 Mon Sep 17 00:00:00 2001
+From 8ce90622ede79277b901e147b3943cc5fee6a5cc Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -16,7 +16,7 @@ Co-authored-by: su-ex <codeworks@supercable.onl>
  5 files changed, 83 insertions(+), 5 deletions(-)
 
 diff --git a/src/components/views/rooms/RoomList.tsx b/src/components/views/rooms/RoomList.tsx
-index d088fbc927..ce54059ce9 100644
+index 7d47748de8..cec95bcf6d 100644
 --- a/src/components/views/rooms/RoomList.tsx
 +++ b/src/components/views/rooms/RoomList.tsx
 @@ -80,11 +80,13 @@ interface IState {

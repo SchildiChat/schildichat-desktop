@@ -1,4 +1,4 @@
-From 369a2e9890410af89bd6b1616df688dacb2d6837 Mon Sep 17 00:00:00 2001
+From 8f46bb8a3a76a3fc43be9ad1646a535507c8675a Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now

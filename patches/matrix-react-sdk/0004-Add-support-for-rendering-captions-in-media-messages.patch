@@ -1,4 +1,4 @@
-From d80cf5809c115c8668123a00410f175c6d9e7af0 Mon Sep 17 00:00:00 2001
+From b5b2d8d9bca50d4ad43cd01a2c8f0ea8c3de9bcc Mon Sep 17 00:00:00 2001
 From: Tulir Asokan <tulir@maunium.net>
 Date: Tue, 12 Jul 2022 15:34:57 +0300
 Subject: Add support for rendering captions in media messages
@@ -22,7 +22,7 @@ index fcc204dae3..95cb2eb37d 100644
 +    OrigBodyType?: React.ComponentType<Partial<IBodyProps>>;
  }
 diff --git a/src/components/views/messages/MessageEvent.tsx b/src/components/views/messages/MessageEvent.tsx
-index db0016de7b..dd7a864300 100644
+index fb700579be..76f60bad76 100644
 --- a/src/components/views/messages/MessageEvent.tsx
 +++ b/src/components/views/messages/MessageEvent.tsx
 @@ -183,6 +183,15 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
@@ -56,25 +56,20 @@ index db0016de7b..dd7a864300 100644
 +    <TextualBody {...{...props, ref: undefined}}/>
 +</div>)
 diff --git a/src/components/views/messages/TextualBody.tsx b/src/components/views/messages/TextualBody.tsx
-index 7246f7db57..4b5bf997ba 100644
+index 5dba3e42b7..f665e6dc67 100644
 --- a/src/components/views/messages/TextualBody.tsx
 +++ b/src/components/views/messages/TextualBody.tsx
-@@ -568,11 +568,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
-         const content = mxEvent.getContent();
-         let isNotice = false;
-         let isEmote = false;
-+        let isCaption = false;
+@@ -565,6 +565,9 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+         const isNotice = content.msgtype === MsgType.Notice;
+         const isEmote = content.msgtype === MsgType.Emote;
  
-         // only strip reply if this is the original replying event, edits thereafter do not have the fallback
-         const stripReply = !mxEvent.replacingEvent() && !!getParentEventId(mxEvent);
-         isEmote = content.msgtype === MsgType.Emote;
-         isNotice = content.msgtype === MsgType.Notice;
 +        // @ts-ignore
-+        isCaption = [MsgType.Image, MsgType.File, MsgType.Audio, MsgType.Video].includes(content.msgtype);
-         let body = HtmlUtils.bodyToHtml(content, this.props.highlights, {
-             disableBigEmoji: isEmote || !SettingsStore.getValue<boolean>("TextualBody.enableBigEmoji"),
-             // Part of Replies fallback support
-@@ -644,6 +647,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
++        const isCaption = [MsgType.Image, MsgType.File, MsgType.Audio, MsgType.Video].includes(content.msgtype);
++
+         const willHaveWrapper =
+             this.props.replacingEventId || this.props.isSeeingThroughMessageHiddenForModeration || isEmote;
+ 
+@@ -643,6 +646,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
                  </div>
              );
          }

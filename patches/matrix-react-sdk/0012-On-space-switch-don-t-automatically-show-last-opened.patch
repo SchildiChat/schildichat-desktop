@@ -1,4 +1,4 @@
-From 278fd8faea2f3ac867355f0963dac02ab3562561 Mon Sep 17 00:00:00 2001
+From 4dc009cab3b625ec5509cf774ea98dc44ba04c77 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,7 +10,7 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index f9d6db3f53..6ea77af07e 100644
+index 8335b0e3f6..fdaec88357 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
 @@ -1437,7 +1437,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
