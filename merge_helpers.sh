@@ -264,7 +264,29 @@ apply_patches() {
     pushd "$repo"
     for patch in "$patch_dir"/*; do
         echo "Applying $patch to $repo..."
-        git am "$patch" || read -p "Applying $patch failed, please commit manually, then press enter: "
+        git am "$patch" || on_apply_patch_fail_try_original_commit "$patch" "$repo"
     done
     popd
+}
+
+on_apply_patch_fail_try_original_commit() {
+    local patch="$1"
+    local repo="$2"
+    local orig_commit="$(head -n 1 "$patch"|sed 's|From ||;s| .*||')"
+    echo "Applying $patch failed, trying with original commit $orig_commit..."
+    git am --abort
+    git cherry-pick "$orig_commit" || on_apply_patch_fail "$patch" "$repo" "$orig_commit"
+}
+
+on_apply_patch_fail() {
+    local patch="$1"
+    local repo="$2"
+    local orig_commit="$3"
+    echo "----------------------------------"
+    echo "Applying patch failed, please commit manually!"
+    echo "Patch: $patch"
+    echo "Repo: $repo"
+    echo "Original commit: $(head -n 1 "$patch"|sed 's|From ||;s| .*||')"
+    echo "----------------------------------"
+    read -p "Press enter after committing resolved conflicts: "
 }
