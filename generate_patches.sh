@@ -25,11 +25,7 @@ persist_patches() {
         mkdir "$patch_dir"
     fi
     echo "Creating new patches"
-    if [ "$1" = matrix-js-sdk ]; then
-        git format-patch -k v34.2.0.. -o "$patch_dir"
-    else
-        git format-patch -k upstream/master.. -o "$patch_dir"
-    fi
+    git format-patch -k upstream/master.. -o "$patch_dir"
     echo "Clearing automated commits from patches"
     find "$patch_dir" -name "*-Automatic-package.json-adjustment.patch" -exec rm {} \;
     find "$patch_dir" -name "*-Update-version-to-*.patch" -exec rm {} \;
