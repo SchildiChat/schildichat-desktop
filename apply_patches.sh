@@ -22,5 +22,6 @@ automatic_packagejson_adjustment
 #pushd "matrix-react-sdk" > /dev/null
 #./theme.sh y
 #popd > /dev/null
+./graphics/icon_gen.sh
 
 popd > /dev/null
