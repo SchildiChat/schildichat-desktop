@@ -18,10 +18,8 @@ apply_patches element-desktop
 #automatic_i18n_adjustment
 automatic_packagejson_adjustment
 
-# Automatic theme update
-#pushd "matrix-react-sdk" > /dev/null
-#./theme.sh y
-#popd > /dev/null
+# Automatic theme and icon update
+./theme.sh y
 ./graphics/icon_gen.sh
 
 popd > /dev/null

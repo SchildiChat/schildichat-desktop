@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 shopt -s globstar
 
 mydir="$(dirname "$(realpath "$0")")"
@@ -26,6 +27,7 @@ M_LINK="#368bd6"
 replace_colors() {
     local f="$1"
     if [[ "$f" =~ "dark" ]]; then
+        echo "Replacing colors (dark) for $f..."
         BG_ACCENT="$M_ACCENT_DARK"
         CODEBLOCK_BORDER_COLOR="#121212"
         CODEBLOCK_BACKGROUND_COLOR="#121212"
@@ -36,6 +38,7 @@ replace_colors() {
         MESSAGE_BUBBLE_BACKGROUND_SELF="#303030"
         MESSAGE_BUBBLE_BACKGROUND_SELECTED="#3f4931"
     else
+        echo "Replacing colors (light) for $f..."
         BG_ACCENT="$M_ACCENT_LIGHT"
         CODEBLOCK_BORDER_COLOR="#00000010"
         CODEBLOCK_BACKGROUND_COLOR="#00000010"
@@ -151,15 +154,19 @@ replace_colors() {
     sed -i "s|\\(\$e2e-warning-color: \\).*;|\\1$M_ALERT;|gi" "$f"
 
     # Message bubbles
-    sed -i "s|\\(\$eventbubble-self-bg: \\).*;|\$message-bubble-background-self: $MESSAGE_BUBBLE_BACKGROUND_SELF;|gi" "$f"
-    sed -i "s|\\(\$eventbubble-others-bg: \\).*;|\$message-bubble-background: $MESSAGE_BUBBLE_BACKGROUND;|gi" "$f"
-    sed -i "s|\\(\$eventbubble-bg-hover: \\).*;|\$message-bubble-background-selected: $MESSAGE_BUBBLE_BACKGROUND_SELECTED;|gi" "$f"
-    sed -i "s|\\(\$eventbubble-reply-color: \\).*;$||gi" "$f"
+    sed -i "s|\\(\$eventbubble-self-bg: \\).*;|\$eventbubble-self-bg: $MESSAGE_BUBBLE_BACKGROUND_SELF;|gi" "$f"
+    sed -i "s|\\(\$eventbubble-others-bg: \\).*;|\$eventbubble-others-bg: $MESSAGE_BUBBLE_BACKGROUND;|gi" "$f"
+    sed -i "s|\\(\$eventbubble-bg-hover: \\).*;|\$eventbubble-bg-hover: $MESSAGE_BUBBLE_BACKGROUND_SELECTED;|gi" "$f"
+    #sed -i "s|\\(\$eventbubble-reply-color: \\).*;$||gi" "$f"
 }
 
-replace_colors res/themes/dark/css/_dark.pcss
+replace_colors res/themes/light/css/light.pcss
 replace_colors res/themes/light/css/_light.pcss
+replace_colors res/themes/legacy-light/css/legacy-light.pcss
 replace_colors res/themes/legacy-light/css/_legacy-light.pcss
+replace_colors res/themes/dark/css/dark.pcss
+replace_colors res/themes/dark/css/_dark.pcss
+replace_colors res/themes/legacy-dark/css/legacy-dark.pcss
 replace_colors res/themes/legacy-dark/css/_legacy-dark.pcss
 for f in res/**/*.svg; do
     replace_colors "$f"
