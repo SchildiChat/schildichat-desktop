@@ -1,4 +1,4 @@
-From 98916e3cfbca37369c5a11eb4a6cd3fb0dcd8dda Mon Sep 17 00:00:00 2001
+From c6a550e2c3f9020730c8bd603514e9ce7cf69064 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Mon, 19 Aug 2024 20:27:33 +0200
 Subject: Stop the search bar wobble
@@ -8,7 +8,7 @@ Subject: Stop the search bar wobble
  1 file changed, 1 insertion(+)
 
 diff --git a/res/css/_common.pcss b/res/css/_common.pcss
-index de698e2324..18e28dbb2d 100644
+index 605ad41b81..d1f55282f6 100644
 --- a/res/css/_common.pcss
 +++ b/res/css/_common.pcss
 @@ -189,6 +189,7 @@ input[type="search"].mx_textinput_icon {

@@ -1,4 +1,4 @@
-From 4dc009cab3b625ec5509cf774ea98dc44ba04c77 Mon Sep 17 00:00:00 2001
+From c9fd9e3448066ede633e8e2d388c9e6a040f3956 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 8335b0e3f6..fdaec88357 100644
+index 53514ab817..73068d3090 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1437,7 +1437,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1438,7 +1438,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 8335b0e3f6..fdaec88357 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1449,6 +1457,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1450,6 +1458,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -46,7 +46,7 @@ index 8335b0e3f6..fdaec88357 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index e5624b33b3..73bb2938f7 100644
+index 7b402ef8cf..cfaeb9ac29 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -209,6 +209,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {

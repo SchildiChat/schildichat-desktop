@@ -1,4 +1,4 @@
-From 0fe8387af0500390a3f17df263d95a22a2d8c9e0 Mon Sep 17 00:00:00 2001
+From 3e11b1c51c4b0f0e673c4b22864f97be7098b888 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Thu, 9 May 2024 09:21:21 +0200
 Subject: Add fields for media caption support
@@ -8,7 +8,7 @@ Subject: Add fields for media caption support
  1 file changed, 12 insertions(+)
 
 diff --git a/src/@types/media.ts b/src/@types/media.ts
-index 20e5ca6c6..920d77667 100644
+index ef23668b0..9b4ff3b97 100644
 --- a/src/@types/media.ts
 +++ b/src/@types/media.ts
 @@ -180,6 +180,9 @@ export interface FileContent extends BaseContent {
