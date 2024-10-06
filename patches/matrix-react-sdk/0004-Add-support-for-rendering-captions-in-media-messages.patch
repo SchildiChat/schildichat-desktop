@@ -1,4 +1,4 @@
-From bc56cc58fbb23b3e19740e202fe2231240fbc0c9 Mon Sep 17 00:00:00 2001
+From eba8b0f5bacb6762146eda9075e4f4e3e8e54e81 Mon Sep 17 00:00:00 2001
 From: Tulir Asokan <tulir@maunium.net>
 Date: Tue, 12 Jul 2022 15:34:57 +0300
 Subject: Add support for rendering captions in media messages
@@ -11,10 +11,10 @@ Subject: Add support for rendering captions in media messages
  4 files changed, 31 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/views/messages/IBodyProps.ts b/src/components/views/messages/IBodyProps.ts
-index fcc204dae3..95cb2eb37d 100644
+index e48ba96b56..3caeff225c 100644
 --- a/src/components/views/messages/IBodyProps.ts
 +++ b/src/components/views/messages/IBodyProps.ts
-@@ -59,4 +59,6 @@ export interface IBodyProps {
+@@ -51,4 +51,6 @@ export interface IBodyProps {
      // Set to `true` to disable interactions (e.g. video controls) and to remove controls from the tab order.
      // This may be useful when displaying a preview of the event.
      inhibitInteraction?: boolean;
@@ -22,10 +22,10 @@ index fcc204dae3..95cb2eb37d 100644
 +    OrigBodyType?: React.ComponentType<Partial<IBodyProps>>;
  }
 diff --git a/src/components/views/messages/MessageEvent.tsx b/src/components/views/messages/MessageEvent.tsx
-index fb700579be..76f60bad76 100644
+index 1a5d09e415..bfe908aacc 100644
 --- a/src/components/views/messages/MessageEvent.tsx
 +++ b/src/components/views/messages/MessageEvent.tsx
-@@ -183,6 +183,15 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
+@@ -175,6 +175,15 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
              }
          }
  
@@ -41,7 +41,7 @@ index fb700579be..76f60bad76 100644
          if (SettingsStore.getValue("feature_mjolnir")) {
              const key = `mx_mjolnir_render_${this.props.mxEvent.getRoomId()}__${this.props.mxEvent.getId()}`;
              const allowRender = localStorage.getItem(key) === "true";
-@@ -216,7 +225,13 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
+@@ -208,7 +217,13 @@ export default class MessageEvent extends React.Component<IProps> implements IMe
                  getRelationsForEvent={this.props.getRelationsForEvent}
                  isSeeingThroughMessageHiddenForModeration={this.props.isSeeingThroughMessageHiddenForModeration}
                  inhibitInteraction={this.props.inhibitInteraction}
@@ -56,10 +56,10 @@ index fb700579be..76f60bad76 100644
 +    <TextualBody {...{...props, ref: undefined}}/>
 +</div>)
 diff --git a/src/components/views/messages/TextualBody.tsx b/src/components/views/messages/TextualBody.tsx
-index 5dba3e42b7..f665e6dc67 100644
+index 8b7bfb9a5a..a8890303f8 100644
 --- a/src/components/views/messages/TextualBody.tsx
 +++ b/src/components/views/messages/TextualBody.tsx
-@@ -565,6 +565,9 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+@@ -557,6 +557,9 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
          const isNotice = content.msgtype === MsgType.Notice;
          const isEmote = content.msgtype === MsgType.Emote;
  
@@ -69,7 +69,7 @@ index 5dba3e42b7..f665e6dc67 100644
          const willHaveWrapper =
              this.props.replacingEventId || this.props.isSeeingThroughMessageHiddenForModeration || isEmote;
  
-@@ -643,6 +646,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
+@@ -635,6 +638,14 @@ export default class TextualBody extends React.Component<IBodyProps, IState> {
                  </div>
              );
          }
@@ -85,10 +85,10 @@ index 5dba3e42b7..f665e6dc67 100644
              <div className="mx_MTextBody mx_EventTile_content" onClick={this.onBodyLinkClick}>
                  {body}
 diff --git a/src/utils/FileUtils.ts b/src/utils/FileUtils.ts
-index 75511756f5..a8e3b9cceb 100644
+index 194cb31d20..0c0aec2138 100644
 --- a/src/utils/FileUtils.ts
 +++ b/src/utils/FileUtils.ts
-@@ -46,7 +46,9 @@ export function presentableTextForFile(
+@@ -38,7 +38,9 @@ export function presentableTextForFile(
      shortened = false,
  ): string {
      let text = fallbackText;
@@ -100,5 +100,5 @@ index 75511756f5..a8e3b9cceb 100644
          // file extension.
          text = content.body;
 -- 
-2.46.0
+2.46.2
 

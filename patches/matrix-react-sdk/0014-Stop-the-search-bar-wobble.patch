@@ -1,4 +1,4 @@
-From c6a550e2c3f9020730c8bd603514e9ce7cf69064 Mon Sep 17 00:00:00 2001
+From 086f83a33c6c3c41cce9fb985d2be4ec4e5dafc4 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Mon, 19 Aug 2024 20:27:33 +0200
 Subject: Stop the search bar wobble
@@ -8,10 +8,10 @@ Subject: Stop the search bar wobble
  1 file changed, 1 insertion(+)
 
 diff --git a/res/css/_common.pcss b/res/css/_common.pcss
-index 605ad41b81..d1f55282f6 100644
+index 05a3dac067..7861af6381 100644
 --- a/res/css/_common.pcss
 +++ b/res/css/_common.pcss
-@@ -189,6 +189,7 @@ input[type="search"].mx_textinput_icon {
+@@ -181,6 +181,7 @@ input[type="search"].mx_textinput_icon {
      padding-left: 36px;
      background-repeat: no-repeat;
      background-position: 10px center;
@@ -20,5 +20,5 @@ index 605ad41b81..d1f55282f6 100644
  
  /* FIXME THEME - Tint by CSS rather than referencing a duplicate asset */
 -- 
-2.46.0
+2.46.2
 

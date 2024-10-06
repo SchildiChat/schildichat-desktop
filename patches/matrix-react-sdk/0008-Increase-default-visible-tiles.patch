@@ -1,4 +1,4 @@
-From de95a495964ac0b8a91c3a30268fa362e3cc5373 Mon Sep 17 00:00:00 2001
+From ad8b2ad718275363b9aba3a40792b761e3532be8 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 30 Aug 2020 15:33:01 +0200
 Subject: Increase default visible tiles
@@ -8,10 +8,10 @@ Subject: Increase default visible tiles
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/stores/room-list/ListLayout.ts b/src/stores/room-list/ListLayout.ts
-index afc93f3b01..6020b2148d 100644
+index ff60309e08..275b6d330b 100644
 --- a/src/stores/room-list/ListLayout.ts
 +++ b/src/stores/room-list/ListLayout.ts
-@@ -82,7 +82,7 @@ export class ListLayout {
+@@ -74,7 +74,7 @@ export class ListLayout {
  
      public get defaultVisibleTiles(): number {
          // This number is what "feels right", and mostly subject to design's opinion.
@@ -21,5 +21,5 @@ index afc93f3b01..6020b2148d 100644
  
      public tilesWithPadding(n: number, paddingPx: number): number {
 -- 
-2.46.0
+2.46.2
 

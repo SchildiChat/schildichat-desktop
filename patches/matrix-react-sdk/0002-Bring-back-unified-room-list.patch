@@ -1,4 +1,4 @@
-From 60b5acaf9615e189667a594bb1477ea6c0feb457 Mon Sep 17 00:00:00 2001
+From 108b8d05d2f0c701e75a327094610bf672dcbf75 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -16,10 +16,10 @@ Co-authored-by: su-ex <codeworks@supercable.onl>
  5 files changed, 83 insertions(+), 5 deletions(-)
 
 diff --git a/src/components/views/rooms/RoomList.tsx b/src/components/views/rooms/RoomList.tsx
-index 7d47748de8..cec95bcf6d 100644
+index e27b2ca03f..311a54d9d8 100644
 --- a/src/components/views/rooms/RoomList.tsx
 +++ b/src/components/views/rooms/RoomList.tsx
-@@ -80,11 +80,13 @@ interface IState {
+@@ -72,11 +72,13 @@ interface IState {
      sublists: ITagMap;
      currentRoomId?: string;
      suggestedRooms: ISuggestedRoom[];
@@ -33,7 +33,7 @@ index 7d47748de8..cec95bcf6d 100644
      DefaultTagID.DM,
      DefaultTagID.Untagged,
      DefaultTagID.Conference,
-@@ -97,6 +99,7 @@ export const TAG_ORDER: TagID[] = [
+@@ -89,6 +91,7 @@ export const TAG_ORDER: TagID[] = [
      // but we'd have to make sure that rooms you weren't in were hidden.
  ];
  const ALWAYS_VISIBLE_TAGS: TagID[] = [DefaultTagID.DM, DefaultTagID.Untagged];
@@ -41,7 +41,7 @@ index 7d47748de8..cec95bcf6d 100644
  
  interface ITagAesthetics {
      sectionLabel: TranslationKey;
-@@ -374,6 +377,17 @@ const UntaggedAuxButton: React.FC<IAuxButtonProps> = ({ tabIndex }) => {
+@@ -366,6 +369,17 @@ const UntaggedAuxButton: React.FC<IAuxButtonProps> = ({ tabIndex }) => {
      return null;
  };
  
@@ -59,7 +59,7 @@ index 7d47748de8..cec95bcf6d 100644
  const TAG_AESTHETICS: TagAestheticsMap = {
      [DefaultTagID.Invite]: {
          sectionLabel: _td("action|invites_list"),
-@@ -391,6 +405,12 @@ const TAG_AESTHETICS: TagAestheticsMap = {
+@@ -383,6 +397,12 @@ const TAG_AESTHETICS: TagAestheticsMap = {
          defaultHidden: false,
          AuxButtonComponent: DmAuxButton,
      },
@@ -72,7 +72,7 @@ index 7d47748de8..cec95bcf6d 100644
      [DefaultTagID.Conference]: {
          sectionLabel: _td("voip|metaspace_video_rooms|conference_room_section"),
          isInvite: false,
-@@ -429,6 +449,7 @@ const TAG_AESTHETICS: TagAestheticsMap = {
+@@ -421,6 +441,7 @@ const TAG_AESTHETICS: TagAestheticsMap = {
  
  export default class RoomList extends React.PureComponent<IProps, IState> {
      private dispatcherRef?: string;
@@ -80,7 +80,7 @@ index 7d47748de8..cec95bcf6d 100644
      private treeRef = createRef<HTMLDivElement>();
  
      public static contextType = MatrixClientContext;
-@@ -440,7 +461,14 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -432,7 +453,14 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
          this.state = {
              sublists: {},
              suggestedRooms: SpaceStore.instance.suggestedRooms,
@@ -95,7 +95,7 @@ index 7d47748de8..cec95bcf6d 100644
      }
  
      public componentDidMount(): void {
-@@ -455,9 +483,16 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -447,9 +475,16 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
          SpaceStore.instance.off(UPDATE_SUGGESTED_ROOMS, this.updateSuggestedRooms);
          RoomListStore.instance.off(LISTS_UPDATE_EVENT, this.updateLists);
          if (this.dispatcherRef) defaultDispatcher.unregister(this.dispatcherRef);
@@ -112,7 +112,7 @@ index 7d47748de8..cec95bcf6d 100644
      private onRoomViewStoreUpdate = (): void => {
          this.setState({
              currentRoomId: SdkContextClass.instance.roomViewStore.getRoomId() ?? undefined,
-@@ -598,7 +633,9 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -590,7 +625,9 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
              const aesthetics = TAG_AESTHETICS[orderedTagId];
              if (!aesthetics) throw new Error(`Tag ${orderedTagId} does not have aesthetics`);
  
@@ -124,10 +124,10 @@ index 7d47748de8..cec95bcf6d 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 7cd58c9355..9709fcd83b 100644
+index 2fadb53dde..47eb9b284e 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -197,6 +197,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
+@@ -190,6 +190,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
  export type ISetting = IBaseSetting | IFeature;
  
  export const SETTINGS: { [setting: string]: ISetting } = {
@@ -143,10 +143,10 @@ index 7cd58c9355..9709fcd83b 100644
          isFeature: true,
          labsGroup: LabGroup.VoiceAndVideo,
 diff --git a/src/stores/room-list/RoomListStore.ts b/src/stores/room-list/RoomListStore.ts
-index 7dcb28c325..63f43118fa 100644
+index 53377e0a01..381187b85c 100644
 --- a/src/stores/room-list/RoomListStore.ts
 +++ b/src/stores/room-list/RoomListStore.ts
-@@ -508,6 +508,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
+@@ -500,6 +500,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
                  this.setAndPersistListOrder(tag, listOrder);
              }
          }
@@ -156,7 +156,7 @@ index 7dcb28c325..63f43118fa 100644
      }
  
      private onAlgorithmListUpdated = (forceUpdate: boolean): void => {
-@@ -621,7 +624,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
+@@ -613,7 +616,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
       */
      public getTagsForRoom(room: Room): TagID[] {
          const algorithmTags = this.algorithm.getTagsForRoom(room);
@@ -180,10 +180,10 @@ index 7dcb28c325..63f43118fa 100644
      }
  
 diff --git a/src/stores/room-list/algorithms/Algorithm.ts b/src/stores/room-list/algorithms/Algorithm.ts
-index 775b68e7d9..39add54d89 100644
+index e296676149..06147137b3 100644
 --- a/src/stores/room-list/algorithms/Algorithm.ts
 +++ b/src/stores/room-list/algorithms/Algorithm.ts
-@@ -83,6 +83,7 @@ export class Algorithm extends EventEmitter {
+@@ -75,6 +75,7 @@ export class Algorithm extends EventEmitter {
       * Set to true to suspend emissions of algorithm updates.
       */
      public updatesInhibited = false;
@@ -191,7 +191,7 @@ index 775b68e7d9..39add54d89 100644
  
      public start(): void {
          CallStore.instance.on(CallStoreEvent.ConnectedCalls, this.onConnectedCalls);
-@@ -114,6 +115,10 @@ export class Algorithm extends EventEmitter {
+@@ -106,6 +107,10 @@ export class Algorithm extends EventEmitter {
          return this._cachedRooms;
      }
  
@@ -202,7 +202,7 @@ index 775b68e7d9..39add54d89 100644
      /**
       * Awaitable version of the sticky room setter.
       * @param val The new room to sticky.
-@@ -521,7 +526,10 @@ export class Algorithm extends EventEmitter {
+@@ -513,7 +518,10 @@ export class Algorithm extends EventEmitter {
              }
  
              if (!inTag) {
@@ -214,7 +214,7 @@ index 775b68e7d9..39add54d89 100644
                      newTags[DefaultTagID.DM].push(room);
                  } else {
                      newTags[DefaultTagID.Untagged].push(room);
-@@ -565,7 +573,13 @@ export class Algorithm extends EventEmitter {
+@@ -557,7 +565,13 @@ export class Algorithm extends EventEmitter {
              tags.push(...this.getTagsOfJoinedRoom(room));
          }
  
@@ -229,7 +229,7 @@ index 775b68e7d9..39add54d89 100644
  
          return tags;
      }
-@@ -575,7 +589,7 @@ export class Algorithm extends EventEmitter {
+@@ -567,7 +581,7 @@ export class Algorithm extends EventEmitter {
  
          if (tags.length === 0) {
              // Check to see if it's a DM if it isn't anything else
@@ -239,10 +239,10 @@ index 775b68e7d9..39add54d89 100644
              }
          }
 diff --git a/src/stores/room-list/models.ts b/src/stores/room-list/models.ts
-index d8b0488842..335097ccdb 100644
+index 50cecda665..8efc2d040d 100644
 --- a/src/stores/room-list/models.ts
 +++ b/src/stores/room-list/models.ts
-@@ -21,6 +21,7 @@ export enum DefaultTagID {
+@@ -13,6 +13,7 @@ export enum DefaultTagID {
      LowPriority = "m.lowpriority",
      Favourite = "m.favourite",
      DM = "im.vector.fake.direct",
@@ -250,7 +250,7 @@ index d8b0488842..335097ccdb 100644
      Conference = "im.vector.fake.conferences",
      ServerNotice = "m.server_notice",
      Suggested = "im.vector.fake.suggested",
-@@ -29,6 +30,7 @@ export enum DefaultTagID {
+@@ -21,6 +22,7 @@ export enum DefaultTagID {
  export const OrderedDefaultTagIDs = [
      DefaultTagID.Invite,
      DefaultTagID.Favourite,
@@ -259,5 +259,5 @@ index d8b0488842..335097ccdb 100644
      DefaultTagID.Conference,
      DefaultTagID.Untagged,
 -- 
-2.46.0
+2.46.2
 

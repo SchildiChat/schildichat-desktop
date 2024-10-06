@@ -28,6 +28,9 @@ persist_patches() {
     git format-patch -k upstream/master.. -o "$patch_dir"
     echo "Clearing automated commits from patches"
     find "$patch_dir" -name "*-Automatic-package.json-adjustment.patch" -exec rm {} \;
+    find "$patch_dir" -name "*-Automatic-icon-update.patch" -exec rm {} \;
+    find "$patch_dir" -name "*-Automatic-theme-update.patch" -exec rm {} \;
+    find "$patch_dir" -name "*-Automatic-setup-commit.patch" -exec rm {} \;
     find "$patch_dir" -name "*-Update-version-to-*.patch" -exec rm {} \;
     popd
 }
