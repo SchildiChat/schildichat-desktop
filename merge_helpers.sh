@@ -12,16 +12,16 @@ yarn=yarnpkg
 
 add_upstream() {
     if git remote | grep -q upstream; then
-        echo "Remote named upstream already exists!"
-        return 1
+        echo "Remote named upstream already exists, deleting..."
+        git remote remove upstream
     fi
     local sc_remote="$(git remote -v|grep origin|grep fetch|sed 's|.*\t\(.*\) (fetch)|\1|')"
-    if echo "$sc_remote" | grep -q matrix; then
+    if echo "$sc_remote" | grep -q matrix-js-sdk; then
         # matrix.org repo
         local upstream_remote="$(echo "$sc_remote" | sed 's|SchildiChat|matrix-org|')"
-    elif echo "$sc_remote" | grep -q element; then
+    elif echo "$sc_remote" | grep -q "element\\|matrix-react-sdk"; then
         # vector-im repo
-        local upstream_remote="$(echo "$sc_remote" | sed 's|SchildiChat|vector-im|')"
+        local upstream_remote="$(echo "$sc_remote" | sed 's|SchildiChat|element-hq|')"
     else
         echo "Don't know upstream repo for $sc_remote"
         return 1
