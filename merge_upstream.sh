@@ -34,16 +34,19 @@ if [ -z "$1" ]; then
 else
     latest_upstream_tag="$1"
 fi
-forelement_repos git checkout "$latest_upstream_tag"
+
+sc_branch_name="sc_$latest_upstream_tag"
+
+forelement_repos git checkout "$latest_upstream_tag" -B "$sc_branch_name"
 
 get_current_mxsdk_tags
 
 pushd "matrix-js-sdk" > /dev/null
-git checkout "$current_mxjssdk_tag"
+git checkout "$current_mxjssdk_tag" -B "$sc_branch_name"
 popd > /dev/null
 
 pushd "matrix-react-sdk" > /dev/null
-git checkout "$current_mxreactsdk_tag"
+git checkout "$current_mxreactsdk_tag" -B "$sc_branch_name"
 popd > /dev/null
 
 # Refresh environment
