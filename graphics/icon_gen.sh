@@ -1,6 +1,16 @@
 #!/bin/bash
 
+set -e
+
 mydir="$(dirname "$(realpath "$0")")"
+automatic_commit="$1"
+
+SCHILDI_ROOT="$mydir/.."
+source "$SCHILDI_ROOT/merge_helpers.sh"
+
+if [[ "$automatic_commit" == [Yy]* ]]; then
+    forelement_repos check_clean_git
+fi
 
 
 export_rect() {
@@ -17,7 +27,7 @@ export_square() {
     export_rect "$1" "$size" "$in" "$out"
 }
 
-repo_dir="$mydir/../element-web"
+repo_dir="$SCHILDI_ROOT/element-web"
 base_out="$repo_dir/res/vector-icons"
 
 for i in 1024 120 150 152 180 24 300 44 48 50 76 88; do
@@ -45,7 +55,7 @@ for f in "$base_out"/*.png; do
 done
 
 
-repo_dir="$mydir/../element-desktop"
+repo_dir="$SCHILDI_ROOT/element-desktop"
 base_out="$repo_dir/res/img"
 
 export_square 256 "$mydir/ic_launcher_sc.svg" "$base_out/element.png"
@@ -77,3 +87,8 @@ rm "$base_out/icons/1024x1024.png"
 for f in "$base_out/icons"/*.png; do
     pngcrush -ow "$f"
 done
+
+
+if [[ "$automatic_commit" == [Yy]* ]]; then
+    forelement_repos commit_if_dirty "Automatic icon update"
+fi

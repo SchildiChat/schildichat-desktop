@@ -1,6 +1,8 @@
 #!/bin/bash
 
-SCHILDI_ROOT="$(dirname "$(realpath "$0")")"
+if [ -z "$SCHILDI_ROOT" ]; then
+    SCHILDI_ROOT="$(dirname "$(realpath "$0")")"
+fi
 
 branch=${BRANCH:-"lite"}
 
@@ -289,4 +291,11 @@ on_apply_patch_fail() {
     echo "Original commit: $(head -n 1 "$patch"|sed 's|From ||;s| .*||')"
     echo "----------------------------------"
     read -p "Press enter after committing resolved conflicts: "
+}
+
+commit_if_dirty() {
+    local message="$1"
+    # see: https://devops.stackexchange.com/a/5443
+    git add -A
+    git diff-index --quiet HEAD || git commit -m "$message"
 }

@@ -52,6 +52,7 @@ popd > /dev/null
 # Refresh environment
 make clean
 make setup
+forall_repos commit_if_dirty "Automatic setup commit"
 
 ./apply_patches.sh
 

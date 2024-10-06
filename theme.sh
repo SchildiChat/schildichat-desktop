@@ -172,10 +172,10 @@ for f in res/**/*.svg; do
     replace_colors "$f"
 done
 
-popd > /dev/null
+if [[ "$automatic_commit" == [Yy]* ]]; then
+    # see: https://devops.stackexchange.com/a/5443
+    git add -A
+    git diff-index --quiet HEAD || git commit -m "Automatic theme update"
+fi
 
-#if [[ "$automatic_commit" == [Yy]* ]]; then
-#    # see: https://devops.stackexchange.com/a/5443
-#    git add -A
-#    git diff-index --quiet HEAD || git commit -m "Automatic theme update"
-#fi
+popd > /dev/null
