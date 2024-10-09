@@ -1,4 +1,4 @@
-From 646153b51b6de55c74beb5666875d283df04cba1 Mon Sep 17 00:00:00 2001
+From 52798a9d777321422353ca88b27249a6fb0473b3 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Thu, 9 May 2024 09:21:21 +0200
 Subject: Add fields for media caption support
@@ -8,10 +8,10 @@ Subject: Add fields for media caption support
  1 file changed, 12 insertions(+)
 
 diff --git a/src/@types/media.ts b/src/@types/media.ts
-index ef23668b0..9b4ff3b97 100644
+index 1128b40d3..d85526642 100644
 --- a/src/@types/media.ts
 +++ b/src/@types/media.ts
-@@ -180,6 +180,9 @@ export interface FileContent extends BaseContent {
+@@ -189,6 +189,9 @@ export interface FileContent extends BaseContent {
       * One of: [m.file].
       */
      msgtype: MsgType.File;
@@ -21,7 +21,7 @@ index ef23668b0..9b4ff3b97 100644
  }
  
  /**
-@@ -202,6 +205,9 @@ export interface ImageContent extends BaseContent {
+@@ -205,6 +208,9 @@ export interface ImageContent extends BaseContent {
       * One of: [m.image].
       */
      msgtype: MsgType.Image;
@@ -31,7 +31,7 @@ index ef23668b0..9b4ff3b97 100644
  }
  
  /**
-@@ -223,6 +229,9 @@ export interface AudioContent extends BaseContent {
+@@ -221,6 +227,9 @@ export interface AudioContent extends BaseContent {
       * One of: [m.audio].
       */
      msgtype: MsgType.Audio;
@@ -41,7 +41,7 @@ index ef23668b0..9b4ff3b97 100644
  }
  
  /**
-@@ -244,6 +253,9 @@ export interface VideoContent extends BaseContent {
+@@ -237,6 +246,9 @@ export interface VideoContent extends BaseContent {
       * One of: [m.video].
       */
      msgtype: MsgType.Video;

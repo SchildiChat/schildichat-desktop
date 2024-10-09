@@ -1,4 +1,4 @@
-From efb1f2b9ca610e6282583d8585317803389a87e2 Mon Sep 17 00:00:00 2001
+From 16e186a3cb6d1929e49afe2feb3b486d9bca10a9 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 8e0eaabe4f..ed9f1f30c1 100644
+index 1726c8462d..150f29d0b8 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1446,7 +1446,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1448,7 +1448,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 8e0eaabe4f..ed9f1f30c1 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1458,6 +1466,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1460,6 +1468,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -46,10 +46,10 @@ index 8e0eaabe4f..ed9f1f30c1 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 9d43f8e1e0..eede03b5b7 100644
+index b668c65dfd..be4433e1bc 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -202,6 +202,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {
+@@ -203,6 +203,12 @@ export const SETTINGS: { [setting: string]: ISetting } = {
          supportedLevels: LEVELS_ACCOUNT_SETTINGS,
          default: true,
      },
