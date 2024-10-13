@@ -130,5 +130,5 @@ index 2c2eb442a0..62bfd2ea0f 100644
                  isEmojiDisabled={this.isEmojiDisabled}
                  onFinished={this.props.onFinished}
 -- 
-2.46.2
+2.47.0
 

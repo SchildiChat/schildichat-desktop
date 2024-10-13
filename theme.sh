@@ -37,6 +37,8 @@ replace_colors() {
         MESSAGE_BUBBLE_BACKGROUND="#424242"
         MESSAGE_BUBBLE_BACKGROUND_SELF="#303030"
         MESSAGE_BUBBLE_BACKGROUND_SELECTED="#3f4931"
+        ROOMLIST_BG_COLOR="#303030"
+        SPACELIST_BG_COLOR="#424242"
     else
         echo "Replacing colors (light) for $f..."
         BG_ACCENT="$M_ACCENT_LIGHT"
@@ -48,6 +50,8 @@ replace_colors() {
         MESSAGE_BUBBLE_BACKGROUND="#eeeeee"
         MESSAGE_BUBBLE_BACKGROUND_SELF="#f1f8e9"
         MESSAGE_BUBBLE_BACKGROUND_SELECTED="#dbedc6"
+        ROOMLIST_BG_COLOR="#eeeeee"
+        SPACELIST_BG_COLOR="#fafafa"
     fi
     # Neutral colors
     sed -i 's|#15171b|#212121|gi' "$f"
@@ -110,6 +114,7 @@ replace_colors() {
     sed -i 's|rgba(33, 38, 44,|rgba(48, 48, 48,|gi' "$f"
     sed -i 's|rgba(34, 38, 46,|rgba(48, 48, 48,|gi' "$f"
     sed -i 's|rgba(38, 39, 43,|rgba(48, 48, 48,|gi' "$f"
+    sed -i 's|rgba(38, 40, 45,|rgba(48, 48, 48,|gi' "$f"
     sed -i 's|rgba(46, 48, 51,|rgba(48, 48, 48,|gi' "$f"
     sed -i 's|rgba(92, 100, 112,|rgba(97, 97, 97,|gi' "$f"
     sed -i 's|rgba(141, 151, 165,|rgba(144, 144, 144,|gi' "$f"
@@ -126,6 +131,9 @@ replace_colors() {
     sed -i "s|\\(\$codeblock-background-color: \\).*;|\\1$CODEBLOCK_BACKGROUND_COLOR;|gi" "$f"
 
     sed -i "s|\\(\$presence-offline: \\).*;|\\1$PRESENCE_OFFLINE;|gi" "$f"
+
+    sed -i "s|\\(\$roomlist-bg-color: \\).*;|\\1$ROOMLIST_BG_COLOR;|gi" "$f"
+    sed -i "s|\\(\$spacePanel-bg-color: \\).*;|\\1$SPACELIST_BG_COLOR;|gi" "$f"
 
     # Accent colors
     sed -i "s|#368bd6|$M_ACCENT|gi" "$f"

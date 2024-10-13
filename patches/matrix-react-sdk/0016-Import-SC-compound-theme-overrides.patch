@@ -1,0 +1,34 @@
+From 8b2c552f798e64974d0a0380f55cadb4f72dd67c Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Sun, 13 Oct 2024 11:23:54 +0200
+Subject: Import SC compound theme overrides
+
+---
+ res/css/_common.pcss         | 1 +
+ res/css/sc-cpd-overrides.css | 1 +
+ 2 files changed, 2 insertions(+)
+ create mode 120000 res/css/sc-cpd-overrides.css
+
+diff --git a/res/css/_common.pcss b/res/css/_common.pcss
+index 7861af6381..f7a660a339 100644
+--- a/res/css/_common.pcss
++++ b/res/css/_common.pcss
+@@ -11,6 +11,7 @@ Please see LICENSE files in the repository root for full details.
+ 
+ @import url("@vector-im/compound-design-tokens/assets/web/css/compound-design-tokens.css") layer(compound);
+ @import url("@vector-im/compound-web/dist/style.css");
++@import "./sc-cpd-overrides.css";
+ @import "./_font-sizes.pcss";
+ @import "./_animations.pcss";
+ @import "./_spacing.pcss";
+diff --git a/res/css/sc-cpd-overrides.css b/res/css/sc-cpd-overrides.css
+new file mode 120000
+index 0000000000..532e96fddc
+--- /dev/null
++++ b/res/css/sc-cpd-overrides.css
+@@ -0,0 +1 @@
++../../../res/css/sc-cpd-overrides.css
+\ No newline at end of file
+-- 
+2.47.0
+

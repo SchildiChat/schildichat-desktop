@@ -75,5 +75,5 @@ index 60df05478a..0be7ba190a 100644
                  cliSpace?.getMyMembership() !== KnownMembership.Invite &&
                  this.matrixClient.getRoom(roomId)?.getMyMembership() === KnownMembership.Join &&
 -- 
-2.46.2
+2.47.0
 

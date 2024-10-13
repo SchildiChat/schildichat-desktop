@@ -88,5 +88,5 @@ index 90358f3310..60df05478a 100644
                          const newValue = SettingsStore.getValue("Spaces.enabledMetaSpaces");
                          const enabledMetaSpaces = metaSpaceOrder.filter((k) => newValue[k]);
 -- 
-2.46.2
+2.47.0
 
