@@ -1,0 +1,26 @@
+From d37ff20103b5a650f626ba9910e9ce1f6f7d59b9 Mon Sep 17 00:00:00 2001
+From: su-ex <codeworks@supercable.onl>
+Date: Tue, 7 Sep 2021 19:41:52 +0200
+Subject: No damn avatar background in room list
+
+---
+ src/components/structures/BackdropPanel.tsx | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/components/structures/BackdropPanel.tsx b/src/components/structures/BackdropPanel.tsx
+index 80c21235cc..a9c464f4b2 100644
+--- a/src/components/structures/BackdropPanel.tsx
++++ b/src/components/structures/BackdropPanel.tsx
+@@ -13,6 +13,9 @@ interface IProps {
+ }
+ 
+ export const BackdropPanel: React.FC<IProps> = ({ backgroundImage, blurMultiplier }) => {
++    // SC: no damn avatar background in room list
++    return null;
++
+     if (!backgroundImage) return null;
+ 
+     const styles: CSSProperties = {};
+-- 
+2.47.0
+

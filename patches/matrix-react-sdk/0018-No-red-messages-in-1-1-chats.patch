@@ -1,0 +1,30 @@
+From b3273f2ce4d14924f2710f0ac94cbee54aeee9c6 Mon Sep 17 00:00:00 2001
+From: su-ex <codeworks@supercable.onl>
+Date: Tue, 22 Dec 2020 19:16:28 +0100
+Subject: =?UTF-8?q?No=20red=20messages=20in=201:1=20chats=0AClose=20Schild?=
+ =?UTF-8?q?iChat/schildichat-desktop#13?=
+
+---
+ src/components/views/rooms/EventTile.tsx | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/src/components/views/rooms/EventTile.tsx b/src/components/views/rooms/EventTile.tsx
+index 746cceabd8..3e5879f7ad 100644
+--- a/src/components/views/rooms/EventTile.tsx
++++ b/src/components/views/rooms/EventTile.tsx
+@@ -685,6 +685,12 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState>
+             return false;
+         }
+ 
++        // don't show highlights in 1:1 rooms
++        const room = cli.getRoom(this.props.mxEvent.getRoomId());
++        if (room && room.currentState.getJoinedMemberCount() === 2) {
++            return false;
++        }
++
+         return !!(actions?.tweaks.highlight || previousActions?.tweaks.highlight);
+     }
+ 
+-- 
+2.47.0
+
