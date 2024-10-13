@@ -1,0 +1,61 @@
+From d8699bf1f31e411b5386554110859e85520957fb Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Sun, 13 Oct 2024 13:26:16 +0200
+Subject: Always apply corner radius to all edges of the bubble
+
+---
+ res/css/views/rooms/_EventBubbleTile.pcss | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/res/css/views/rooms/_EventBubbleTile.pcss b/res/css/views/rooms/_EventBubbleTile.pcss
+index ec443c44de..8e0f3cf1b6 100644
+--- a/res/css/views/rooms/_EventBubbleTile.pcss
++++ b/res/css/views/rooms/_EventBubbleTile.pcss
+@@ -277,6 +277,8 @@ Please see LICENSE files in the repository root for full details.
+         margin-inline: var(--EventTile_bubble_line-margin-inline-start) var(--EventTile_bubble_line-margin-inline-end);
+         border-top-left-radius: var(--cornerRadius);
+         border-top-right-radius: var(--cornerRadius);
++        border-bottom-left-radius: var(--cornerRadius);
++        border-bottom-right-radius: var(--cornerRadius);
+ 
+         /* the selector here is quite weird because timestamps can appear linked & unlinked and in different places */
+         /* in the DOM depending on the specific rendering context */
+@@ -371,7 +373,7 @@ Please see LICENSE files in the repository root for full details.
+     }
+ 
+     &.mx_EventTile_continuation[data-self="false"] .mx_EventTile_line {
+-        border-top-left-radius: 0;
++        //border-top-left-radius: 0;
+ 
+         .mx_MImageBody .mx_MImageBody_thumbnail_container,
+         .mx_MVideoBody .mx_MVideoBody_container,
+@@ -379,7 +381,7 @@ Please see LICENSE files in the repository root for full details.
+         .mx_MediaBody,
+         .mx_MLocationBody_map,
+         .mx_MBeaconBody {
+-            border-top-left-radius: 0;
++            //border-top-left-radius: 0;
+         }
+     }
+     &.mx_EventTile_lastInSection[data-self="false"] .mx_EventTile_line {
+@@ -396,7 +398,7 @@ Please see LICENSE files in the repository root for full details.
+     }
+ 
+     &.mx_EventTile_continuation[data-self="true"] .mx_EventTile_line {
+-        border-top-right-radius: 0;
++        //border-top-right-radius: 0;
+ 
+         .mx_MImageBody .mx_MImageBody_thumbnail_container,
+         .mx_MVideoBody .mx_MVideoBody_container,
+@@ -404,7 +406,7 @@ Please see LICENSE files in the repository root for full details.
+         .mx_MediaBody,
+         .mx_MLocationBody_map,
+         .mx_MBeaconBody {
+-            border-top-right-radius: 0;
++            //border-top-right-radius: 0;
+         }
+     }
+     &.mx_EventTile_lastInSection[data-self="true"] .mx_EventTile_line {
+-- 
+2.47.0
+
