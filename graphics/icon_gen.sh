@@ -55,6 +55,9 @@ for f in "$base_out"/*.png; do
 done
 
 
+cp "$mydir/ic_launcher_sc.svg" "$repo_dir/res/themes/element/img/logos/element-logo.svg"
+
+
 repo_dir="$SCHILDI_ROOT/element-desktop"
 base_out="$repo_dir/res/img"
 
