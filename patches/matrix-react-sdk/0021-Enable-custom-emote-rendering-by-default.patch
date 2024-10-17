@@ -1,0 +1,25 @@
+From 47bcb08e971256fe94a0b07fb553b75400e648ed Mon Sep 17 00:00:00 2001
+From: SpiritCroc <dev@spiritcroc.de>
+Date: Thu, 17 Oct 2024 19:40:51 +0200
+Subject: Enable custom emote rendering by default
+
+---
+ src/settings/Settings.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
+index 1052bca0c9..f5fcb5d7a5 100644
+--- a/src/settings/Settings.tsx
++++ b/src/settings/Settings.tsx
+@@ -514,7 +514,7 @@ export const SETTINGS: { [setting: string]: ISetting } = {
+         description: _td("labs|render_reaction_images_description"),
+         supportedLevels: LEVELS_DEVICE_ONLY_SETTINGS_WITH_CONFIG_PRIORITISED,
+         supportedLevelsAreOrdered: true,
+-        default: false,
++        default: true,
+     },
+     /**
+      * With the transition to Compound we are moving to a base font size
+-- 
+2.47.0
+
