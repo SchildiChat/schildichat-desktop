@@ -36,7 +36,7 @@ replace_colors() {
         PRESENCE_OFFLINE="#e0e0e0" # not applied because not existing specifically for dark
         MESSAGE_BUBBLE_BACKGROUND="#424242"
         MESSAGE_BUBBLE_BACKGROUND_SELF="#303030"
-        MESSAGE_BUBBLE_BACKGROUND_SELECTED="#3f4931"
+        MESSAGE_BUBBLE_BACKGROUND_SELECTED="#212121"
         ROOMLIST_BG_COLOR="#303030"
         SPACELIST_BG_COLOR="#424242"
     else
@@ -49,7 +49,7 @@ replace_colors() {
         PRESENCE_OFFLINE="#bdbdbd" # for light this should actually be darker
         MESSAGE_BUBBLE_BACKGROUND="#eeeeee"
         MESSAGE_BUBBLE_BACKGROUND_SELF="#f1f8e9"
-        MESSAGE_BUBBLE_BACKGROUND_SELECTED="#dbedc6"
+        MESSAGE_BUBBLE_BACKGROUND_SELECTED="#e0e0e0"
         ROOMLIST_BG_COLOR="#eeeeee"
         SPACELIST_BG_COLOR="#fafafa"
     fi
