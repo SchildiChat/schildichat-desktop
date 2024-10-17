@@ -1,9 +1,6 @@
-# SchildiChat Web/Desktop Lite
+# SchildiChat Web/Desktop
 
-SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
-
-This branch builds the "lite" variant, which rebases a reduced feature set of the original fork on top of the latest Element,
-in order to keep maintenance effort more manageable while staying up-to-date.
+SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/element-hq/element-web)/[Desktop](https://github.com/element-hq/element-desktop).
 
 
 
