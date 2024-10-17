@@ -37,4 +37,4 @@ fi
 branch="$b_js"
 
 echo "Pushing to all repos: $branch"
-forall_repos git push --set-upstream origin "$branch"
+forall_repos git push --set-upstream origin "$branch" "$@"
