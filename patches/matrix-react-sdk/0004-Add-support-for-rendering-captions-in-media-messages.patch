@@ -1,4 +1,4 @@
-From 89bb8eaba1c9fb9d437379daab11b3266c1fc48d Mon Sep 17 00:00:00 2001
+From ac0fb82339fc580da9db60c183a39d72e6fba3ea Mon Sep 17 00:00:00 2001
 From: Tulir Asokan <tulir@maunium.net>
 Date: Tue, 12 Jul 2022 15:34:57 +0300
 Subject: Add support for rendering captions in media messages
