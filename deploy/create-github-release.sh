@@ -10,12 +10,16 @@ set -e
 version="$1"
 releasepath="$2"
 
-github_api_token=`cat ~/githubtoken`
+if [ -z "$GITHUB_API_TOKEN" ]; then
+    github_api_token=`cat ~/githubtoken`
+else
+    github_api_token="$GITHUB_API_TOKEN"
+fi
 release_notes_file="/tmp/scrn.md"
 
 owner=SchildiChat
 repo=schildichat-desktop
-target=master
+target=lite
 
 # Define variables
 GH_API="https://api.github.com"
@@ -37,7 +41,7 @@ json_string=`jq -n --arg tag "v$version" --arg target "$target" --arg body "$rel
   name: $tag,
   body: $body,
   draft: true,
-  prerelease: false
+  prerelease: true
 }'`
 # echo "$json_string"
 res=`echo "$json_string" | curl -sH "$AUTH" $GH_REPO/releases -d @-`
