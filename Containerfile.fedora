@@ -1,4 +1,4 @@
-FROM docker.io/fedora:38
+FROM docker.io/fedora:40
 
 RUN dnf install -y openssl openssl-devel cargo llvm libsecret libsecret-devel sqlcipher sqlcipher-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat pkgconf perl
 
@@ -12,6 +12,7 @@ RUN npm install -g n
 RUN npm install -g yarn
 RUN npm install -g node-gyp
 RUN gem install --no-user-install --no-document fpm
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \

@@ -12,10 +12,11 @@ all: web
 
 YARN ?= yarnpkg
 CONTAINER_ENGINE ?= podman
-NODE_VERSION ?= 18
+NODE_VERSION ?= 22
 
 VERSION := $(shell grep version element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
-WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
+#WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
+WEB_APP_NAME := element
 DESKTOP_APP_NAME :=  $(shell grep '"name"' element-desktop/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
 PRODUCT_NAME :=  $(shell grep '"productName"' element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
 
@@ -186,9 +187,9 @@ container-appimage-release: container-build-debian
 container-windows-release: container-build-windows
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make windows-release
 
-container-release: container-build-windows container-build-fedora 
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make web-release debian-release appimage-release windows-setup-release windows-portable-release
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
+container-release: container-build-windows #container-build-fedora
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make web-release debian-release appimage-release rpm-release windows-setup-release windows-portable-release
+	#$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
 
 container-local-pkgbuild: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make local-pkgbuild

@@ -1,5 +1,5 @@
 ARG NODE_VERSION
-FROM docker.io/node:${NODE_VERSION}-buster
+FROM docker.io/node:${NODE_VERSION}-bookworm
 
 RUN apt-get -qq update && apt-get -qq install --no-install-recommends -y \
     curl \
@@ -14,9 +14,10 @@ RUN apt-get -qq update && apt-get -qq install --no-install-recommends -y \
     make \
     openssl \
     pkg-config \
-    python \
+    python3 \
     tcl \
     vim
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
