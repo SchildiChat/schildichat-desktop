@@ -206,7 +206,7 @@ clean:
 	$(YARN) --cwd matrix-react-sdk clean
 	$(YARN) --cwd element-web clean
 	$(YARN) --cwd element-desktop clean
-	rm -f element-desktop/webapp
+	rm -f element-desktop/webapp || true
 	rm -rf element-web/dist
 	rm -rf local-pkgbuild
 	rm -f bom.lock
