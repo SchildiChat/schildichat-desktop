@@ -34,3 +34,6 @@ popd
 pushd i18n-helper
 $yarn install
 popd
+
+# CSS overrides
+cp res/css/* matrix-react-sdk/res/css/
