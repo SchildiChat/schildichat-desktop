@@ -5,7 +5,7 @@ Note that this list may be incomplete or outdated.
 
 ## General UI
 
-... TODO Schildi theme?
+- Schildi theme
 
 
 ## Chat overview ("room list")

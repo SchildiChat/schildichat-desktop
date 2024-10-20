@@ -10,6 +10,11 @@ set -e
 version="$1"
 releasepath="$2"
 
+if [ -z "$version" ] || [ -z "$releasepath" ]; then
+    echo "Usage: $0 <version> <releasepath>"
+    exit 1
+fi
+
 if [ -z "$GITHUB_API_TOKEN" ]; then
     github_api_token=`cat ~/githubtoken`
 else

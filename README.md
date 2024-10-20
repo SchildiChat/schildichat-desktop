@@ -3,6 +3,82 @@
 SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/element-hq/element-web)/[Desktop](https://github.com/element-hq/element-desktop).
 
 
+## Initial build setup
+
+```
+git clone -b lite --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
+cd schildichat-desktop
+make setup # optional step if using the other make targets
+```
+
+## Building on Linux
+
+Easiest to build on Linux is using `podman`, i.e. use one of the following make targets:
+
+```
+make container-appimage-release
+make container-debian-release
+make container-rpm-release
+make container-web-release
+```
+
+
+## Windows building dependencies
+
+To build on Windows, use [Element's](https://web-docs.element.dev/Element%20Desktop/windows-requirements.html) guide as starting point.
+
+Some additional notes I found useful:
+
+
+### Before build
+
+To prepare your build environment for VSC tools (use 2022 rather than 2019 mentioned upstream:
+
+```
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" amd64
+```
+
+Additionally, make sure some programs are in your `PATH`:
+
+```
+export PATH="/C/Strawberry/perl/bin:$PATH:/C/Program Files/NASM:/C/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/"
+```
+
+- Strawberry perl needs to go before possibly already installed `/usr/bin/perl`
+- NASM needs to be available
+- `nmake` bundled with VSC wasn't available without adding that additionally (make sure the version is correct for what you installed)
+
+
+### Additional packages not mentioned upstream
+
+```
+npm install yarn
+npm install gyp
+npm install electron-builder
+npm install @electron/fuses
+pip install setuptools
+```
+
+To update outdated npm packages:
+
+```
+npm outdated
+npm update <name>
+```
+
+### Troubleshooting
+
+- `yarn link` fails with permission denied: [kill any running nodejs task](https://stackoverflow.com/questions/64603970/an-unexpected-error-occurred-eperm-operation-not-permitted-in-yarn)
+- `electron-builder` fails to extract `winCodeSign`:
+    - Download [source code](https://github.com/electron-userland/electron-builder-binaries/releases/tag/winCodeSign-2.6.0) manually
+    - Extract `electron-builder-binaries-winCodeSign-2.6.0.zip\electron-builder-binaries-winCodeSign-2.6.0\winCodeSign` to your `AppData\Local\electron-builder\Cache\winCodeSign\winCodeSign-2.6.0
+    - [Source](https://github.com/electron-userland/electron-builder/issues/8149#issuecomment-2328460139)
+
+
+## Release builds
+
+See [here](RELEASE.md).
+
 
 ## Old build instructions, to be revised in the future
 
@@ -66,17 +142,6 @@ or set `CSC_NAME` to your certificate name or id.
 
 To notarize a build with Apple set `NOTARIZE_APPLE_ID` to your AppleID and set the keychain item
 `NOTARIZE_CREDS` to an App specific AppleID password.  
-
-
-### Initial setup
-
-As already noted above, **`master` contains the latest release** and **`sc` is the development branch**!
-
-```
-git clone -b lite --recurse-submodules https://github.com/SchildiChat/schildichat-desktop.git
-cd schildichat-desktop
-make setup # optional step if using the other make targets
-```
 
 ### Create release builds
 
