@@ -191,6 +191,9 @@ container-release: container-build-windows #container-build-fedora
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make web-release debian-release appimage-release rpm-release windows-setup-release windows-portable-release
 	#$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
 
+linux-container-release: container-build-debian
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release debian-release appimage-release rpm-release
+
 container-local-pkgbuild: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make local-pkgbuild
 
