@@ -16,14 +16,14 @@ CONTAINER_ENGINE ?= podman
 NODE_VERSION ?= 22
 
 VERSION := $(shell grep version element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
-#WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
-WEB_APP_NAME := element
+WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
 DESKTOP_APP_NAME :=  $(shell grep '"name"' element-desktop/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')
 PRODUCT_NAME :=  $(shell grep '"productName"' element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
 
 WEB_OUT := element-web/dist
 WEB_OUT_DIST_VERSION := $(VERSION)
-OUT_WEB := $(WEB_OUT)/$(WEB_APP_NAME)-$(WEB_OUT_DIST_VERSION).tar.gz
+#OUT_WEB := $(WEB_OUT)/$(WEB_APP_NAME)-$(WEB_OUT_DIST_VERSION).tar.gz
+OUT_WEB := $(WEB_OUT)/element-$(WEB_OUT_DIST_VERSION).tar.gz
 
 DESKTOP_OUT := element-desktop/dist
 OUT_DEB64 := $(DESKTOP_OUT)/$(DESKTOP_APP_NAME)_$(VERSION)_amd64.deb
@@ -125,7 +125,7 @@ local-pkgbuild-install: local-pkgbuild
 
 web-release: web
 	mkdir -p $(CURRENT_RELEASE_DIR)
-	cp $(OUT_WEB) $(CURRENT_RELEASE_DIR)
+	cp $(OUT_WEB) $(CURRENT_RELEASE_DIR)/${WEB_APP_NAME}-$(WEB_OUT_DIST_VERSION).tar.gz
 
 debian-release: debian
 	mkdir -p $(CURRENT_RELEASE_DIR)
