@@ -1,6 +1,6 @@
 FROM docker.io/fedora:40
 
-RUN dnf install -y openssl openssl-devel cargo llvm libsecret libsecret-devel sqlcipher sqlcipher-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat pkgconf perl
+RUN dnf install -y openssl openssl-devel cargo llvm libsecret libsecret-devel sqlcipher sqlcipher-devel g++ ruby-devel gcc make rpm-build libffi-devel tcl libxcrypt-compat pkgconf perl python3-setuptools
 
 # node setup
 ARG NODE_VERSION

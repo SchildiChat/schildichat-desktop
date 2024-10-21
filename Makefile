@@ -3,6 +3,7 @@
 .PHONY: macos-common macos macos-mas macos-release macos-mas-release icns
 .PHONY: container-build-debian container-build-fedora container-build-windows
 .PHONY: container-web-release container-debian-release container-rpm-release container-appimage-release container-windows-release container-release container-local-pkgbuild
+.PHONY: linux-container-release container-debian-based-release
 .PHONY: clean undo_setup fixup
 .PHONY: fix_yarn_cache
 
@@ -178,6 +179,10 @@ container-web-release: container-build-debian
 container-debian-release: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make debian-release
 
+# For all releases which are fine being built from Debian
+container-debian-based-release: container-build-debian
+	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release debian-release appimage-release
+
 container-rpm-release: container-build-fedora
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
 
@@ -191,8 +196,8 @@ container-release: container-build-windows #container-build-fedora
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_WINDOWS):latest make web-release debian-release appimage-release rpm-release windows-setup-release windows-portable-release
 	#$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_FEDORA):latest make rpm-release
 
-linux-container-release: container-build-debian
-	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make web-release debian-release appimage-release rpm-release
+# For all Linux releases we build
+linux-container-release: container-debian-based-release container-rpm-release
 
 container-local-pkgbuild: container-build-debian
 	$(CONTAINER_ENGINE) run --rm -ti -v $(PWD):/project --security-opt seccomp=unconfined --security-opt label=disable $(CONTAINER_IMAGE_DEBIAN):latest make local-pkgbuild
