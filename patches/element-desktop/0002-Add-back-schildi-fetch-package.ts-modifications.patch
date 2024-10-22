@@ -1,4 +1,4 @@
-From e326039d1acbc5da0cdd95dc235646202264d3c3 Mon Sep 17 00:00:00 2001
+From bb7b8491326df4774f073840a96e28770c070250 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sat, 2 Dec 2023 12:57:26 +0100
 Subject: Add back schildi fetch-package.ts modifications

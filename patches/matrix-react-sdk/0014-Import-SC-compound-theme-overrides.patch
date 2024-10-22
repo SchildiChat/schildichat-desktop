@@ -1,14 +1,23 @@
-From a4bca41b7371c42499fd8c805482066514a9edc2 Mon Sep 17 00:00:00 2001
+From e87c6764f4abc734cdd05be97782e1b8e4e9df1c Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 11:23:54 +0200
 Subject: Import SC compound theme overrides
 
 ---
- res/css/_common.pcss         | 1 +
- res/css/sc-cpd-overrides.css | 1 +
- 2 files changed, 2 insertions(+)
- create mode 120000 res/css/sc-cpd-overrides.css
+ .gitignore           | 2 ++
+ res/css/_common.pcss | 1 +
+ 2 files changed, 3 insertions(+)
 
+diff --git a/.gitignore b/.gitignore
+index 3137cd555b..5345301b97 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,5 @@
++res/css/sc-*.css
++
+ /.npmrc
+ /*.log
+ package-lock.json
 diff --git a/res/css/_common.pcss b/res/css/_common.pcss
 index 7861af6381..f7a660a339 100644
 --- a/res/css/_common.pcss
@@ -21,14 +30,6 @@ index 7861af6381..f7a660a339 100644
  @import "./_font-sizes.pcss";
  @import "./_animations.pcss";
  @import "./_spacing.pcss";
-diff --git a/res/css/sc-cpd-overrides.css b/res/css/sc-cpd-overrides.css
-new file mode 120000
-index 0000000000..532e96fddc
---- /dev/null
-+++ b/res/css/sc-cpd-overrides.css
-@@ -0,0 +1 @@
-+../../../res/css/sc-cpd-overrides.css
-\ No newline at end of file
 -- 
 2.47.0
 

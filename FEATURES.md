@@ -23,6 +23,5 @@ Note that this list may be incomplete or outdated.
 
 ## Conversation screen
 
-- Render captions
 - Allow sending freeform reactions
 - Less restrictive width limit for rendering text reactions
