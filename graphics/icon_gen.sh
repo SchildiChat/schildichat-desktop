@@ -62,8 +62,11 @@ repo_dir="$SCHILDI_ROOT/element-desktop"
 base_out="$repo_dir/res/img"
 
 export_square 256 "$mydir/ic_launcher_sc.svg" "$base_out/element.png"
-
 magick "$base_out/element.png" "$base_out/element.ico"
+
+# TODO monochrome icon? Unless https://github.com/element-hq/element-desktop/pull/1934 is what we'll end with
+export_square 256 "$mydir/ic_launcher_sc.svg" "$base_out/monochrome.png"
+magick "$base_out/element.png" "$base_out/monochrome.ico"
 
 for f in "$base_out"/*.png; do
     pngcrush -ow "$f"
