@@ -1,4 +1,4 @@
-From 82a7324a26d4c3925fd984a6fd06817ecb94397b Mon Sep 17 00:00:00 2001
+From 5c3b02f8c82c6eb581ee771b4de4058dab7220b6 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sat, 22 Apr 2023 12:15:18 +0200
 Subject: Allow reactions to take more space
@@ -8,18 +8,18 @@ Subject: Allow reactions to take more space
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/res/css/views/messages/_ReactionsRowButton.pcss b/res/css/views/messages/_ReactionsRowButton.pcss
-index f2e3885de4..2a8bb9224e 100644
+index dd9d7ddb47..9ebe95021e 100644
 --- a/res/css/views/messages/_ReactionsRowButton.pcss
 +++ b/res/css/views/messages/_ReactionsRowButton.pcss
 @@ -14,6 +14,7 @@ Please see LICENSE files in the repository root for full details.
-     background-color: $secondary-hairline-color;
+     background-color: var(--cpd-color-gray-200);
      user-select: none;
      align-items: center;
 +    max-width: calc(100% - 40px);;
  
-     &:hover {
-         border-color: $quinary-content;
-@@ -29,7 +30,6 @@ Please see LICENSE files in the repository root for full details.
+     &.mx_ReactionsRowButton_selected {
+         background-color: $accent-300;
+@@ -25,7 +26,6 @@ Please see LICENSE files in the repository root for full details.
      }
  
      .mx_ReactionsRowButton_content {

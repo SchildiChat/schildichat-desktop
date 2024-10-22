@@ -1,4 +1,4 @@
-From e2045dd5dcbd82f7b5c4f98d89b258cc304d3e26 Mon Sep 17 00:00:00 2001
+From bdfe28c9c30139e45ea71d7969a9cb11db525413 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -124,10 +124,10 @@ index e27b2ca03f..311a54d9d8 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 76bb109cac..7aea53ceea 100644
+index 4f788ee224..2e475871fa 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -191,6 +191,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
+@@ -192,6 +192,14 @@ export interface IFeature extends Omit<IBaseSetting<boolean>, "isFeature"> {
  export type ISetting = IBaseSetting | IFeature;
  
  export const SETTINGS: { [setting: string]: ISetting } = {
