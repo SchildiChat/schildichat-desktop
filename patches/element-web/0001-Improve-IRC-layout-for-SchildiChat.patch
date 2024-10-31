@@ -1,0 +1,297 @@
+From 4b51c2b491d0457ea7edb514722d532614652d36 Mon Sep 17 00:00:00 2001
+From: Suguru Hirahara <luixxiul@users.noreply.github.com>
+Date: Thu, 31 Oct 2024 07:07:47 -0400
+Subject: Improve IRC layout for SchildiChat
+
+Signed-off-by: Suguru Hirahara <luixxiul@users.noreply.github.com>
+---
+ .../elements/_GenericEventListSummary.pcss    |  15 ++
+ res/css/views/rooms/_EventTile.pcss           | 146 ++++++++++++++++--
+ res/css/views/rooms/_IRCLayout.pcss           |   2 +
+ 3 files changed, 153 insertions(+), 10 deletions(-)
+
+diff --git a/res/css/views/elements/_GenericEventListSummary.pcss b/res/css/views/elements/_GenericEventListSummary.pcss
+index c13f819439..4f42040606 100644
+--- a/res/css/views/elements/_GenericEventListSummary.pcss
++++ b/res/css/views/elements/_GenericEventListSummary.pcss
+@@ -1,5 +1,6 @@
+ /*
+ Copyright 2024 New Vector Ltd.
++Copyright 2024 Suguru Hirahara
+ Copyright 2016 OpenMarket Ltd
+ 
+ SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+@@ -36,6 +37,20 @@ Please see LICENSE files in the repository root for full details.
+         }
+     }
+ 
++    &[data-layout="irc"] {
++        .mx_GenericEventListSummary_avatars {
++            vertical-align: text-bottom; /* Align with mx_GenericEventListSummary_summary */
++
++            > * {
++                line-height: inherit; /* Same size as avatar height */
++            }
++        }
++
++        .mx_GenericEventListSummary_summary {
++            line-height: var(--irc-line-height); /* Override the declaration by mx_TextualEvent */
++        }
++    }
++
+     &[data-layout="group"] {
+         margin-top: $spacing-8;
+     }
+diff --git a/res/css/views/rooms/_EventTile.pcss b/res/css/views/rooms/_EventTile.pcss
+index 311e059166..501a9210cf 100644
+--- a/res/css/views/rooms/_EventTile.pcss
++++ b/res/css/views/rooms/_EventTile.pcss
+@@ -1,5 +1,6 @@
+ /*
+ Copyright 2024 New Vector Ltd.
++Copyright 2024 Suguru Hirahara
+ Copyright 2020, 2021 The Matrix.org Foundation C.I.C.
+ Copyright 2015, 2016 OpenMarket Ltd
+ 
+@@ -279,6 +280,10 @@ $left-gutter: 64px;
+         align-items: flex-start;
+         padding-top: 0;
+ 
++        * {
++            line-height: var(--line-height); /* Unify the line-height value for IRC layout. The value is applied by default to everything under data-layout="irc", enabling declarations with more specificity to override the value as this is not enforced with "!important" */
++        }
++
+         > a {
+             text-decoration: none; /* timestamps are links which shouldn't be underlined */
+             min-width: var(--MessageTimestamp-width); /* ensure space for EventTile without timestamp */
+@@ -286,6 +291,7 @@ $left-gutter: 64px;
+ 
+         > * {
+             margin-right: var(--right-padding);
++            padding-block: var(--EventTile_irc_line-padding-block); /* Unify block padding value of anything directly under mx_EventTile */
+         }
+ 
+         .mx_EventTile_avatar,
+@@ -321,17 +327,46 @@ $left-gutter: 64px;
+             width: var(--name-width);
+             margin-inline-end: 0; /* override mx_EventTile > * */
+ 
++            /* Align elements to the end side */
++            display: block;
++            text-align: end;
++
++            --sc-border-radius-8px: 8px; /* TODO: customize the variable per out taste */
++            border-start-start-radius: var(--sc-border-radius-8px, 3px);
++            border-end-start-radius: var(--sc-border-radius-8px, 3px);
++
++            /* Set $accent as default color, in order to make ellipsis rendered with the accent color (green, by default) */
++            color: $accent;
++
++            &:hover {
++                background-color: $event-selected-color;
++
++                /* This removes top left and bottom left corders from mx_EventTile_line, if just mx_DisambiguatedProfile is hovered. This enables the highlight line to be rendered straight without being dent by those corners. Please note that they do appear if just mx_EventTile_line is hovered. */
++                & ~ .mx_EventTile_line {
++                    border-start-start-radius: 0;
++                    border-end-start-radius: 0;
++                }
++            }
++
+             > .mx_DisambiguatedProfile_displayName {
+                 width: 100%;
+                 text-align: end;
+                 overflow: hidden;
+                 text-overflow: ellipsis;
++                padding-inline-end: var(--right-padding); /* Add padding between displayName and mx_EventTile_line */
+             }
+ 
+             > .mx_DisambiguatedProfile_mxid {
+-                visibility: collapse;
++                /* On the upstream, appearance of mxid on disambiguatedProfile is managed by
++                   "visibility" property. Since it renders mxid hiding it and pushes
++                   displayName to the left side, we need to use display property instead. */
++                display: none;
++
+                 margin-left: 0; /* Override the inherited margin. */
+                 padding: 0 5px;
++                padding-inline-start: 0; /* Remove the value specified on upstream since var(--right-padding) is specified for mx_DisambiguatedProfile_displayName above */
++
++                color: $primary-content; /* Override the color specified above to make the mxid rendered as $primary-content (black, by default) */
+             }
+ 
+             &:hover {
+@@ -343,17 +378,66 @@ $left-gutter: 64px;
+                     display: inline;
+                     background-color: $event-selected-color;
+                     border-radius: 8px 0 0 8px;
+-                    padding-right: $spacing-8;
++                    padding-inline-end: var(--right-padding);
+                 }
+ 
+                 > .mx_DisambiguatedProfile_mxid {
+-                    visibility: visible;
++                    display: inline-block; /* Make var(--irc-line-height) work */
++
+                     opacity: 1;
+                     background-color: $event-selected-color;
+                 }
+             }
+         }
+ 
++        /* Need to use important to override the js provided height and width values. */
++        .mx_BaseAvatar,
++        .mx_BaseAvatar > * {
++            height: $font-14px !important;
++            width: $font-14px !important;
++            flex-shrink: 0; /* Prevents the avatar from shrinking (when mx_DisambiguatedProfile_displayName is long) */
++        }
++
++        /* Fill the pill with the avatar */
++        /* TODO: Adjust the size for IRC layout */
++        .mx_Pill {
++            .mx_BaseAvatar,
++            .mx_BaseAvatar > * {
++                height: $font-16px !important; /* override the value specified above */
++                width: $font-16px !important; /* override the value specified above */
++            }
++        }
++
++        .mx_EventTile_bigEmoji {
++            line-height: initial; /* Reset global line-height value inside IRC EventTile */
++
++            .mx_Emoji {
++                line-height: unset;
++            }
++        }
++
++        .mx_EventTile_content {
++            .markdown-body {
++                > * {
++                    margin-bottom: 4px; /* Unify block end margin for elements like blockquote */
++                }
++
++                > p {
++                    margin-bottom: 1rem; /* Re-add block end margin to unify the margin for paragraphs with or without annotation */
++                }
++
++                code:not(pre *) {
++                    padding-block: 0; /* Remove block padding to avoid line height overflow */
++                }
++
++                .mx_EventTile_pre_container {
++                    pre {
++                        margin-bottom: 0; /* Remove default block end margin */
++                    }
++                }
++            }
++        }
++
+         .mx_EventTile_e2eIcon {
+             padding: 0;
+             flex-grow: 0;
+@@ -365,9 +449,8 @@ $left-gutter: 64px;
+             .mx_TextualEvent,
+             .mx_ViewSourceEvent,
+             .mx_MTextBody {
+-                /* add a 1px padding top and bottom because our larger
+-                emoji font otherwise gets cropped by anti-zalgo */
+-                padding: var(--EventTile_irc_line-padding-block) 0;
++                /* Cancel the padding specified by the upstream as it is taken care of by padding var(--EventTile_irc_line-padding-block) */
++                padding: unset;
+             }
+ 
+             .mx_EventTile_e2eIcon,
+@@ -405,8 +488,36 @@ $left-gutter: 64px;
+             }
+         }
+ 
+-        .mx_ReplyChain {
+-            margin: 0;
++        .mx_ReplyChain_wrapper {
++            .mx_ReplyChain {
++                margin: 0;
++
++                .mx_ReplyTile {
++                    padding-block: unset; /* Unset the inherited value */
++                }
++
++                .mx_DisambiguatedProfile {
++                    line-height: var(--irc-line-height);
++
++                    /* Stop mxid from moving avatar up on ReplyChain by resetting display
++                       value "none" specified above */
++                    /* Mind the difference of avatar placement between on upstream's
++                       mx_EventTile and mx_ReplyTile_sender */
++                    > .mx_DisambiguatedProfile_mxid {
++                        display: unset;
++                    }
++
++                    &:hover {
++                       overflow: hidden; /* Override "overflow: visible" specified by the upstream */
++                    }
++                }
++            }
++
++            /* Align avatar inside ReplyChain (ReplyTile) */
++            /* "In reply to" line */
++            div:first-of-type blockquote.mx_ReplyChain {
++                padding-bottom: 2px; /* Add padding between "In reply to" line and the replied content */
++            }
+         }
+ 
+         .mx_MessageTimestamp {
+@@ -459,8 +570,14 @@ $left-gutter: 64px;
+ 
+         &.mx_EventTile_emote {
+             .mx_EventTile_avatar {
+-                /* add --right-padding value of MessageTimestamp only */
+-                margin-left: calc(var(--name-width) + var(--icon-width) + 1 * var(--right-padding));
++                /* Required for the avatar to reserve spacing between timestamp and the avatar */
++                margin-left: var(--name-width); /* Align emote with other EventTile */
++            }
++
++            &.mx_EventTile_info {
++                .mx_EventTile_avatar {
++                    margin-left: unset; /* Required for hidden events for emote */
++                }
+             }
+         }
+ 
+@@ -642,6 +759,15 @@ $left-gutter: 64px;
+                 var(--name-width) + var(--icon-width) + var(--MessageTimestamp-width) + 2 * var(--right-padding)
+             );
+         }
++
++        .mx_EventTile_line .mx_RedactedBody {
++            line-height: var(--line-height); /* Unify the line-height value for IRC layout by overwriting the line-height value specified on upstream _EventTile.pcss */
++
++            &::before {
++                height: var(--line-height); /* Set the line height value to the trash icon */
++                top: 0px; /* Remove the value specified by the upstream as this is no longer needed */
++            }
++        }
+     }
+ 
+     &[data-layout="group"] {
+diff --git a/res/css/views/rooms/_IRCLayout.pcss b/res/css/views/rooms/_IRCLayout.pcss
+index ecf1c25716..de85238ca6 100644
+--- a/res/css/views/rooms/_IRCLayout.pcss
++++ b/res/css/views/rooms/_IRCLayout.pcss
+@@ -1,5 +1,6 @@
+ /*
+ Copyright 2024 New Vector Ltd.
++Copyright 2024 Suguru Hirahara
+ Copyright 2020 The Matrix.org Foundation C.I.C.
+ 
+ SPDX-License-Identifier: AGPL-3.0-only OR GPL-3.0-only
+@@ -15,6 +16,7 @@ Please see LICENSE files in the repository root for full details.
+     --icon-width: 14px;
+     --line-height: var(--irc-line-height);
+     --right-padding: 5px;
++    --cpd-font-line-height-regular: var(--irc-line-height); /* Unify the line-height value for IRC layout */
+ 
+     line-height: var(--line-height) !important;
+ 
+-- 
+2.39.2
+
