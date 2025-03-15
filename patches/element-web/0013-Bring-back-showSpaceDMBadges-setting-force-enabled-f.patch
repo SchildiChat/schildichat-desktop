@@ -1,4 +1,4 @@
-From 713dafdaa9935d3a2cb419f6c9b4621b9ebe92d3 Mon Sep 17 00:00:00 2001
+From 75cf379cff65aa966ad3fc1acc5371c96e19c121 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -12,10 +12,10 @@ Co-authored-by: SpiritCroc <dev@spiritcroc.de>
  2 files changed, 30 insertions(+)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 2431a8d528..45e1145c0f 100644
+index 5d06388535..5ca4cbc3e8 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -360,6 +360,11 @@ export const SETTINGS: Settings = {
+@@ -358,6 +358,11 @@ export const SETTINGS: Settings = {
          default: true,
          controller: new ReloadOnChangeController(),
      },
@@ -28,12 +28,12 @@ index 2431a8d528..45e1145c0f 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index 50aa7748a5..f11cc20b0c 100644
+index 690beaa0b7..fcd7ff659b 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
-@@ -154,9 +154,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<IState> {
-     /** Whether the feature flag is set for MSC3946 */
+@@ -155,9 +155,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
      private _msc3946ProcessDynamicPredecessor: boolean = SettingsStore.getValue("feature_dynamic_room_predecessors");
+     private _storeReadyDeferred = defer();
  
 +    // SC start
 +    private _showSpaceDMBadges = true;
@@ -49,7 +49,7 @@ index 50aa7748a5..f11cc20b0c 100644
          SettingsStore.monitorSetting("Spaces.allRoomsInHome", null);
          SettingsStore.monitorSetting("Spaces.enabledMetaSpaces", null);
          SettingsStore.monitorSetting("Spaces.showPeopleInSpace", null);
-@@ -192,6 +200,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<IState> {
+@@ -215,6 +223,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
          return this._allRoomsInHome;
      }
  
@@ -60,7 +60,7 @@ index 50aa7748a5..f11cc20b0c 100644
      public setActiveRoomInSpace(space: SpaceKey): void {
          if (!isMetaSpace(space) && !this.matrixClient?.getRoom(space)?.isSpaceRoom()) return;
          if (space !== this.activeSpace) this.setActiveSpace(space, false);
-@@ -701,6 +713,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<IState> {
+@@ -724,6 +736,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
  
                      if (room.isSpaceRoom() || !flattenedRoomsForSpace.has(room.roomId)) return false;
  
@@ -71,7 +71,7 @@ index 50aa7748a5..f11cc20b0c 100644
                      if (dmBadgeSpace && DMRoomMap.shared().getUserIdForRoomId(room.roomId)) {
                          return s === dmBadgeSpace;
                      }
-@@ -1277,6 +1293,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<IState> {
+@@ -1301,6 +1317,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
                          break;
                      }
  
@@ -86,7 +86,7 @@ index 50aa7748a5..f11cc20b0c 100644
 +
                      case "Spaces.enabledMetaSpaces": {
                          const newValue = SettingsStore.getValue("Spaces.enabledMetaSpaces");
-                         const enabledMetaSpaces = metaSpaceOrder.filter((k) => newValue[k]);
+                         const enabledMetaSpaces = this.metaSpaceOrder.filter((k) => newValue[k]);
 -- 
 2.48.1
 

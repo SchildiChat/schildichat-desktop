@@ -1,4 +1,4 @@
-From 51bf3a238471a9c54ae19dd1abe527a60b0d798d Mon Sep 17 00:00:00 2001
+From e9975388c5e2071240b8e16b122100f532aee10a Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index f417bd6045..6c6b7e2285 100644
+index 3d802d34ad..e90667898b 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1453,7 +1453,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1454,7 +1454,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index f417bd6045..6c6b7e2285 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1465,6 +1473,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1466,6 +1474,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -46,10 +46,10 @@ index f417bd6045..6c6b7e2285 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 45e1145c0f..dfa65a4917 100644
+index 5ca4cbc3e8..80ada478ba 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -365,6 +365,12 @@ export const SETTINGS: Settings = {
+@@ -363,6 +363,12 @@ export const SETTINGS: Settings = {
          supportedLevels: LEVELS_ACCOUNT_SETTINGS,
          default: true,
      },
@@ -63,10 +63,10 @@ index 45e1145c0f..dfa65a4917 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index f11cc20b0c..bce2146d4e 100644
+index fcd7ff659b..33407f74e8 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
-@@ -265,6 +265,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<IState> {
+@@ -288,6 +288,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
              // else if the last viewed room in this space is joined then view that
              // else view space home or home depending on what is being clicked on
              if (

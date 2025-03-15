@@ -1,4 +1,4 @@
-From 4cad8ad554645e437ba9a486734247257d577f43 Mon Sep 17 00:00:00 2001
+From c14f17a15c7a4f22126eba9a92a417732fe3f659 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -8,18 +8,18 @@ Remaining TODO:
 
 Co-authored-by: su-ex <codeworks@supercable.onl>
 ---
- src/components/views/rooms/RoomList.tsx      | 39 +++++++++++++++++++-
- src/settings/Settings.tsx                    |  8 ++++
- src/stores/room-list/RoomListStore.ts        | 19 +++++++++-
- src/stores/room-list/algorithms/Algorithm.ts | 20 ++++++++--
- src/stores/room-list/models.ts               |  2 +
+ src/components/views/rooms/LegacyRoomList.tsx | 39 ++++++++++++++++++-
+ src/settings/Settings.tsx                     |  8 ++++
+ src/stores/room-list/RoomListStore.ts         | 19 ++++++++-
+ src/stores/room-list/algorithms/Algorithm.ts  | 20 ++++++++--
+ src/stores/room-list/models.ts                |  2 +
  5 files changed, 83 insertions(+), 5 deletions(-)
 
-diff --git a/src/components/views/rooms/RoomList.tsx b/src/components/views/rooms/RoomList.tsx
-index fed1826bbb..ea4d54d5e8 100644
---- a/src/components/views/rooms/RoomList.tsx
-+++ b/src/components/views/rooms/RoomList.tsx
-@@ -72,11 +72,13 @@ interface IState {
+diff --git a/src/components/views/rooms/LegacyRoomList.tsx b/src/components/views/rooms/LegacyRoomList.tsx
+index a940484b16..663f741fed 100644
+--- a/src/components/views/rooms/LegacyRoomList.tsx
++++ b/src/components/views/rooms/LegacyRoomList.tsx
+@@ -83,11 +83,13 @@ interface IState {
      sublists: ITagMap;
      currentRoomId?: string;
      suggestedRooms: ISuggestedRoom[];
@@ -33,7 +33,7 @@ index fed1826bbb..ea4d54d5e8 100644
      DefaultTagID.DM,
      DefaultTagID.Untagged,
      DefaultTagID.Conference,
-@@ -89,6 +91,7 @@ export const TAG_ORDER: TagID[] = [
+@@ -100,6 +102,7 @@ export const TAG_ORDER: TagID[] = [
      // but we'd have to make sure that rooms you weren't in were hidden.
  ];
  const ALWAYS_VISIBLE_TAGS: TagID[] = [DefaultTagID.DM, DefaultTagID.Untagged];
@@ -41,7 +41,7 @@ index fed1826bbb..ea4d54d5e8 100644
  
  interface ITagAesthetics {
      sectionLabel: TranslationKey;
-@@ -366,6 +369,17 @@ const UntaggedAuxButton: React.FC<IAuxButtonProps> = ({ tabIndex }) => {
+@@ -377,6 +380,17 @@ const UntaggedAuxButton: React.FC<IAuxButtonProps> = ({ tabIndex }) => {
      return null;
  };
  
@@ -59,7 +59,7 @@ index fed1826bbb..ea4d54d5e8 100644
  const TAG_AESTHETICS: TagAestheticsMap = {
      [DefaultTagID.Invite]: {
          sectionLabel: _td("action|invites_list"),
-@@ -383,6 +397,12 @@ const TAG_AESTHETICS: TagAestheticsMap = {
+@@ -394,6 +408,12 @@ const TAG_AESTHETICS: TagAestheticsMap = {
          defaultHidden: false,
          AuxButtonComponent: DmAuxButton,
      },
@@ -72,15 +72,15 @@ index fed1826bbb..ea4d54d5e8 100644
      [DefaultTagID.Conference]: {
          sectionLabel: _td("voip|metaspace_video_rooms|conference_room_section"),
          isInvite: false,
-@@ -421,6 +441,7 @@ const TAG_AESTHETICS: TagAestheticsMap = {
+@@ -432,6 +452,7 @@ const TAG_AESTHETICS: TagAestheticsMap = {
  
- export default class RoomList extends React.PureComponent<IProps, IState> {
+ export default class LegacyRoomList extends React.PureComponent<IProps, IState> {
      private dispatcherRef?: string;
 +    private readonly unifiedRoomListWatcherRef: string;
      private treeRef = createRef<HTMLDivElement>();
  
      public static contextType = MatrixClientContext;
-@@ -432,7 +453,14 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -443,7 +464,14 @@ export default class LegacyRoomList extends React.PureComponent<IProps, IState>
          this.state = {
              sublists: {},
              suggestedRooms: SpaceStore.instance.suggestedRooms,
@@ -95,13 +95,17 @@ index fed1826bbb..ea4d54d5e8 100644
      }
  
      public componentDidMount(): void {
-@@ -447,9 +475,16 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -459,6 +487,7 @@ export default class LegacyRoomList extends React.PureComponent<IProps, IState>
          SpaceStore.instance.off(UPDATE_SUGGESTED_ROOMS, this.updateSuggestedRooms);
          RoomListStore.instance.off(LISTS_UPDATE_EVENT, this.updateLists);
          defaultDispatcher.unregister(this.dispatcherRef);
 +        SettingsStore.unwatchSetting(this.unifiedRoomListWatcherRef);
          SdkContextClass.instance.roomViewStore.off(UPDATE_EVENT, this.onRoomViewStoreUpdate);
+         LegacyCallHandler.instance.off(LegacyCallHandlerEvent.ProtocolSupport, this.updateProtocolSupport);
      }
+@@ -467,6 +496,12 @@ export default class LegacyRoomList extends React.PureComponent<IProps, IState>
+         this.updateLists();
+     };
  
 +    private onUnifiedRoomListChange = (): void => {
 +        this.setState({
@@ -112,7 +116,7 @@ index fed1826bbb..ea4d54d5e8 100644
      private onRoomViewStoreUpdate = (): void => {
          this.setState({
              currentRoomId: SdkContextClass.instance.roomViewStore.getRoomId() ?? undefined,
-@@ -590,7 +625,9 @@ export default class RoomList extends React.PureComponent<IProps, IState> {
+@@ -605,7 +640,9 @@ export default class LegacyRoomList extends React.PureComponent<IProps, IState>
              const aesthetics = TAG_AESTHETICS[orderedTagId];
              if (!aesthetics) throw new Error(`Tag ${orderedTagId} does not have aesthetics`);
  
@@ -124,10 +128,10 @@ index fed1826bbb..ea4d54d5e8 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 9c4bb76f9f..2431a8d528 100644
+index 439b0c112f..5d06388535 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -353,6 +353,14 @@ export type FeatureSettingKey = Assignable<Settings, IFeature>;
+@@ -351,6 +351,14 @@ export type FeatureSettingKey = Assignable<Settings, IFeature>;
  export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | FeatureSettingKey;
  
  export const SETTINGS: Settings = {
@@ -143,10 +147,10 @@ index 9c4bb76f9f..2431a8d528 100644
          isFeature: true,
          labsGroup: LabGroup.VoiceAndVideo,
 diff --git a/src/stores/room-list/RoomListStore.ts b/src/stores/room-list/RoomListStore.ts
-index 0b179f7db5..6d1def3c87 100644
+index e1d2f7b7e8..64c757c377 100644
 --- a/src/stores/room-list/RoomListStore.ts
 +++ b/src/stores/room-list/RoomListStore.ts
-@@ -500,6 +500,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
+@@ -502,6 +502,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
                  this.setAndPersistListOrder(tag, listOrder);
              }
          }
@@ -156,7 +160,7 @@ index 0b179f7db5..6d1def3c87 100644
      }
  
      private onAlgorithmListUpdated = (forceUpdate: boolean): void => {
-@@ -613,7 +616,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<IState> implements
+@@ -615,7 +618,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
       */
      public getTagsForRoom(room: Room): TagID[] {
          const algorithmTags = this.algorithm.getTagsForRoom(room);
@@ -180,7 +184,7 @@ index 0b179f7db5..6d1def3c87 100644
      }
  
 diff --git a/src/stores/room-list/algorithms/Algorithm.ts b/src/stores/room-list/algorithms/Algorithm.ts
-index e0f5a17130..5411ad49fc 100644
+index 25d6b78fde..f3fc3899d0 100644
 --- a/src/stores/room-list/algorithms/Algorithm.ts
 +++ b/src/stores/room-list/algorithms/Algorithm.ts
 @@ -75,6 +75,7 @@ export class Algorithm extends EventEmitter {

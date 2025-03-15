@@ -1,4 +1,4 @@
-From aa4a0d3e9ce9d4031ebaa38b9568aa434ce9cbe5 Mon Sep 17 00:00:00 2001
+From 52ee72a4f5ba98cee0eb6ce60aaac29daa2ce119 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 30 Aug 2020 15:33:01 +0200
 Subject: Increase default visible tiles
@@ -8,7 +8,7 @@ Subject: Increase default visible tiles
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/stores/room-list/ListLayout.ts b/src/stores/room-list/ListLayout.ts
-index e85703fa5f..2792e57f8d 100644
+index a4468dfffe..a4ae9bbc1d 100644
 --- a/src/stores/room-list/ListLayout.ts
 +++ b/src/stores/room-list/ListLayout.ts
 @@ -74,7 +74,7 @@ export class ListLayout {

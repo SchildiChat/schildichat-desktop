@@ -1,4 +1,4 @@
-From e53d0af43fd013525967fad17b0d393df64b6824 Mon Sep 17 00:00:00 2001
+From 51cc5b9086927db3a9c3aa21e59a6f0d7e8fc761 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Tue, 7 Sep 2021 19:41:52 +0200
 Subject: No damn avatar background in room list
@@ -8,7 +8,7 @@ Subject: No damn avatar background in room list
  1 file changed, 3 insertions(+)
 
 diff --git a/src/components/structures/BackdropPanel.tsx b/src/components/structures/BackdropPanel.tsx
-index 64b2ab0fce..d2045bd836 100644
+index f3a44521fa..396601ba6e 100644
 --- a/src/components/structures/BackdropPanel.tsx
 +++ b/src/components/structures/BackdropPanel.tsx
 @@ -13,6 +13,9 @@ interface IProps {

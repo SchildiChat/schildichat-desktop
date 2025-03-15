@@ -1,4 +1,4 @@
-From 34991cb7a32166efbfab4f09f05f2874180751ae Mon Sep 17 00:00:00 2001
+From dbd02e7c0b1c63d432adb2d78c4ed5cb701092f7 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Wed, 29 May 2024 19:32:42 +0200
 Subject: Squashed: Freeform reactions from tadzik/freeform-reactions-upstream
@@ -66,23 +66,24 @@ Date:   Tue Aug 17 11:29:22 2021 +0200
 
     Signed-off-by: Tadeusz Sośnierz <tadeusz@sosnierz.com>
 ---
- src/components/views/emojipicker/EmojiPicker.tsx  | 15 +++++++++++++++
- .../views/emojipicker/ReactionPicker.tsx          |  1 +
- 2 files changed, 16 insertions(+)
+ src/components/views/emojipicker/EmojiPicker.tsx | 16 ++++++++++++++++
+ .../views/emojipicker/ReactionPicker.tsx         |  1 +
+ 2 files changed, 17 insertions(+)
 
 diff --git a/src/components/views/emojipicker/EmojiPicker.tsx b/src/components/views/emojipicker/EmojiPicker.tsx
-index 0c10d778a6..250c8e0fec 100644
+index 71659d579b..4acbfd1fcb 100644
 --- a/src/components/views/emojipicker/EmojiPicker.tsx
 +++ b/src/components/views/emojipicker/EmojiPicker.tsx
-@@ -17,6 +17,7 @@ import Header from "./Header";
- import Search from "./Search";
- import Preview from "./Preview";
- import QuickReactions from "./QuickReactions";
+@@ -29,6 +29,8 @@ import { Key } from "../../../Keyboard";
+ import { clamp } from "../../../utils/numbers";
+ import { type ButtonEvent } from "../elements/AccessibleButton";
+ 
 +import AccessibleButton from '../elements/AccessibleButton';
- import Category, { CategoryKey, ICategory } from "./Category";
- import { filterBoolean } from "../../../utils/arrays";
- import {
-@@ -36,6 +37,7 @@ export const EMOJIS_PER_ROW = 8;
++
+ export const CATEGORY_HEADER_HEIGHT = 20;
+ export const EMOJI_HEIGHT = 35;
+ export const EMOJIS_PER_ROW = 8;
+@@ -36,6 +38,7 @@ export const EMOJIS_PER_ROW = 8;
  const ZERO_WIDTH_JOINER = "\u200D";
  
  interface IProps {
@@ -90,7 +91,7 @@ index 0c10d778a6..250c8e0fec 100644
      selectedEmojis?: Set<string>;
      onChoose(unicode: string): boolean;
      onFinished(): void;
-@@ -337,6 +339,10 @@ class EmojiPicker extends React.Component<IProps, IState> {
+@@ -337,6 +340,10 @@ class EmojiPicker extends React.Component<IProps, IState> {
          }
      };
  
@@ -101,7 +102,7 @@ index 0c10d778a6..250c8e0fec 100644
      private static categoryHeightForEmojiCount(count: number): number {
          if (count === 0) {
              return 0;
-@@ -392,6 +398,15 @@ class EmojiPicker extends React.Component<IProps, IState> {
+@@ -392,6 +399,15 @@ class EmojiPicker extends React.Component<IProps, IState> {
                                      return categoryElement;
                                  })}
                              </AutoHideScrollbar>
@@ -118,7 +119,7 @@ index 0c10d778a6..250c8e0fec 100644
                                  <Preview emoji={this.state.previewEmoji} />
                              ) : (
 diff --git a/src/components/views/emojipicker/ReactionPicker.tsx b/src/components/views/emojipicker/ReactionPicker.tsx
-index ea1a502942..e49b7e33cd 100644
+index 8509b4014a..5e9ea0fd60 100644
 --- a/src/components/views/emojipicker/ReactionPicker.tsx
 +++ b/src/components/views/emojipicker/ReactionPicker.tsx
 @@ -126,6 +126,7 @@ class ReactionPicker extends React.Component<IProps, IState> {

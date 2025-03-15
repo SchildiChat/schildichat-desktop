@@ -1,4 +1,4 @@
-From fc68141219ce4367db44ad05aa89c9367c894856 Mon Sep 17 00:00:00 2001
+From 460db57d64132c244504f2f046f7473b30359e7d Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 20:07:30 +0100
 Subject: Schildify login footer
@@ -8,7 +8,7 @@ Subject: Schildify login footer
  1 file changed, 4 insertions(+)
 
 diff --git a/src/components/views/auth/AuthFooter.tsx b/src/components/views/auth/AuthFooter.tsx
-index 472ff53f09..9f694aef42 100644
+index f609b4792a..8abcc8fa37 100644
 --- a/src/components/views/auth/AuthFooter.tsx
 +++ b/src/components/views/auth/AuthFooter.tsx
 @@ -15,9 +15,13 @@ import { _t } from "../../../languageHandler";

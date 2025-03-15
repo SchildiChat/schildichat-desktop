@@ -1,4 +1,4 @@
-From 906524fb3b12ab3a847379aa3ecd72cec93b0774 Mon Sep 17 00:00:00 2001
+From 9b7345671c0910cf9d6ca3710a4cd9f5126fe186 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 19:24:26 +0100
 Subject: Enable chat previews by default
@@ -8,7 +8,7 @@ Subject: Enable chat previews by default
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/stores/room-list/ListLayout.ts b/src/stores/room-list/ListLayout.ts
-index 2792e57f8d..4f9d436bc8 100644
+index a4ae9bbc1d..227c918457 100644
 --- a/src/stores/room-list/ListLayout.ts
 +++ b/src/stores/room-list/ListLayout.ts
 @@ -18,7 +18,7 @@ interface ISerializedListLayout {
