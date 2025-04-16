@@ -1,4 +1,4 @@
-From 27d4baaaf19f3d80ec7d5617e54bd7621090d6a4 Mon Sep 17 00:00:00 2001
+From db11438720e8798855e72dbe2c41223d7d565d50 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Thu, 14 Dec 2023 10:32:10 +0100
 Subject: Don't preview reactions
@@ -25,5 +25,5 @@ index 51e413940d..7775d1e52a 100644
          isState: false,
          previewer: new PollStartEventPreview(),
 -- 
-2.48.1
+2.49.0
 

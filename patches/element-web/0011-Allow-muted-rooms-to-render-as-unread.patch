@@ -1,4 +1,4 @@
-From 773a15b9d4a880d4fa9ddf06bda99c6d15316bb4 Mon Sep 17 00:00:00 2001
+From 5042b0693d8f0d5b722ae40169855a28364f95a2 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Fri, 10 May 2024 18:58:32 +0200
 Subject: Allow muted rooms to render as unread
@@ -8,18 +8,18 @@ Subject: Allow muted rooms to render as unread
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/RoomNotifs.ts b/src/RoomNotifs.ts
-index e6064d2691..37838c79b5 100644
+index d5254d523d..9cb1e24d1d 100644
 --- a/src/RoomNotifs.ts
 +++ b/src/RoomNotifs.ts
 @@ -255,7 +255,7 @@ export function determineUnreadState(
-         return { symbol: "!", count: 1, level: NotificationLevel.Highlight };
+         return { symbol: "!", count: 1, level: NotificationLevel.Highlight, invited: false };
      }
  
 -    if (getRoomNotifsState(room.client, room.roomId) === RoomNotifState.Mute) {
 +    if (false && getRoomNotifsState(room.client, room.roomId) === RoomNotifState.Mute) {
-         return { symbol: null, count: 0, level: NotificationLevel.None };
+         return { symbol: null, count: 0, level: NotificationLevel.None, invited: false };
      }
  
 -- 
-2.48.1
+2.49.0
 

@@ -1,4 +1,4 @@
-From 1d3a914d447e6ccae5ad13ac4438aa979610946e Mon Sep 17 00:00:00 2001
+From 8354faea210da07d2948ca60dd6eaf3e7a668f86 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sat, 30 Nov 2024 19:42:44 +0100
 Subject: Disable showing people in spaces by default
@@ -9,10 +9,10 @@ Subject: Disable showing people in spaces by default
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 276d72cf23..4de889b562 100644
+index aa74245519..07227b02dc 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -1206,7 +1206,7 @@ export const SETTINGS: Settings = {
+@@ -1233,7 +1233,7 @@ export const SETTINGS: Settings = {
      },
      "Spaces.showPeopleInSpace": {
          supportedLevels: [SettingLevel.ROOM_ACCOUNT],
@@ -35,5 +35,5 @@ index 02e20e9103..2b49711c8e 100644
  
      public isVisible(room: Room): boolean {
 -- 
-2.48.1
+2.49.0
 

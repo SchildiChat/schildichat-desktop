@@ -1,4 +1,4 @@
-From 75cf379cff65aa966ad3fc1acc5371c96e19c121 Mon Sep 17 00:00:00 2001
+From d52e8bb4d370dd0ba42a94e20dfc7f900a33f508 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -12,10 +12,10 @@ Co-authored-by: SpiritCroc <dev@spiritcroc.de>
  2 files changed, 30 insertions(+)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 5d06388535..5ca4cbc3e8 100644
+index 7eda4d794b..b6cde99d81 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -358,6 +358,11 @@ export const SETTINGS: Settings = {
+@@ -365,6 +365,11 @@ export const SETTINGS: Settings = {
          default: true,
          controller: new ReloadOnChangeController(),
      },
@@ -88,5 +88,5 @@ index 690beaa0b7..fcd7ff659b 100644
                          const newValue = SettingsStore.getValue("Spaces.enabledMetaSpaces");
                          const enabledMetaSpaces = this.metaSpaceOrder.filter((k) => newValue[k]);
 -- 
-2.48.1
+2.49.0
 

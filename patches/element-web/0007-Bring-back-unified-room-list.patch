@@ -1,4 +1,4 @@
-From c14f17a15c7a4f22126eba9a92a417732fe3f659 Mon Sep 17 00:00:00 2001
+From b81d62dc80dc7efdab2996c79662c4626302a8d0 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -16,7 +16,7 @@ Co-authored-by: su-ex <codeworks@supercable.onl>
  5 files changed, 83 insertions(+), 5 deletions(-)
 
 diff --git a/src/components/views/rooms/LegacyRoomList.tsx b/src/components/views/rooms/LegacyRoomList.tsx
-index a940484b16..663f741fed 100644
+index 6be226a172..dbb69d8f62 100644
 --- a/src/components/views/rooms/LegacyRoomList.tsx
 +++ b/src/components/views/rooms/LegacyRoomList.tsx
 @@ -83,11 +83,13 @@ interface IState {
@@ -128,11 +128,11 @@ index a940484b16..663f741fed 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 439b0c112f..5d06388535 100644
+index aee9141c29..7eda4d794b 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -351,6 +351,14 @@ export type FeatureSettingKey = Assignable<Settings, IFeature>;
- export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | FeatureSettingKey;
+@@ -358,6 +358,14 @@ export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | Fe
+ export type StringSettingKey = Assignable<Settings, IBaseSetting<string>>;
  
  export const SETTINGS: Settings = {
 +    // SC settings start
@@ -147,10 +147,10 @@ index 439b0c112f..5d06388535 100644
          isFeature: true,
          labsGroup: LabGroup.VoiceAndVideo,
 diff --git a/src/stores/room-list/RoomListStore.ts b/src/stores/room-list/RoomListStore.ts
-index e1d2f7b7e8..64c757c377 100644
+index 6985e007bd..206ab20037 100644
 --- a/src/stores/room-list/RoomListStore.ts
 +++ b/src/stores/room-list/RoomListStore.ts
-@@ -502,6 +502,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
+@@ -504,6 +504,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
                  this.setAndPersistListOrder(tag, listOrder);
              }
          }
@@ -160,7 +160,7 @@ index e1d2f7b7e8..64c757c377 100644
      }
  
      private onAlgorithmListUpdated = (forceUpdate: boolean): void => {
-@@ -615,7 +618,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
+@@ -617,7 +620,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
       */
      public getTagsForRoom(room: Room): TagID[] {
          const algorithmTags = this.algorithm.getTagsForRoom(room);
@@ -263,5 +263,5 @@ index 78823cbc42..00883e2ad6 100644
      DefaultTagID.Conference,
      DefaultTagID.Untagged,
 -- 
-2.48.1
+2.49.0
 

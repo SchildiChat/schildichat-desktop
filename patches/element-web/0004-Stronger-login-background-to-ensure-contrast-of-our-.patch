@@ -1,4 +1,4 @@
-From 61fd7f169e275a27d168d1afe436c5dd34dbc09a Mon Sep 17 00:00:00 2001
+From 6385be0c76621d18084d54b83089ccb67c096513 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 19:55:30 +0100
 Subject: Stronger login background to ensure contrast of our icon with our bg
@@ -21,5 +21,5 @@ index 3c7fe2503e..64163e837c 100644
          };
  
 -- 
-2.48.1
+2.49.0
 

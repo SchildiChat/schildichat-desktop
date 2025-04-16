@@ -1,4 +1,4 @@
-From 474c8a5e8b345fe8206b56b880b1421a5189b797 Mon Sep 17 00:00:00 2001
+From e1d54c00c828581c54de7db81a3822fe40f0da0f Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 29 Nov 2020 23:30:59 +0100
 Subject: Change default login background
@@ -22117,7 +22117,7 @@ index dd3facaa79..3c7fe2503e 100644
          const configuredUrl = brandingConfig?.get("welcome_background_url");
          if (configuredUrl) {
 diff --git a/src/components/views/settings/tabs/user/HelpUserSettingsTab.tsx b/src/components/views/settings/tabs/user/HelpUserSettingsTab.tsx
-index 5330d74520..1642300bc6 100644
+index ef0d6e57fc..bfc0c58a68 100644
 --- a/src/components/views/settings/tabs/user/HelpUserSettingsTab.tsx
 +++ b/src/components/views/settings/tabs/user/HelpUserSettingsTab.tsx
 @@ -118,7 +118,7 @@ export default class HelpUserSettingsTab extends React.Component<EmptyObject, IS
@@ -22130,5 +22130,5 @@ index 5330d74520..1642300bc6 100644
                                              target="_blank"
                                          >
 -- 
-2.48.1
+2.49.0
 

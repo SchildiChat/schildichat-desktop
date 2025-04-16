@@ -1,4 +1,4 @@
-From db8b600a3695f35e70cb0c2a9f6b3cba99d2bfae Mon Sep 17 00:00:00 2001
+From 28c8aafc65b222ddb7e663379b9981f005e77ef0 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Wed, 17 Nov 2021 12:50:25 +0100
 Subject: Hide the "mute" notification state the same way as the other states
@@ -26,5 +26,5 @@ index 3eafb671cb..c9dcd00fd0 100644
  
          return (
 -- 
-2.48.1
+2.49.0
 

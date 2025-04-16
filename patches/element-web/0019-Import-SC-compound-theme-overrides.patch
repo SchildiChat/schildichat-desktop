@@ -1,4 +1,4 @@
-From d37ddfc40426f200c9fcaa4298c5cf9921fb9025 Mon Sep 17 00:00:00 2001
+From 453eae3dc1a21fd18c28dca91498efbbadfb4e50 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 11:23:54 +0200
 Subject: Import SC compound theme overrides
@@ -20,5 +20,5 @@ index e55eadaaf7..21d0f1d83a 100644
  @import "./_animations.pcss";
  @import "./_spacing.pcss";
 -- 
-2.48.1
+2.49.0
 
