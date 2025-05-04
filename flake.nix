@@ -1,44 +1,31 @@
 {
   description = "The SchildiChat Matrix client";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs;
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs;
 
-  outputs = { self, nixpkgs }: let
+    desktop = {
+      url = github:SchildiChat/element-desktop;
+      flake = false;
+    };
+
+    web = {
+      url = github:SchildiChat/element-web;
+      flake = false;
+    };
+  };
+
+  outputs = { self, nixpkgs, ... }@inputs: let
     systems = [ "x86_64-linux" "i686-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
     forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-
-    overlay = import ./nix/overlay.nix;
-
-    # Memoize nixpkgs for different platforms for efficiency.
-    nixpkgsFor = forAllSystems (system:
-      import nixpkgs {
-        inherit system;
-        overlays = [ overlay ];
-      });
   in {
-    inherit overlay;
+    packages = forAllSystems(system: let pkgs = import nixpkgs {
+      inherit system;
+    }; in {
+      schildichat-desktop = pkgs.callPackage ./nix/desktop.nix { inherit inputs pkgs; };
+      schildichat-web = pkgs.callPackage ./nix/web.nix { inherit inputs pkgs; };
 
-    packages = builtins.mapAttrs (system: pkgs: {
-      inherit (pkgs)
-        schildichat-web
-        schildichat-desktop
-        schildichat-desktop-wayland
-      ;
-    }) nixpkgsFor;
-
-    defaultPackage = forAllSystems (system: self.packages.${system}.schildichat-desktop);
-
-    apps = forAllSystems(system: {
-      schildichat-desktop = {
-        type = "app";
-        program = "${self.packages.${system}.schildichat-desktop}/bin/schildichat-desktop";
-      };
-      schildichat-desktop-wayland = {
-        type = "app";
-        program = "${self.packages.${system}.schildichat-desktop-wayland}/bin/schildichat-desktop";
-      };
+      schildichat-desktop-wayland = self.packages.${system}.schildichat-desktop.override { useWayland = true; };
     });
-
-    defaultApp = forAllSystems (system: self.apps.${system}.schildichat-desktop);
   };
 }
