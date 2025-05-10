@@ -1,4 +1,4 @@
-From efe6a8611871296b277adbf5201fec0826b837fe Mon Sep 17 00:00:00 2001
+From 8fdb8bfa00fd4b510de8580eea03afdb044407be Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 13:26:16 +0200
 Subject: Always apply corner radius to all edges of the bubble
@@ -8,7 +8,7 @@ Subject: Always apply corner radius to all edges of the bubble
  1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/res/css/views/rooms/_EventBubbleTile.pcss b/res/css/views/rooms/_EventBubbleTile.pcss
-index c25cbfcec4..682ea64890 100644
+index 1607c45924..aa69fbf07f 100644
 --- a/res/css/views/rooms/_EventBubbleTile.pcss
 +++ b/res/css/views/rooms/_EventBubbleTile.pcss
 @@ -283,6 +283,8 @@ Please see LICENSE files in the repository root for full details.

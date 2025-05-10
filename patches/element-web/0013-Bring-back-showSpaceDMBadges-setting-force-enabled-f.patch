@@ -1,4 +1,4 @@
-From d52e8bb4d370dd0ba42a94e20dfc7f900a33f508 Mon Sep 17 00:00:00 2001
+From 6933b98e7fcd8682fc98a5bab7493d8adb0be7bc Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -12,10 +12,10 @@ Co-authored-by: SpiritCroc <dev@spiritcroc.de>
  2 files changed, 30 insertions(+)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 7eda4d794b..b6cde99d81 100644
+index ac88f717d4..7295b716b8 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -365,6 +365,11 @@ export const SETTINGS: Settings = {
+@@ -366,6 +366,11 @@ export const SETTINGS: Settings = {
          default: true,
          controller: new ReloadOnChangeController(),
      },
@@ -28,7 +28,7 @@ index 7eda4d794b..b6cde99d81 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index 690beaa0b7..fcd7ff659b 100644
+index ac4ffdaf0c..f0f3fb8e18 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
 @@ -155,9 +155,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
@@ -60,7 +60,7 @@ index 690beaa0b7..fcd7ff659b 100644
      public setActiveRoomInSpace(space: SpaceKey): void {
          if (!isMetaSpace(space) && !this.matrixClient?.getRoom(space)?.isSpaceRoom()) return;
          if (space !== this.activeSpace) this.setActiveSpace(space, false);
-@@ -724,6 +736,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -735,6 +747,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
  
                      if (room.isSpaceRoom() || !flattenedRoomsForSpace.has(room.roomId)) return false;
  
@@ -71,7 +71,7 @@ index 690beaa0b7..fcd7ff659b 100644
                      if (dmBadgeSpace && DMRoomMap.shared().getUserIdForRoomId(room.roomId)) {
                          return s === dmBadgeSpace;
                      }
-@@ -1301,6 +1317,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -1312,6 +1328,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
                          break;
                      }
  

@@ -1,4 +1,4 @@
-From b81d62dc80dc7efdab2996c79662c4626302a8d0 Mon Sep 17 00:00:00 2001
+From 2bf7172de08fbf43090fd95c0fc0938ef6f9a3ee Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -128,10 +128,10 @@ index 6be226a172..dbb69d8f62 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index aee9141c29..7eda4d794b 100644
+index 36030713ec..ac88f717d4 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -358,6 +358,14 @@ export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | Fe
+@@ -359,6 +359,14 @@ export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | Fe
  export type StringSettingKey = Assignable<Settings, IBaseSetting<string>>;
  
  export const SETTINGS: Settings = {
@@ -147,10 +147,10 @@ index aee9141c29..7eda4d794b 100644
          isFeature: true,
          labsGroup: LabGroup.VoiceAndVideo,
 diff --git a/src/stores/room-list/RoomListStore.ts b/src/stores/room-list/RoomListStore.ts
-index 6985e007bd..206ab20037 100644
+index 2fc396b8b3..0739857b0b 100644
 --- a/src/stores/room-list/RoomListStore.ts
 +++ b/src/stores/room-list/RoomListStore.ts
-@@ -504,6 +504,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
+@@ -494,6 +494,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
                  this.setAndPersistListOrder(tag, listOrder);
              }
          }
@@ -160,7 +160,7 @@ index 6985e007bd..206ab20037 100644
      }
  
      private onAlgorithmListUpdated = (forceUpdate: boolean): void => {
-@@ -617,7 +620,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
+@@ -607,7 +610,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
       */
      public getTagsForRoom(room: Room): TagID[] {
          const algorithmTags = this.algorithm.getTagsForRoom(room);

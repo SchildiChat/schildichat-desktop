@@ -1,4 +1,4 @@
-From c5ae977ed90c680d9055460295f60f4945f0c98a Mon Sep 17 00:00:00 2001
+From ecfa04046d5d1ace0a08c048c0c705f9b500b1f9 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Tue, 22 Dec 2020 19:16:28 +0100
 Subject: No red messages in 1:1 chats Close SchildiChat/schildichat-desktop#13
@@ -8,10 +8,10 @@ Subject: No red messages in 1:1 chats Close SchildiChat/schildichat-desktop#13
  1 file changed, 6 insertions(+)
 
 diff --git a/src/components/views/rooms/EventTile.tsx b/src/components/views/rooms/EventTile.tsx
-index 7baa127f16..4da70f5ecb 100644
+index 2c10d0afd9..d46320e8c3 100644
 --- a/src/components/views/rooms/EventTile.tsx
 +++ b/src/components/views/rooms/EventTile.tsx
-@@ -679,6 +679,12 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState>
+@@ -681,6 +681,12 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState>
              return false;
          }
  
