@@ -1,4 +1,4 @@
-From 35a85500c61821e49ce788d327a0d3882c27dd19 Mon Sep 17 00:00:00 2001
+From d6cecb5cb16ce466b441c09c2c93e342a3b84a5b Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 83d6f5f54c..885c5f7daa 100644
+index 761b7cf0e0..eef747d529 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1412,7 +1412,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1413,7 +1413,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 83d6f5f54c..885c5f7daa 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1424,6 +1432,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1425,6 +1433,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -63,10 +63,10 @@ index 7295b716b8..cab6622f9a 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index f0f3fb8e18..fa43d5a222 100644
+index c5c34c4e14..9c0090d9cc 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
-@@ -288,6 +288,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -287,6 +287,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
              // else if the last viewed room in this space is joined then view that
              // else view space home or home depending on what is being clicked on
              if (

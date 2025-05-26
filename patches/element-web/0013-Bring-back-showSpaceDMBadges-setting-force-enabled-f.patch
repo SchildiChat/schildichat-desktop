@@ -1,4 +1,4 @@
-From 6933b98e7fcd8682fc98a5bab7493d8adb0be7bc Mon Sep 17 00:00:00 2001
+From 7e65c9ffe978d6e35ad300322f03a2b9fb90bdc8 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -28,12 +28,12 @@ index ac88f717d4..7295b716b8 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index ac4ffdaf0c..f0f3fb8e18 100644
+index 015c9fa0fd..c5c34c4e14 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
-@@ -155,9 +155,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -154,9 +154,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
      private _msc3946ProcessDynamicPredecessor: boolean = SettingsStore.getValue("feature_dynamic_room_predecessors");
-     private _storeReadyDeferred = defer();
+     private _storeReadyDeferred = Promise.withResolvers<void>();
  
 +    // SC start
 +    private _showSpaceDMBadges = true;
@@ -49,7 +49,7 @@ index ac4ffdaf0c..f0f3fb8e18 100644
          SettingsStore.monitorSetting("Spaces.allRoomsInHome", null);
          SettingsStore.monitorSetting("Spaces.enabledMetaSpaces", null);
          SettingsStore.monitorSetting("Spaces.showPeopleInSpace", null);
-@@ -215,6 +223,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -214,6 +222,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
          return this._allRoomsInHome;
      }
  
@@ -60,7 +60,7 @@ index ac4ffdaf0c..f0f3fb8e18 100644
      public setActiveRoomInSpace(space: SpaceKey): void {
          if (!isMetaSpace(space) && !this.matrixClient?.getRoom(space)?.isSpaceRoom()) return;
          if (space !== this.activeSpace) this.setActiveSpace(space, false);
-@@ -735,6 +747,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -734,6 +746,10 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
  
                      if (room.isSpaceRoom() || !flattenedRoomsForSpace.has(room.roomId)) return false;
  
@@ -71,7 +71,7 @@ index ac4ffdaf0c..f0f3fb8e18 100644
                      if (dmBadgeSpace && DMRoomMap.shared().getUserIdForRoomId(room.roomId)) {
                          return s === dmBadgeSpace;
                      }
-@@ -1312,6 +1328,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -1311,6 +1327,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
                          break;
                      }
  
