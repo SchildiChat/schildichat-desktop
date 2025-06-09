@@ -1,4 +1,4 @@
-From 5f448e590304b0ee06b7fbbfd80891bca813b152 Mon Sep 17 00:00:00 2001
+From a79fd2213b83e7585bdb1368b9e91e016160eb52 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 11:23:54 +0200
 Subject: Import SC compound theme overrides
@@ -8,7 +8,7 @@ Subject: Import SC compound theme overrides
  1 file changed, 1 insertion(+)
 
 diff --git a/res/css/_common.pcss b/res/css/_common.pcss
-index e55eadaaf7..21d0f1d83a 100644
+index caaa0df3b9..44c83ecd83 100644
 --- a/res/css/_common.pcss
 +++ b/res/css/_common.pcss
 @@ -11,6 +11,7 @@ Please see LICENSE files in the repository root for full details.

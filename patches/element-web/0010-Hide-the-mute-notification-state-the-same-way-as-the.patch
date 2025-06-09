@@ -1,4 +1,4 @@
-From 44c5f7c1d38c93987ffaa4bdd3be575f5103627d Mon Sep 17 00:00:00 2001
+From 4b59183283ad70394b2dc8dedf4e5f4d7051b476 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Wed, 17 Nov 2021 12:50:25 +0100
 Subject: Hide the "mute" notification state the same way as the other states

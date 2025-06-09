@@ -1,4 +1,4 @@
-From 13ce4b9769c425a4e76867c6ff262ec82aada25e Mon Sep 17 00:00:00 2001
+From 006919f688b7bfcd631719836e386553a36c1551 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 19:38:47 +0100
 Subject: Don't welcome to Element
@@ -8,7 +8,7 @@ Subject: Don't welcome to Element
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/res/welcome.html b/res/welcome.html
-index ef2d43bd8f..5b71670f4f 100644
+index 9fdd60a7c0..453baab965 100644
 --- a/res/welcome.html
 +++ b/res/welcome.html
 @@ -169,7 +169,7 @@ we don't have an account and should hide them. No account == no guest account ei

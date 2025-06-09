@@ -1,4 +1,4 @@
-From d6cecb5cb16ce466b441c09c2c93e342a3b84a5b Mon Sep 17 00:00:00 2001
+From 47078a54aba2471b4fdf25b4ef261cea3a3f4451 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 761b7cf0e0..eef747d529 100644
+index cc69455a8a..d2208eca84 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1413,7 +1413,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1416,7 +1416,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 761b7cf0e0..eef747d529 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1425,6 +1433,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1428,6 +1436,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
