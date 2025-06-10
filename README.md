@@ -52,10 +52,7 @@ export PATH="/C/Strawberry/perl/bin:$PATH:/C/Program Files/NASM:/C/Program Files
 ### Additional packages not mentioned upstream
 
 ```
-npm install yarn
-npm install gyp
-npm install electron-builder
-npm install @electron/fuses
+npm install --global yarn gyp electron-builder @electron/fuses
 pip install setuptools
 ```
 
@@ -73,6 +70,9 @@ npm update <name>
     - Download [source code](https://github.com/electron-userland/electron-builder-binaries/releases/tag/winCodeSign-2.6.0) manually
     - Extract `electron-builder-binaries-winCodeSign-2.6.0.zip\electron-builder-binaries-winCodeSign-2.6.0\winCodeSign` to your `AppData\Local\electron-builder\Cache\winCodeSign\winCodeSign-2.6.0
     - [Source](https://github.com/electron-userland/electron-builder/issues/8149#issuecomment-2328460139)
+- Some node function not found, e.g. `mixin.stripansi is not a function`
+    - Delete `npm` and `npm-cache` directories in your `AppData/Roaming`
+    - Re-execute the `npm install` command further above
 
 
 ## Release builds
