@@ -1,4 +1,4 @@
-From c3c779c69bcbc193ccbf891ccf7063711b1ec03a Mon Sep 17 00:00:00 2001
+From 20700378880fc7dff567ed68fd04c83daaa3daa9 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 17 Dec 2023 11:11:58 +0100
 Subject: Don't sort muted rooms to bottom, I still want to see them.

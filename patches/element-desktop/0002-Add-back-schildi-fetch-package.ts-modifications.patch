@@ -1,4 +1,4 @@
-From cf3b9d993eff8355f024a627bd77c8aa2fbe4f7a Mon Sep 17 00:00:00 2001
+From 73f20d371b005b2ceba60c84e040bf246dfb740d Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sat, 2 Dec 2023 12:57:26 +0100
 Subject: Add back schildi fetch-package.ts modifications
@@ -8,7 +8,7 @@ Subject: Add back schildi fetch-package.ts modifications
  1 file changed, 10 insertions(+), 4 deletions(-)
 
 diff --git a/scripts/fetch-package.ts b/scripts/fetch-package.ts
-index 72829454..4be7ab0b 100644
+index 7282945..4be7ab0 100644
 --- a/scripts/fetch-package.ts
 +++ b/scripts/fetch-package.ts
 @@ -54,6 +54,7 @@ async function main(): Promise<number | undefined> {
