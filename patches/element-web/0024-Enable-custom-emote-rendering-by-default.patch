@@ -1,4 +1,4 @@
-From 7c46305309b087c0d1d26cc77266532541307cb0 Mon Sep 17 00:00:00 2001
+From b869b99392687ab02392dfe65ca63c84fa48350e Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Thu, 17 Oct 2024 19:40:51 +0200
 Subject: Enable custom emote rendering by default
@@ -8,10 +8,10 @@ Subject: Enable custom emote rendering by default
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 01cb113acb..cd946a7eb5 100644
+index 0e8ea4fc8a..a5614769ef 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -656,7 +656,7 @@ export const SETTINGS: Settings = {
+@@ -665,7 +665,7 @@ export const SETTINGS: Settings = {
          description: _td("labs|render_reaction_images_description"),
          supportedLevels: LEVELS_DEVICE_ONLY_SETTINGS_WITH_CONFIG_PRIORITISED,
          supportedLevelsAreOrdered: true,

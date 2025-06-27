@@ -1,4 +1,4 @@
-From b755c4d712f402dd27e0c8631cf30a173c1d4605 Mon Sep 17 00:00:00 2001
+From 8a7ead9204a57f82597ebfb570f0e2b25e582cba Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 13:53:07 +0200
 Subject: Always show timestamps by default
@@ -8,10 +8,10 @@ Subject: Always show timestamps by default
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index cab6622f9a..01cb113acb 100644
+index 660078e587..0e8ea4fc8a 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -801,7 +801,7 @@ export const SETTINGS: Settings = {
+@@ -810,7 +810,7 @@ export const SETTINGS: Settings = {
      "alwaysShowTimestamps": {
          supportedLevels: LEVELS_ACCOUNT_SETTINGS,
          displayName: _td("settings|always_show_message_timestamps"),
