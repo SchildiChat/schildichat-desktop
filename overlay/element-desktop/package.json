@@ -2,9 +2,14 @@
   "name": "schildichat-desktop-alpha",
   "productName": "SchildiChatAlpha",
   "description": "A Matrix Client based on Element with some changes and tweaks",
-  "author": "SchildiChat",
+  "author": "SchildiChat <contact@schildi.chat> (https://schildi.chat)",
   "repository": {
     "url": "https://github.com/SchildiChat/schildichat-desktop"
   },
-  "homepage": "https://schildi.chat/"
+  "homepage": "https://schildi.chat/",
+  "build": {
+    "linux": {
+      "publish": null
+    }
+  }
 }
