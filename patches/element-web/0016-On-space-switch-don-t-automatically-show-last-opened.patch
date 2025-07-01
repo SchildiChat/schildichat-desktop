@@ -1,4 +1,4 @@
-From 0420f2dccbc4ec0bd4cb941366179cb367375d10 Mon Sep 17 00:00:00 2001
+From 1e93c84b9db5c7d562420f39ac1c7f1304ab4f48 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -63,7 +63,7 @@ index 6b4b8691e4..660078e587 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index c5c34c4e14..9c0090d9cc 100644
+index f004ce149f..23b55c234f 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
 @@ -287,6 +287,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
@@ -75,5 +75,5 @@ index c5c34c4e14..9c0090d9cc 100644
                  cliSpace?.getMyMembership() !== KnownMembership.Invite &&
                  this.matrixClient.getRoom(roomId)?.getMyMembership() === KnownMembership.Join &&
 -- 
-2.49.0
+2.50.0
 

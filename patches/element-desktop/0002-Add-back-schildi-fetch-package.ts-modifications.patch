@@ -1,4 +1,4 @@
-From cadd0ad4af331ffe0d1fa53b604ef86449a20415 Mon Sep 17 00:00:00 2001
+From b39ae00380dddc7e263b27807c0366f314f45c63 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sat, 2 Dec 2023 12:57:26 +0100
 Subject: Add back schildi fetch-package.ts modifications
@@ -58,5 +58,5 @@ index 7282945..4be7ab0 100644
      if (!haveDeploy) {
          const outPath = path.join(pkgDir, filename);
 -- 
-2.49.0
+2.50.0
 

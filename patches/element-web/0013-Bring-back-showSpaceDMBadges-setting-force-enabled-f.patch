@@ -1,4 +1,4 @@
-From 634c5b37c8240b4c86e3f2fc633d590094b83766 Mon Sep 17 00:00:00 2001
+From 551ba0bbbc34451110d0dd8dc4dd6a4bcf5273c3 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -28,7 +28,7 @@ index 07f0e8ac5b..6b4b8691e4 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index 015c9fa0fd..c5c34c4e14 100644
+index 2945d486c2..f004ce149f 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
 @@ -154,9 +154,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
@@ -88,5 +88,5 @@ index 015c9fa0fd..c5c34c4e14 100644
                          const newValue = SettingsStore.getValue("Spaces.enabledMetaSpaces");
                          const enabledMetaSpaces = this.metaSpaceOrder.filter((k) => newValue[k]);
 -- 
-2.49.0
+2.50.0
 

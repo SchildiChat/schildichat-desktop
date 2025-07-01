@@ -1,4 +1,4 @@
-From 64f97a8d22b6a5469391f089384639289752900d Mon Sep 17 00:00:00 2001
+From 658b6228d8c86881e17f012b923aaa1a6035b9fa Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sat, 30 Nov 2024 19:42:44 +0100
 Subject: Disable showing people in spaces by default
@@ -35,5 +35,5 @@ index 02e20e9103..2b49711c8e 100644
  
      public isVisible(room: Room): boolean {
 -- 
-2.49.0
+2.50.0
 

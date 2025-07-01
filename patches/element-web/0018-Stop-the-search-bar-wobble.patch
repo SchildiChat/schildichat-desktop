@@ -1,4 +1,4 @@
-From 73f866fd1c6597f377b6d2fc103d4c3d13aa4134 Mon Sep 17 00:00:00 2001
+From 4b9ee7630078e3996f68c2b75043db1db5503be6 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Mon, 19 Aug 2024 20:27:33 +0200
 Subject: Stop the search bar wobble
@@ -20,5 +20,5 @@ index 3eed8c93c6..caaa0df3b9 100644
  
  /* FIXME THEME - Tint by CSS rather than referencing a duplicate asset */
 -- 
-2.49.0
+2.50.0
 

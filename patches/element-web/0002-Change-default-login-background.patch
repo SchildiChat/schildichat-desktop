@@ -1,4 +1,4 @@
-From 1028d2669b77bcd03372f8d518f1907613532a2c Mon Sep 17 00:00:00 2001
+From 824b310a739bf1695728935dc97400db08434ed2 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 29 Nov 2020 23:30:59 +0100
 Subject: Change default login background
@@ -23625,5 +23625,5 @@ index ef0d6e57fc..bfc0c58a68 100644
                                              target="_blank"
                                          >
 -- 
-2.49.0
+2.50.0
 

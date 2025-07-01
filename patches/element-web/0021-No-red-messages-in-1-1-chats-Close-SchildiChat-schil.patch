@@ -1,4 +1,4 @@
-From 3fd1d4e8c7847dd86e67cfe47415a6af19a803a0 Mon Sep 17 00:00:00 2001
+From c6c32debf2e4c90047784002aab3786d63156270 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Tue, 22 Dec 2020 19:16:28 +0100
 Subject: No red messages in 1:1 chats Close SchildiChat/schildichat-desktop#13
@@ -25,5 +25,5 @@ index 2c10d0afd9..d46320e8c3 100644
      }
  
 -- 
-2.49.0
+2.50.0
 
