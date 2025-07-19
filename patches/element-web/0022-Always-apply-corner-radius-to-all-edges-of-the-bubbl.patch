@@ -1,4 +1,4 @@
-From cd5783811ba06c356fa99cbeef1a9af940278020 Mon Sep 17 00:00:00 2001
+From 3b9ab389b18797e29253a926fbd6ebac2dd76d70 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 13:26:16 +0200
 Subject: Always apply corner radius to all edges of the bubble
@@ -57,5 +57,5 @@ index 1607c45924..aa69fbf07f 100644
      }
      &.mx_EventTile_lastInSection[data-self="true"] .mx_EventTile_line {
 -- 
-2.50.0
+2.50.1
 

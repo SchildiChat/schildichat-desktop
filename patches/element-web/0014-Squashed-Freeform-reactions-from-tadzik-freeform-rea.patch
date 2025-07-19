@@ -1,4 +1,4 @@
-From 435b91ac19f73e8a6eba4ff26ef8e2f6a44de992 Mon Sep 17 00:00:00 2001
+From 32c4454cbadd06745854a32029ef360291f9b9a8 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Wed, 29 May 2024 19:32:42 +0200
 Subject: Squashed: Freeform reactions from tadzik/freeform-reactions-upstream
@@ -131,5 +131,5 @@ index 11b3d9468a..7d369945fe 100644
                  isEmojiDisabled={this.isEmojiDisabled}
                  onFinished={this.props.onFinished}
 -- 
-2.50.0
+2.50.1
 

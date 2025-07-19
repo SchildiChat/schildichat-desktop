@@ -1,4 +1,4 @@
-From 1c6bfc621590fff6896acc3cc84dba5d66db27b5 Mon Sep 17 00:00:00 2001
+From 57175ea3478bca55b6a754635b9a45cf0dfd9959 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 19:24:26 +0100
 Subject: Enable chat previews by default
@@ -21,5 +21,5 @@ index a4ae9bbc1d..227c918457 100644
  
      public constructor(public readonly tagId: TagID) {
 -- 
-2.50.0
+2.50.1
 

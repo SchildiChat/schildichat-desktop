@@ -1,4 +1,4 @@
-From dde1fa58e2e7f5ac59338dbd30d7ca72523aa317 Mon Sep 17 00:00:00 2001
+From f968c6333a69c930b76aae12d83c6ea9058bb23c Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 20:07:30 +0100
 Subject: Schildify login footer
@@ -26,5 +26,5 @@ index 1942bf0431..1054d06f89 100644
  
      const authFooterLinks: JSX.Element[] = [];
 -- 
-2.50.0
+2.50.1
 
