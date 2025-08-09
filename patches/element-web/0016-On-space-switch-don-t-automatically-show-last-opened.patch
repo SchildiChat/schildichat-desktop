@@ -1,4 +1,4 @@
-From ac5f8d46751df6c1e5fdecfff8e576314b679812 Mon Sep 17 00:00:00 2001
+From d85d008a24bed649432afc08e49cf40d5d0b0700 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -46,10 +46,10 @@ index e61713ca69..c7342758fb 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index f44bf9e128..57fa5be09e 100644
+index cf69e67439..77406e04a1 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
-@@ -380,6 +380,12 @@ export const SETTINGS: Settings = {
+@@ -381,6 +381,12 @@ export const SETTINGS: Settings = {
          supportedLevels: LEVELS_ACCOUNT_SETTINGS,
          default: true,
      },
