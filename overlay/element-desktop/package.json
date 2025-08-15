@@ -7,9 +7,7 @@
     "url": "https://github.com/SchildiChat/schildichat-desktop"
   },
   "homepage": "https://schildi.chat/",
-  "build": {
-    "linux": {
-      "publish": null
-    }
+  "devDependencies": {
+      "electron-builder": "26.0.15"
   }
 }
