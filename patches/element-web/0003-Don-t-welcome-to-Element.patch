@@ -1,4 +1,4 @@
-From 09b86743bdd7d9f48b58734a9d36d753f245bf33 Mon Sep 17 00:00:00 2001
+From 5c4f83a01d98fe7789f6d2d4c95a517348e74200 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 27 Oct 2024 19:38:47 +0100
 Subject: Don't welcome to Element
@@ -21,5 +21,5 @@ index 9fdd60a7c0..453baab965 100644
      <h4 class="mx_Header_subtitle">_t("powered_by_matrix_with_logo")</h4>
      <div class="mx_ButtonGroup">
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From eb2cda8a115725171a73d0d67284930e7f68a9e4 Mon Sep 17 00:00:00 2001
+From 66b9095781fb80ee982d0edc0263c8647c0e933d Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sat, 22 Apr 2023 12:15:18 +0200
 Subject: Allow reactions to take more space
@@ -28,5 +28,5 @@ index 917bcfbb84..75ec572c9e 100644
          white-space: nowrap;
          text-overflow: ellipsis;
 -- 
-2.50.1
+2.51.0
 

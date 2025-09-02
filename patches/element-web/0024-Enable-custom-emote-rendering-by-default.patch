@@ -1,4 +1,4 @@
-From a4e65594895d35144a54314bf4280d1d1c9ce7be Mon Sep 17 00:00:00 2001
+From e21f027e16c8665abf3efcd5d0aa69625aad1f50 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Thu, 17 Oct 2024 19:40:51 +0200
 Subject: Enable custom emote rendering by default
@@ -21,5 +21,5 @@ index 821c13febd..ab8c1c2919 100644
      "feature_new_room_list": {
          supportedLevels: LEVELS_DEVICE_ONLY_SETTINGS_WITH_CONFIG_PRIORITISED,
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From 7a203182768cbf792cf91be4a0b2e46009661530 Mon Sep 17 00:00:00 2001
+From 18c070bf3095389634067a42eebb873d6d8709b8 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -75,5 +75,5 @@ index f004ce149f..23b55c234f 100644
                  cliSpace?.getMyMembership() !== KnownMembership.Invite &&
                  this.matrixClient.getRoom(roomId)?.getMyMembership() === KnownMembership.Join &&
 -- 
-2.50.1
+2.51.0
 

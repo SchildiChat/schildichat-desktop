@@ -1,4 +1,4 @@
-From c73ca1c84819845aa889b6a5d3b08695e81b0c32 Mon Sep 17 00:00:00 2001
+From d9f613c500f9118a1c34fad44c1049127197c5b0 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -88,5 +88,5 @@ index 2945d486c2..f004ce149f 100644
                          const newValue = SettingsStore.getValue("Spaces.enabledMetaSpaces");
                          const enabledMetaSpaces = this.metaSpaceOrder.filter((k) => newValue[k]);
 -- 
-2.50.1
+2.51.0
 
