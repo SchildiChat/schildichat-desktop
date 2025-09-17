@@ -1,4 +1,4 @@
-From 18c070bf3095389634067a42eebb873d6d8709b8 Mon Sep 17 00:00:00 2001
+From e8052bf6d6fc81706fe9d84d613bb2496eab476e Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Thu, 30 May 2024 14:35:16 +0200
 Subject: On space switch don't automatically show last opened room
@@ -10,10 +10,10 @@ Subject: On space switch don't automatically show last opened room
  3 files changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/src/components/structures/MatrixChat.tsx b/src/components/structures/MatrixChat.tsx
-index 39c0147da0..77b9fa5444 100644
+index aef4fcdaf0..8f3e4a3d73 100644
 --- a/src/components/structures/MatrixChat.tsx
 +++ b/src/components/structures/MatrixChat.tsx
-@@ -1470,7 +1470,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1477,7 +1477,15 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          if (this.screenAfterLogin && this.screenAfterLogin.screen) {
              this.showScreen(this.screenAfterLogin.screen, this.screenAfterLogin.params);
              this.screenAfterLogin = undefined;
@@ -30,7 +30,7 @@ index 39c0147da0..77b9fa5444 100644
              // Before defaulting to directory, show the last viewed room
              this.viewLastRoom();
          } else {
-@@ -1482,6 +1490,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
+@@ -1489,6 +1497,14 @@ export default class MatrixChat extends React.PureComponent<IProps, IState> {
          }
      }
  
@@ -46,7 +46,7 @@ index 39c0147da0..77b9fa5444 100644
          dis.dispatch<ViewRoomPayload>({
              action: Action.ViewRoom,
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 6ef6e3b276..fe81f165f0 100644
+index 44a2ea90ce..45acd909fb 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -382,6 +382,12 @@ export const SETTINGS: Settings = {
@@ -63,7 +63,7 @@ index 6ef6e3b276..fe81f165f0 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index f004ce149f..23b55c234f 100644
+index fd38bd0010..dcc99c4a94 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
 @@ -287,6 +287,7 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {

@@ -1,4 +1,4 @@
-From 89a44556eb15999dd7a45ee88bc5fbb67f61f78b Mon Sep 17 00:00:00 2001
+From 8c438c147b0a53630794ef3399daee4b9a4bf860 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Tue, 9 Aug 2022 09:32:19 +0200
 Subject: Exclude spaces from breadcrumbs
@@ -8,7 +8,7 @@ Subject: Exclude spaces from breadcrumbs
  1 file changed, 1 insertion(+)
 
 diff --git a/src/stores/BreadcrumbsStore.ts b/src/stores/BreadcrumbsStore.ts
-index e3b01cae0b..02f6c286f2 100644
+index 041430340e..239b1915f6 100644
 --- a/src/stores/BreadcrumbsStore.ts
 +++ b/src/stores/BreadcrumbsStore.ts
 @@ -137,6 +137,7 @@ export class BreadcrumbsStore extends AsyncStoreWithClient<IState> {

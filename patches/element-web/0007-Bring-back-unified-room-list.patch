@@ -1,4 +1,4 @@
-From 319bdbd9de852eaf20f2e9dc030fa772e32ad76f Mon Sep 17 00:00:00 2001
+From 63a20f24caca99c9fc2f94931bfbb4b94fc5488c Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -128,7 +128,7 @@ index 6be226a172..dbb69d8f62 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 3adb29a23e..5451a2b8d9 100644
+index f0f52bbbf8..3a9f107565 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -370,6 +370,14 @@ export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | Fe
@@ -147,10 +147,10 @@ index 3adb29a23e..5451a2b8d9 100644
          isFeature: true,
          labsGroup: LabGroup.VoiceAndVideo,
 diff --git a/src/stores/room-list/RoomListStore.ts b/src/stores/room-list/RoomListStore.ts
-index 2fc396b8b3..0739857b0b 100644
+index c6675d7aa5..e4c48dd1f7 100644
 --- a/src/stores/room-list/RoomListStore.ts
 +++ b/src/stores/room-list/RoomListStore.ts
-@@ -494,6 +494,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
+@@ -492,6 +492,9 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
                  this.setAndPersistListOrder(tag, listOrder);
              }
          }
@@ -160,7 +160,7 @@ index 2fc396b8b3..0739857b0b 100644
      }
  
      private onAlgorithmListUpdated = (forceUpdate: boolean): void => {
-@@ -607,7 +610,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
+@@ -605,7 +608,21 @@ export class RoomListStoreClass extends AsyncStoreWithClient<EmptyObject> implem
       */
      public getTagsForRoom(room: Room): TagID[] {
          const algorithmTags = this.algorithm.getTagsForRoom(room);

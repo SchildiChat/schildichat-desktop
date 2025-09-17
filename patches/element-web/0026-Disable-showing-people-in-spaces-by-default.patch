@@ -1,4 +1,4 @@
-From f415814b6e1bf7db90758632c690d62a74b28acf Mon Sep 17 00:00:00 2001
+From 1b7806086868b9f20769143cdf6dd7f412e97642 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sat, 30 Nov 2024 19:42:44 +0100
 Subject: Disable showing people in spaces by default
@@ -9,7 +9,7 @@ Subject: Disable showing people in spaces by default
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index ab8c1c2919..49b20b2c0a 100644
+index ff94d6da5a..06c3d66f74 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -1298,7 +1298,7 @@ export const SETTINGS: Settings = {

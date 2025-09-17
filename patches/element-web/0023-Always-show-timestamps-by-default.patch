@@ -1,4 +1,4 @@
-From 7794aa78c55e439726ac7ddc27d26c7ea2d7b749 Mon Sep 17 00:00:00 2001
+From 6e5087cfb3eb77ed1970c179c9bc9a9bd4e7ef78 Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 13 Oct 2024 13:53:07 +0200
 Subject: Always show timestamps by default
@@ -8,7 +8,7 @@ Subject: Always show timestamps by default
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index fe81f165f0..821c13febd 100644
+index 45acd909fb..bb63279adc 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -846,7 +846,7 @@ export const SETTINGS: Settings = {

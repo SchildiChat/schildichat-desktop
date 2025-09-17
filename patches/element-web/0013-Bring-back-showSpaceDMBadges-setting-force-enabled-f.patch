@@ -1,4 +1,4 @@
-From d9f613c500f9118a1c34fad44c1049127197c5b0 Mon Sep 17 00:00:00 2001
+From 7408ce839bd4d13cfff94671a0b5e06ac8825190 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 26 May 2024 10:43:36 +0200
 Subject: Bring back showSpaceDMBadges setting, force-enabled for now
@@ -12,7 +12,7 @@ Co-authored-by: SpiritCroc <dev@spiritcroc.de>
  2 files changed, 30 insertions(+)
 
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index 5451a2b8d9..6ef6e3b276 100644
+index 3a9f107565..44a2ea90ce 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -377,6 +377,11 @@ export const SETTINGS: Settings = {
@@ -28,7 +28,7 @@ index 5451a2b8d9..6ef6e3b276 100644
      "feature_video_rooms": {
          isFeature: true,
 diff --git a/src/stores/spaces/SpaceStore.ts b/src/stores/spaces/SpaceStore.ts
-index 2945d486c2..f004ce149f 100644
+index bfb98f6b02..fd38bd0010 100644
 --- a/src/stores/spaces/SpaceStore.ts
 +++ b/src/stores/spaces/SpaceStore.ts
 @@ -154,9 +154,17 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
@@ -71,7 +71,7 @@ index 2945d486c2..f004ce149f 100644
                      if (dmBadgeSpace && DMRoomMap.shared().getUserIdForRoomId(room.roomId)) {
                          return s === dmBadgeSpace;
                      }
-@@ -1311,6 +1327,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
+@@ -1312,6 +1328,15 @@ export class SpaceStoreClass extends AsyncStoreWithClient<EmptyObject> {
                          break;
                      }
  
