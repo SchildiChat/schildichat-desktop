@@ -14,6 +14,8 @@ all: web
 YARN ?= yarnpkg
 CONTAINER_ENGINE ?= podman
 NODE_VERSION ?= 22
+# Override upstream build.json as per element-desktop/electron-builder.ts
+VARIANT_PATH ?= $(shell realpath overlay/element-desktop/build.json)
 
 VERSION := $(shell grep version element-desktop/package.json | sed 's|.*: \"\(.*\)\",|\1|')
 WEB_APP_NAME :=  $(shell grep '"name"' element-web/package.json | head -n 1 | sed 's|.*: \"\(.*\)\",|\1|')

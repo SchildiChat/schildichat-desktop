@@ -1,4 +1,4 @@
-From 8c704fc902b1a6c56ab32ef29b5bae3e60191ee5 Mon Sep 17 00:00:00 2001
+From 9889479adb8c961637d6e281b5df74dc54cdf469 Mon Sep 17 00:00:00 2001
 From: su-ex <codeworks@supercable.onl>
 Date: Sun, 29 Nov 2020 23:30:59 +0100
 Subject: Change default login background
@@ -23599,10 +23599,10 @@ literal 0
 HcmV?d00001
 
 diff --git a/src/components/views/auth/AuthPage.tsx b/src/components/views/auth/AuthPage.tsx
-index dd3facaa79..3c7fe2503e 100644
+index 7d9a9132c8..bac568d6d4 100644
 --- a/src/components/views/auth/AuthPage.tsx
 +++ b/src/components/views/auth/AuthPage.tsx
-@@ -20,7 +20,7 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
+@@ -31,7 +31,7 @@ export default class AuthPage extends React.PureComponent<React.PropsWithChildre
          if (AuthPage.welcomeBackgroundUrl) return AuthPage.welcomeBackgroundUrl;
  
          const brandingConfig = SdkConfig.getObject("branding");

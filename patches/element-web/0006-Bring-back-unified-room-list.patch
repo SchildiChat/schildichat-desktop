@@ -1,4 +1,4 @@
-From 63a20f24caca99c9fc2f94931bfbb4b94fc5488c Mon Sep 17 00:00:00 2001
+From 9d9e219aa99146c0073c31ce3b41ee7ff94c94ed Mon Sep 17 00:00:00 2001
 From: SpiritCroc <dev@spiritcroc.de>
 Date: Sun, 5 May 2024 10:12:17 +0200
 Subject: Bring back unified room list
@@ -128,7 +128,7 @@ index 6be226a172..dbb69d8f62 100644
                  (this.props.activeSpace === MetaSpace.Favourites && orderedTagId !== DefaultTagID.Favourite) ||
                  (this.props.activeSpace === MetaSpace.People && orderedTagId !== DefaultTagID.DM) ||
 diff --git a/src/settings/Settings.tsx b/src/settings/Settings.tsx
-index f0f52bbbf8..3a9f107565 100644
+index dfb869c31c..a79aa5c99b 100644
 --- a/src/settings/Settings.tsx
 +++ b/src/settings/Settings.tsx
 @@ -370,6 +370,14 @@ export type BooleanSettingKey = Assignable<Settings, IBaseSetting<boolean>> | Fe
