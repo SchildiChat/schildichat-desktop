@@ -1,8 +1,8 @@
 { inputs, pkgs, useWayland ? false }:
 
 let
-  packageJSON = inputs.desktop + "/package.json";
-  yarnLock = inputs.desktop + "/yarn.lock";
+  packageJSON = "${inputs.schildichat}/element-desktop/package.json";
+  yarnLock = "${inputs.schildichat}/element-web/yarn.lock";
 
   schildichat-web = pkgs.callPackage ./web.nix { inherit inputs pkgs; };
   package = builtins.fromJSON (builtins.readFile packageJSON);
@@ -17,7 +17,7 @@ in pkgs.mkYarnPackage rec {
   inherit (pkgs.element-desktop) seshat keytar;
   inherit pname version packageJSON;
 
-  src = inputs.desktop;
+  src = "${inputs.schildichat}/element-desktop";
   nativeBuildInputs = with pkgs; [ makeWrapper ];
 
   buildPhase = ''

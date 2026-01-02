@@ -1,8 +1,8 @@
 { inputs, pkgs }:
 
 let
-  packageJSON = inputs.web + "/package.json";
-  yarnLock = inputs.web + "/yarn.lock";
+  packageJSON = "${inputs.schildichat}/element-web/package.json";
+  yarnLock = "${inputs.schildichat}/element-web/yarn.lock";
 
   package = builtins.fromJSON (builtins.readFile packageJSON);
 
@@ -16,8 +16,8 @@ let
 in pkgs.stdenv.mkDerivation {
   inherit pname version;
 
-  src = inputs.web;
-  buildInputs = with pkgs; [ nodejs ];
+  src = "${inputs.schildichat}/element-web";
+  buildInputs = [ pkgs.nodejs ];
 
   postPatch = ''
     patchShebangs .
@@ -34,7 +34,7 @@ in pkgs.stdenv.mkDerivation {
     rm -rf element-web
     mkdir element-web
     
-    cp -r ${inputs.web}/* element-web
+    cp -r ${inputs.schildichat}/element-web/* element-web
     ln -s $PWD/node_modules element-web/
 
     runHook postConfigure
