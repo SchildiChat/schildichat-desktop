@@ -1,3 +1,7 @@
+# Deprecation notice
+
+This project is no longer maintained, as development now focuses on [SchildiChat Revenge](https://github.com/SchildiChat/schildi-revenge).
+
 # SchildiChat Web/Desktop
 
 SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/element-hq/element-web)/[Desktop](https://github.com/element-hq/element-desktop).
