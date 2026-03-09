@@ -1,7 +1,0 @@
-{
-    "appId": "SchildiChatAlpha",
-    "name": "schildichat-desktop-alpha",
-    "productName": "SchildiChatAlpha",
-    "description": "The Matrix client with the turtle",
-    "protocols": ["io.element.desktop", "element"]
-}
